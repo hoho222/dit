@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+	<select id="admin.isAdminCnt" parameterType="hashmap" resultType="String">
+	     <![CDATA[
+	     SELECT COUNT(*)
+	     FROM T_ADMIN
+	     ]]>
+	     <where>
+		     <if test="adminId != null and adminId != ''">
+		     	AND ID = #{adminId}
+		     </if>
+		     <if test="adminPwd != null and adminPwd != ''">
+		     	AND PWD = #{adminPwd}
+		     </if>
+		 </where>
+    </select>
+    
+    <select id="admin.selectAdmin" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, ID, PWD, NAME, LAST_ACCESS_DT, CREATE_DT 
+	     FROM T_ADMIN
+	     ]]>
+	     <where>
+		     <if test="adminId != null and adminId != ''">
+		     	AND ID = #{adminId}
+		     </if>
+		     <if test="adminPwd != null and adminPwd != ''">
+		     	AND PWD = #{adminPwd}
+		     </if>
+	     </where>
+    </select>
+    
+    <select id="admin.selectPenaltyList" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, NAME, PRICE, CATEGORY_BIG, CATEGORY_SMALL
+	     FROM T_PENALTY
+	     ORDER BY IDX DESC
+	     ]]>
+    </select>
+    
+    <insert id="admin.insertPenalty">
+    	<![CDATA[
+    	INSERT INTO T_PENALTY
+    	(
+    		NAME,
+    		PRICE,
+    		CATEGORY_BIG,
+    		CATEGORY_SMALL,
+    		CREATE_DT
+    	)
+    	VALUES
+    	(
+    		#{name},
+    		#{price},
+    		#{categoryBig},
+    		#{categorySmall},
+    		now()
+    	)
+    	]]>
+    </insert>
+
+	<select id="admin.selectNoticeList" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, TITLE, CONTENTS, HIT_CNT, IS_DEL, WRITER_ID, WRITER_NAME, CREATE_DT
+	     FROM T_NOTICE
+	     ORDER BY IDX DESC
+	     ]]>
+    </select>
+    
+	<insert id="admin.insertNotice">
+    	<![CDATA[
+    	INSERT INTO T_NOTICE
+    	(
+    		TITLE,
+    		CONTENTS,
+    		WRITER_IDX,
+    		WRITER_ID,
+    		WRITER_NAME,
+    		CREATE_DT
+    	)
+    	VALUES
+    	(
+    		#{title},
+    		#{contents},
+    		#{writerIdx},
+    		#{writerId},
+    		#{writerName},
+    		now()
+    	)
+    	]]>
+    </insert>
+
+</mapper>

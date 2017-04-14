@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="front">
+
+	<select id="front.selectNoticeList" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, TITLE, HIT_CNT, CREATE_DT, WRITER_NAME, WRITER_ID
+	     FROM T_NOTICE
+	     WHERE IS_DEL = 'N'
+	     ORDER BY IDX DESC
+	     ]]>
+	     <!-- LIMIT 15 OFFSET #{page} -->
+    </select>
+    
+    <select id="front.selectNoticeDetail" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, TITLE, HIT_CNT, CONTENTS, WRITER_NAME, WRITER_ID, CREATE_DT
+	     FROM T_NOTICE
+	     WHERE IDX = #{idx}
+	     ]]>
+    </select>
+    
+    <update id="front.updateNoticeHitCnt">
+    	<![CDATA[
+    	UPDATE T_NOTICE 
+    	SET HIT_CNT = HIT_CNT + 1  
+    	WHERE IDX = #{idx}
+    	]]>
+    </update>
+    
+    <update id="front.updateGoal">
+    	UPDATE T_GOAL 
+    	<set>
+	   		<if test="periodHit != null and periodHit != ''">
+	   			GOAL_CHECK_PERIOD_HIT = #{periodHitInt} + 1,  
+	   			GOAL_CHECK_PERIOD_HIT_REGDATE = now(),
+	   		</if>
+	   		<if test="successGB != null and successGB != '' and successGB == 'success'">
+	   			IS_SUCCESS = 'Y',
+	   		</if>
+	   		<if test="successGB != null and successGB != '' and successGB == 'fail'">
+	   			IS_SUCCESS = 'N',
+	   		</if>
+    	</set>
+    	<where>
+		    <if test="idx != null and idx != ''">
+		    AND IDX = #{idx}
+		    </if>
+		    <if test="goalIdx != null and goalIdx != ''">
+		    AND IDX = #{goalIdx}
+	    	</if>
+    	</where>
+    </update>
+    
+    <select id="front.selectGoalList" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, GOAL_TITLE, GOAL_CONTENTS, DATE_FORMAT(START_DT, '%Y-%m-%d') as START_DT, DATE_FORMAT(END_DT, '%Y-%m-%d') as END_DT, 
+	     		PENALTY_NAME, PENALTY_IDX, FAIL_RECEIVER, CREATE_DT, IS_SUCCESS
+	     FROM T_GOAL
+	     WHERE 1=1
+	     AND WRITER_IDX = #{loginIdx}
+	     ]]>
+	     <if test="pageGB != null and pageGB != '' and pageGB == 'goals'">
+	     AND IS_SUCCESS = 'D'
+	     </if> 
+	     <if test="pageGB != null and pageGB != '' and pageGB == 'mypages'">
+	     AND (IS_SUCCESS = 'Y' OR IS_SUCCESS = 'N') 
+	     </if> 
+	     
+	     ORDER BY IDX DESC
+	     
+	     <!-- LIMIT 15 OFFSET #{page} -->
+    </select>
+    
+    <select id="front.selectGoalDetail" parameterType="hashmap" resultType="hashmap">
+	     
+	     SELECT IDX, GOAL_TITLE, GOAL_CONTENTS, DATE_FORMAT(START_DT, '%Y-%m-%d') as START_DT, DATE_FORMAT(END_DT, '%Y-%m-%d') as END_DT, WRITER_IDX,
+	     		PENALTY_NAME, PENALTY_IDX, FAIL_RECEIVER, DATE_FORMAT(CREATE_DT, '%Y-%m-%d') as CREATE_DT, IS_KAKAO_NOTICE, WRITER_ID, HAS_GOAL_CHECK_PERIOD,
+	     		GOAL_CHECK_PERIOD, GOAL_CHECK_PERIOD_HIT, TOTAL_DAYS, IS_SUCCESS,
+	     		DATE_FORMAT(IFNULL(GOAL_CHECK_PERIOD_HIT_REGDATE, date_add(CREATE_DT, interval -1 day)), '%Y-%m-%d') as GOAL_CHECK_PERIOD_HIT_REGDATE,
+	     		DATE_FORMAT(now(), '%Y-%m-%d') as TODAY
+	     FROM T_GOAL
+	     WHERE 1=1 
+	     AND IDX = #{idx}
+     </select>
+     
+     <select id="front.selectMemberDetail" parameterType="hashmap" resultType="hashmap">
+	     SELECT *
+	     FROM T_MEMBER
+	     WHERE 1=1 
+	     AND IDX = #{idx}
+     </select>
+    
+    <insert id="front.insertGoal">
+    	<![CDATA[
+    	INSERT INTO T_GOAL
+    	(
+    		WRITER_ID,
+    		WRITER_IDX,
+    		GOAL_TITLE,
+    		START_DT,
+    		END_DT,
+    		HAS_GOAL_CHECK_PERIOD,
+    		GOAL_CHECK_PERIOD,
+    		HAS_PENALTY,
+    		PENALTY_NAME,
+    		PENALTY_IDX,
+    		FAIL_RECEIVER,
+    		FAIL_RECEIVER_PHONE,
+    		CATEGORY,
+    		GOAL_CONTENTS,
+    		HAS_GOAL_CHECKER,
+    		GOAL_CHECKER,
+    		GOAL_CHECKER_EMAIL,
+    		IS_KAKAO_NOTICE,
+    		WRITER_PHONE,
+    		CREATE_DT,
+    		TOTAL_DAYS
+    	)
+    	VALUES
+    	(
+    		#{writerId},
+    		#{writerIdx},
+    		#{goalTitle},
+    		#{startdate},
+    		#{enddate},
+    		#{has_goal_check_period_value},
+    		#{goalCheckPeriod},
+    		#{has_penalty_yn},
+    		#{penalty},
+    		#{penaltyIdx},
+    		#{failReceiver},
+    		#{failReceiverPhone},
+    		#{category},
+    		#{goalContents},
+    		#{has_goalchecker_yn},
+    		#{goalCheckerName},
+    		#{goalCheckerEmail},
+    		#{kakao_notice_yn},
+    		#{writerPhone},
+    		now(),
+    		#{totalDays}
+    	)
+    	]]>
+    </insert>
+    
+    <insert id="front.insertGoalComment" useGeneratedKeys="true" keyProperty="IDX">
+    	<![CDATA[
+    	INSERT INTO T_GOAL_COMMENT
+    	(
+    		CONTENTS,
+    		GOAL_IDX,
+    		CREATE_DT,
+    		WRITER_IDX
+    	)
+    	VALUES
+    	(
+    		#{comment},
+    		#{goalIdx},
+    		now(),
+    		#{writerIdx}
+    	)
+    	]]>
+    </insert>
+    
+    <insert id="front.insertGoalCommentImg">
+    	<![CDATA[
+    	INSERT INTO T_GOAL_COMMENT_IMG
+    	(
+    		GOAL_IDX,
+    		ORIGINAL_FILE_NAME,
+    		STORED_FILE_NAME,
+    		FILE_SIZE,
+    		FILE_PATH,
+    		WRITER_IDX,
+    		CREATE_DT,
+    		GOAL_COMMENT_IDX
+    	)
+    	VALUES
+    	(
+    		#{goalIdx},
+    		#{originalFileName},
+    		#{storedFileName},
+    		#{fileSize},
+    		#{filePath},
+    		#{writerIdx},
+    		now(),
+    		#{goalCommentIdx}
+    	)
+    	]]>
+    </insert>
+    
+    <insert id="front.insertGoalResult" useGeneratedKeys="true" keyProperty="IDX">
+    	INSERT INTO T_GOAL_RESULT
+    	(
+    		CONTENTS,
+    		GOAL_IDX,
+    		IS_SUCCESS,
+    		CREATE_DT,
+    		WRITER_IDX
+    	)
+    	VALUES
+    	(
+    		#{resultContents},
+    		#{goalIdx},
+    		<if test="successGB != null and successGB != '' and successGB == 'success'">
+	   		'Y',
+	   		</if>
+	   		<if test="successGB != null and successGB != '' and successGB == 'fail'">
+	   		'N',
+	   		</if>
+    		now(),
+    		#{writerIdx}
+    	)
+    </insert>
+    
+    <insert id="front.insertGoalResultImg">
+    	<![CDATA[
+    	INSERT INTO T_GOAL_RESULT_IMG
+    	(
+    		GOAL_IDX,
+    		ORIGINAL_FILE_NAME,
+    		STORED_FILE_NAME,
+    		FILE_SIZE,
+    		FILE_PATH,
+    		WRITER_IDX,
+    		CREATE_DT,
+    		GOAL_RESULT_IDX
+    	)
+    	VALUES
+    	(
+    		#{goalIdx},
+    		#{originalFileName},
+    		#{storedFileName},
+    		#{fileSize},
+    		#{filePath},
+    		#{writerIdx},
+    		now(),
+    		#{goalResultIdx}
+    	)
+    	]]>
+    </insert>
+    
+    <select id="front.selectGoalCommentList" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT GC.*, ifnull(GCI.ORIGINAL_FILE_NAME, 'none') AS STORED_FILE_NAME, GCI.STORED_FILE_NAME, GCI.FILE_PATH
+	     FROM T_GOAL_COMMENT AS GC
+	     LEFT OUTER JOIN T_GOAL_COMMENT_IMG AS GCI
+	     ON GC.IDX = GCI.GOAL_COMMENT_IDX
+	     WHERE GC.GOAL_IDX = #{idx}
+	     ORDER BY IDX DESC
+	     ]]>
+    </select>
+    
+    <select id="front.selectGoalResult" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT GS.*, ifnull(GSI.ORIGINAL_FILE_NAME, 'none') AS STORED_FILE_NAME, GSI.STORED_FILE_NAME, GSI.FILE_PATH
+	     FROM T_GOAL_RESULT AS GS
+	     LEFT OUTER JOIN T_GOAL_RESULT_IMG AS GSI
+	     ON GS.IDX = GSI.GOAL_RESULT_IDX
+	     WHERE GS.GOAL_IDX = #{idx}
+	     ORDER BY IDX DESC
+	     LIMIT 1;
+	     ]]>
+    </select>
+    
+    <insert id="front.insertMember">
+    	<![CDATA[
+    	INSERT INTO T_MEMBER
+    	(
+    		EMAIL_ID,
+    		PWD,
+    		HP,
+    		BIRTH_DT,
+    		NAME,
+    		NICKNAME,
+    		GENDER,
+    		CREATE_DT
+    	)
+    	VALUES
+    	(
+    		#{emailId},
+    		#{password},
+    		#{hp},
+    		#{birthDate},
+    		#{name},
+    		#{nickName},
+    		#{gender},
+    		now()
+    	)
+    	]]>
+    </insert>
+    
+    <insert id="front.insertMemberFb">
+    	<![CDATA[
+    	INSERT INTO T_MEMBER
+    	(
+    		EMAIL_ID,
+    		FB_ID,
+    		NAME,
+    		NICKNAME,
+    		CREATE_DT
+    	)
+    	VALUES
+    	(
+    		#{fbEmailId},
+    		#{fbId},
+    		#{fbName},
+    		#{fbNickName},
+    		now()
+    	)
+    	]]>
+    </insert>
+    
+    <insert id="front.insertMemberKakao">
+    	<![CDATA[
+    	INSERT INTO T_MEMBER
+    	(
+    		EMAIL_ID,
+    		KAKAO_ID,
+    		NAME,
+    		NICKNAME,
+    		CREATE_DT
+    	)
+    	VALUES
+    	(	
+    		#{kakaoEmailId},
+    		#{kakaoId},
+    		#{kakaoName},
+    		#{kakaoNickName},
+    		now()
+    	)
+    	]]>
+    </insert>
+    
+    <insert id="front.insertMemberAccessLog">
+    	<![CDATA[
+    	INSERT INTO T_ACCESS_LOG
+    	(
+    		MEMBER_IDX,
+    		MEMBER_IP,
+    		ACCESS_PATH,
+    		CREATE_DT
+    	)
+    	VALUES
+    	(	
+    		#{memberIdx},
+    		#{memberIp},
+    		#{memberAccessPath},
+    		now()
+    	)
+    	]]>
+    </insert>
+    
+    <select id="front.selectMember" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, EMAIL_ID, PWD, HP, BIRTH_DT, CREATE_DT, NAME, NICKNAME, GENDER, FB_ID, KAKAO_ID
+	     FROM T_MEMBER
+	     WHERE 1=1
+	     ]]>
+	     <if test="emailId != null and emailId != ''">
+	     	AND EMAIL_ID = #{emailId}
+	     </if>
+	     <if test="loginName != null and loginName != ''">
+	     	AND NAME = #{loginName}
+	     </if>
+	     <if test="loginNickName != null and loginNickName != ''">
+	     	AND NICKNAME = #{loginNickName}
+	     </if>
+	     <if test="pwd != null and pwd != ''">
+	     	AND PWD = #{pwd}
+	     </if>
+	     <if test="fbId != null and fbId != ''">
+	     	AND FB_ID = #{fbId}
+	     </if>
+	     <if test="kakaoId != null and kakaoId != ''">
+	     	AND KAKAO_ID = #{kakaoId}
+	     </if>
+    </select>
+    
+    <select id="front.isMemberCnt" parameterType="hashmap" resultType="String">
+	     <![CDATA[
+	     SELECT COUNT(*)
+	     FROM T_MEMBER
+	     WHERE 1=1
+	     ]]>
+	     <if test="emailId != null and emailId != ''">
+	     	AND EMAIL_ID = #{emailId}
+	     </if>
+	     <if test="pwd != null and pwd != ''">
+	     	AND PWD = #{pwd}
+	     </if>
+    </select>
+    
+    <select id="front.selectPenaltyModalList" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, NAME, PRICE, CATEGORY_BIG, CATEGORY_SMALL, CREATE_DT
+	     FROM T_PENALTY
+	     ]]>
+    </select>
+    
+</mapper>
