@@ -15,8 +15,8 @@
 	</div>
 
 	<div class="modal-body">
-		<center>패널티 상품명을 클릭하고 저장 버튼을 눌러주세요.</center>
-		<table class="boardlist" style="border:1px solid #ccc"  align="center">
+		<center>패널티 상품명을 선택하고 저장 버튼을 눌러주세요.</center>
+		<table class="boardlist" style="border:1px solid #ccc" align="center">
 		    	<c:choose>
 			        <c:when test="${fn:length(penaltyList) > 0}">
 			            <c:forEach items="${penaltyList }" var="row">
@@ -30,7 +30,7 @@
 			                
 			                <tr>
 			                    <td>
-			                    	<a onclick="setPenaltyGoods('${row.NAME }', '${row.PRICE }', '${row.IDX}');">${row.NAME } (+${row.PRICE })</a>
+			                    	${row.NAME } (+${row.PRICE })&nbsp;<input type="radio" name="penaltySelector" onclick="setPenaltyGoods('${row.NAME }', '${row.PRICE }', '${row.IDX}');" />
 			                    </td>
 			                </tr>
 		                </c:forEach>

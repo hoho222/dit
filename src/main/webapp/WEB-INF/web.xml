@@ -35,16 +35,13 @@
 	</servlet-mapping>
 	
 	<servlet-mapping>
-		<servlet-name>default</servlet-name>
+        <servlet-name>default</servlet-name>
 		<url-pattern>*.jpg</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.css</url-pattern>
-	</servlet-mapping>
-	
-	
+        <url-pattern>*.css</url-pattern>
+		<url-pattern>*.png</url-pattern>
+    </servlet-mapping>
+
+ 	
 	<!-- 한글처리 -->
 	<filter>
 	    <filter-name>encodingFilter</filter-name>

@@ -77,9 +77,10 @@
 	     
 	     SELECT IDX, GOAL_TITLE, GOAL_CONTENTS, DATE_FORMAT(START_DT, '%Y-%m-%d') as START_DT, DATE_FORMAT(END_DT, '%Y-%m-%d') as END_DT, WRITER_IDX,
 	     		PENALTY_NAME, PENALTY_IDX, FAIL_RECEIVER, DATE_FORMAT(CREATE_DT, '%Y-%m-%d') as CREATE_DT, IS_KAKAO_NOTICE, WRITER_ID, HAS_GOAL_CHECK_PERIOD,
-	     		GOAL_CHECK_PERIOD, GOAL_CHECK_PERIOD_HIT, TOTAL_DAYS, IS_SUCCESS,
+	     		GOAL_CHECK_PERIOD, GOAL_CHECK_PERIOD_HIT, TOTAL_DAYS, IS_SUCCESS, HAS_GOAL_CHECKER, GOAL_CHECKER, GOAL_CHECKER_EMAIL,
 	     		DATE_FORMAT(IFNULL(GOAL_CHECK_PERIOD_HIT_REGDATE, date_add(CREATE_DT, interval -1 day)), '%Y-%m-%d') as GOAL_CHECK_PERIOD_HIT_REGDATE,
-	     		DATE_FORMAT(now(), '%Y-%m-%d') as TODAY
+	     		DATE_FORMAT(now(), '%Y-%m-%d') as TODAY,
+	     		(SELECT M.NAME FROM T_MEMBER M WHERE M.IDX = WRITER_IDX) WRITER_NAME
 	     FROM T_GOAL
 	     WHERE 1=1 
 	     AND IDX = #{idx}
@@ -93,7 +94,7 @@
      </select>
     
     <insert id="front.insertGoal">
-    	<![CDATA[
+    	
     	INSERT INTO T_GOAL
     	(
     		WRITER_ID,
@@ -142,7 +143,7 @@
     		now(),
     		#{totalDays}
     	)
-    	]]>
+    	
     </insert>
     
     <insert id="front.insertGoalComment" useGeneratedKeys="true" keyProperty="IDX">
@@ -244,7 +245,7 @@
     
     <select id="front.selectGoalCommentList" parameterType="hashmap" resultType="hashmap">
 	     <![CDATA[
-	     SELECT GC.*, ifnull(GCI.ORIGINAL_FILE_NAME, 'none') AS STORED_FILE_NAME, GCI.STORED_FILE_NAME, GCI.FILE_PATH
+	     SELECT GC.*, ifnull(GCI.ORIGINAL_FILE_NAME, 'none') AS ORIGINAL_FILE_NAME, GCI.STORED_FILE_NAME, GCI.FILE_PATH
 	     FROM T_GOAL_COMMENT AS GC
 	     LEFT OUTER JOIN T_GOAL_COMMENT_IMG AS GCI
 	     ON GC.IDX = GCI.GOAL_COMMENT_IDX
@@ -255,7 +256,7 @@
     
     <select id="front.selectGoalResult" parameterType="hashmap" resultType="hashmap">
 	     <![CDATA[
-	     SELECT GS.*, ifnull(GSI.ORIGINAL_FILE_NAME, 'none') AS STORED_FILE_NAME, GSI.STORED_FILE_NAME, GSI.FILE_PATH
+	     SELECT GS.*, ifnull(GSI.ORIGINAL_FILE_NAME, 'none') AS ORIGINAL_FILE_NAME, GSI.STORED_FILE_NAME, GSI.FILE_PATH
 	     FROM T_GOAL_RESULT AS GS
 	     LEFT OUTER JOIN T_GOAL_RESULT_IMG AS GSI
 	     ON GS.IDX = GSI.GOAL_RESULT_IDX

@@ -49,7 +49,7 @@
 	</c:choose>
 	
 	<div id="btn">
-		<input type="button" class="btn btn-default" value="목록으로"/>
+		<a href="${pageContext.request.contextPath}/mypages/goals"><input type="button" class="btn btn-default" value="목록으로"/></a>
 		<input type="button" class="btn btn-primary" value="페이스북"/>
 	</div>	
 </div>
@@ -64,8 +64,8 @@
 		<c:choose>
 	        <c:when test="${fn:length(resultMap) > 0}">
 	            	<div class="round-border">
-	            		<c:if test="${resultMap.STORED_FILE_NAME ne 'none' && resultMap.STORED_FILE_NAME ne ''}">
-		            		<img alt="${resultMap.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/result_imgs/${resultMap.STORED_FILE_NAME }'/>" >
+	            		<c:if test="${resultMap.ORIGINAL_FILE_NAME ne 'none' && resultMap.STORED_FILE_NAME ne ''}">
+		            		<img alt="${resultMap.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/result_imgs/${resultMap.STORED_FILE_NAME}'/>" style="width: 200px; height: 140px;" >
 		            	</c:if>
 		                ${resultMap.CONTENTS} &nbsp; ${resultMap.CREATE_DT }
 		            </div>

@@ -245,7 +245,7 @@ public class FrontController {
 		System.out.println("들어오지 > "+map);
 		frontService.insertGoalComment(map, request);
 		
-		return "redirect:goals";
+		return "redirect:/goals/"+map.get("goalIdx").toString();
 
 	}
 	
@@ -258,7 +258,7 @@ public class FrontController {
 		//성공/실패여부 먼저 T_GOAL 에 update
 		frontService.updateGoal(map);
 		
-		//성공/실패 소감 T_GOAL_RESULT 에 insert
+		//성공/실패 소감 T_GOAL_RESULT 에 insert + 목표 확인자가 '타인' 일 경우, 메일전송
 		frontService.insertGoalResult(map, request);
 		
 		return "redirect:/goals";

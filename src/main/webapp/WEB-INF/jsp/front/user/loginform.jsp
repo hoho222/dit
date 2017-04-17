@@ -152,7 +152,7 @@
     }
     </script>
 
-	<div style="background-color: lightblue; width:222px; height:49px;"><a href="#" onclick="checkFacebookLogin();">페이스북계정으로 로그인</a></div>
+	<div style="background-color: lightblue; width:222px; height:49px;"><a href="#" onclick="checkFacebookLogin();"><img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/imgs/fbloginbtn.png'/>" style="width: 222px; height: 49px;" ></a></div>
 	<!-- 페이스북 로긘 -->
 
 

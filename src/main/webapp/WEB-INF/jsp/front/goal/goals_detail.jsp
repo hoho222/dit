@@ -66,6 +66,7 @@ function resultSumbit() {
 	
 	if(f.resultContents.value == ""){
 		alert("소감을 입력해주세요!");
+		f.resultContents.focus();
 		return false;
 	}
 	
@@ -88,13 +89,14 @@ function resultCheck() {
 }
 
 $(function() {
-	//숫자 계산을 위한 변수들
-	var totalDays = ${goalMap.TOTAL_DAYS};
-	var periodDays = ${goalMap.GOAL_CHECK_PERIOD};
-	var totalPeriodDays = Math.floor(totalDays/periodDays);
-	document.getElementById("totalPeriodDays").value = totalPeriodDays;
-	document.getElementById("totalPeriodDaysHtml").innerHTML = totalPeriodDays;
 	
+		var totalDays = ${goalMap.TOTAL_DAYS};
+		var periodDays = ${goalMap.GOAL_CHECK_PERIOD};
+		if(periodDays != 0){
+			var totalPeriodDays = Math.floor(totalDays/periodDays);
+			document.getElementById("totalPeriodDays").value = totalPeriodDays;
+			document.getElementById("totalPeriodDaysHtml").innerHTML = totalPeriodDays;
+		}
 	
 	//모달 팝업창 열림(성공)
     $('#activeModalSuccess').on("click", function () {
@@ -117,10 +119,14 @@ $(function() {
 <h2>나의 다짐</h2>
 
 <div id="myGoal">
-	${goalMap.WRITER_ID} 은(는) ${goalMap.START_DT} 부터<br>
+	${goalMap.WRITER_NAME} 은(는) ${goalMap.START_DT} 부터<br>
 	${goalMap.END_DT} 까지 ${goalMap.GOAL_TITLE} 을(를) 할 것입니다. <br>
-	만약 목표 달성 실패 시, ${goalMap.FAIL_RECEIVER} 에게<br>
-	${goalMap.PENALTY_NAME} 을(를) 줄 것입니다.<br>
+	
+	<c:if test="${goalMap.FAIL_RECEIVER != '' and goalMap.PENALTY_NAME != ''}">
+		만약 목표 달성 실패 시, ${goalMap.FAIL_RECEIVER} 에게<br>
+		${goalMap.PENALTY_NAME} 을(를) 줄 것입니다.<br>
+	</c:if>
+	
 	<c:choose>
 		<c:when test="${goalMap.IS_KAKAO_NOTICE == 'Y'}">
 			카카오톡 알림으로 도움을 받겠습니다.
@@ -132,7 +138,7 @@ $(function() {
 			카카오톡 알림 설정이 안되어있습니다.
 		</c:otherwise>
 	</c:choose>
-	
+	<br>
 	<c:choose>
 		<c:when test="${goalMap.HAS_GOAL_CHECK_PERIOD == 'Y'}">
 			<div id="period">
@@ -146,7 +152,7 @@ $(function() {
 			</div>
 			<br>
 			<div id="goalBtn">
-				<input type="button" class="btn btn-default" value="목록으로"/>
+				<a href="${pageContext.request.contextPath}/goals"><input type="button" class="btn btn-default" value="목록으로"/></a>
 				
 				<fmt:parseNumber var="totalPeriodDays2" integerOnly="true" value="${goalMap.TOTAL_DAYS / goalMap.GOAL_CHECK_PERIOD}"/>
 				
@@ -236,7 +242,7 @@ $(function() {
 	            	<div class="round-border">
 	            		
 	            		<c:if test="${row.STORED_FILE_NAME ne 'none' && row.STORED_FILE_NAME ne ''}">
-		            		<img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/comment_imgs/${row.STORED_FILE_NAME }'/>" >
+		            		<img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/comment_imgs/${row.STORED_FILE_NAME }'/>" style="width: 200px; height: 140px;" >
 		            	</c:if>
 		                ${row.CONTENTS} &nbsp; ${row.CREATE_DT }
 		                <input type="button" class="btn btn-default btn-xs" value="수정"/>

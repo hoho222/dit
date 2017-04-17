@@ -103,9 +103,9 @@ public class FrontServiceImpl  implements FrontService {
 	        }
 	        
 	        //오늘이 목표 종료일이거나 종료일이 지났을 경우 -> 체크못함
-	        if(diffDays2 >= 0){
+	        if(diffDays2 > 0){
 	        	if (log.isDebugEnabled()) {
-	        		log.debug("체크불가이유 : 오늘이 목표 종료일이거나 종료일이 지난 경우 | 오늘 - 종료일 일수 = "+diffDays2);
+	        		log.debug("체크불가이유 : 종료일이 지난 경우 | 오늘 - 종료일 일수 = "+diffDays2);
 	        	}
 	        	return false;
 	        }
@@ -163,6 +163,16 @@ public class FrontServiceImpl  implements FrontService {
 	
 	@Override
 	public void insertGoal(Map<String, Object> map) throws Exception {
+		System.out.println("다시올려맵> "+map);
+		
+		String goalCheckPeriod = map.get("goalCheckPeriod").toString();
+		String has_goal_check_period_value = map.get("has_goal_check_period_value").toString();
+		
+		if("N".equals(has_goal_check_period_value)){
+			if(goalCheckPeriod == null || "".equals(goalCheckPeriod)){
+				map.put("goalCheckPeriod", "0");
+			}
+		}
 		
 		frontDAO.insertGoal(map);
 	}
@@ -187,6 +197,38 @@ public class FrontServiceImpl  implements FrontService {
 	public void insertGoalResult(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		
 		frontDAO.insertGoalResult(map);
+		
+		String idx = map.get("goalIdx").toString();
+		Map<String, Object> goalDetailMap = frontDAO.selectGoalDetail(idx);
+		String hasGoalChecker = goalDetailMap.get("HAS_GOAL_CHECKER").toString();
+		
+		if(goalDetailMap != null){
+			if("Y".equals(hasGoalChecker) && !"".equals(goalDetailMap.get("GOAL_CHECKER").toString()) && !"".equals(goalDetailMap.get("GOAL_CHECKER_EMAIL").toString())){
+				//목표 체크자가 타인일 경우, 해당 사람에게 메일전송
+				String goalCheckerEmailId = goalDetailMap.get("GOAL_CHECKER_EMAIL").toString();
+				String goalCheckerName = goalDetailMap.get("GOAL_CHECKER").toString();
+				String writerName = goalDetailMap.get("WRITER_NAME").toString();
+				
+				String goalTitle = goalDetailMap.get("GOAL_TITLE").toString();
+				String goalContents = goalDetailMap.get("GOAL_CONTENTS").toString();
+				
+				String isSuccess = goalDetailMap.get("IS_SUCCESS").toString();
+				String successStr = "-";
+				if("Y".equals(isSuccess) && !"D".equals(isSuccess)){
+					successStr = "성공!";
+				} else if ("N".equals(isSuccess) && !"D".equals(isSuccess)){
+					successStr = "실패;(";
+				}
+				
+				email.setReceiver(goalCheckerEmailId); 										  			
+				email.setSubject("[DOit,TOgether] "+writerName+"님의 목표 달성 결과입니다.");   
+				email.setContent("안녕하세요 " + goalCheckerName + "님, " + writerName + "님의 목표 달성은 "+successStr+" 했습니다.\n\n"+
+								 "목표 타이틀 : "+goalTitle+"\n"+
+								 "목표 세부내용 : "+goalContents+"\n");
+				emailSender.SendEmail(email);
+			}
+					
+		}
 		
 		map.put("GB", "resultImg");
 		
@@ -214,7 +256,6 @@ public class FrontServiceImpl  implements FrontService {
 		frontDAO.insertMember(map);
 	}
 	
-	@SuppressWarnings("null")
 	@Override
 	public boolean insertMemberFb(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		
@@ -235,25 +276,25 @@ public class FrontServiceImpl  implements FrontService {
 			map.put("fbNickName", fbNickName);
 			
 			frontDAO.insertMemberFb(map);
+		} else {
+			//페이스북 로그인을 처음하지 않은 사람은 여기서 세션에 해당 fbId값 박아서, 그 세션값으로 여기저기서 쓰면될듯
+			session.setAttribute("loginIdx", alreadyMember.get("IDX"));
+			session.setAttribute("loginId", alreadyMember.get("EMAIL_ID"));
+			session.setAttribute("loginName", alreadyMember.get("NAME"));
+			session.setAttribute("loginNickName", alreadyMember.get("NICKNAME"));
+			session.setAttribute("loginFbId", alreadyMember.get("FB_ID"));
+			
+			//ip 주소 정보 가져오기
+			InetAddress local = InetAddress.getLocalHost();
+			String ip = local.getHostAddress();
+			
+			//로그인접속 정보 T_ACCESS_LOG 에 저장
+			Map<String, Object> logMap = new HashMap<String, Object>();
+			logMap.put("memberIdx", alreadyMember.get("IDX"));
+			logMap.put("memberIp", ip);
+			logMap.put("memberAccessPath", "faceBook");
+			frontDAO.insertMemberAccessLog(logMap);
 		}
-		
-		//페이스북 로그인을 처음하지 않은 사람은 여기서 세션에 해당 fbId값 박아서, 그 세션값으로 여기저기서 쓰면될듯
-		session.setAttribute("loginIdx", alreadyMember.get("IDX"));
-		session.setAttribute("loginId", alreadyMember.get("EMAIL_ID"));
-		session.setAttribute("loginName", alreadyMember.get("NAME"));
-		session.setAttribute("loginNickName", alreadyMember.get("NICKNAME"));
-		session.setAttribute("loginFbId", alreadyMember.get("FB_ID"));
-		
-		//ip 주소 정보 가져오기
-		InetAddress local = InetAddress.getLocalHost();
-		String ip = local.getHostAddress();
-		
-		//로그인접속 정보 T_ACCESS_LOG 에 저장
-		Map<String, Object> logMap = new HashMap<String, Object>();
-		logMap.put("memberIdx", alreadyMember.get("IDX"));
-		logMap.put("memberIp", ip);
-		logMap.put("memberAccessPath", "faceBook");
-		frontDAO.insertMemberAccessLog(logMap);
 		
 		return isFirstFbLogin;
 	}
@@ -269,25 +310,26 @@ public class FrontServiceImpl  implements FrontService {
 		//이미 해당 카카오톡ID로 가입된 회원이 아닐때만 insert 됨
 		if(alreadyMember == null) {
 			frontDAO.insertMemberKakao(map);
+		} else {
+			//카카오톡 로그인을 처음하지 않은 사람은 여기서 세션에 해당 kakaoId값 박아서, 그 세션값으로 여기저기서 쓰면될듯
+			session.setAttribute("loginIdx", alreadyMember.get("IDX"));
+			session.setAttribute("loginId", alreadyMember.get("EMAIL_ID"));
+			session.setAttribute("loginName", alreadyMember.get("NAME"));
+			session.setAttribute("loginNickName", alreadyMember.get("NICKNAME"));
+			session.setAttribute("loginKakaoId", alreadyMember.get("KAKAO_ID"));
+			
+			//ip 주소 정보 가져오기
+			InetAddress local = InetAddress.getLocalHost();
+			String ip = local.getHostAddress();
+			
+			//로그인접속 정보 T_ACCESS_LOG 에 저장
+			Map<String, Object> logMap = new HashMap<String, Object>();
+			logMap.put("memberIdx", alreadyMember.get("IDX"));
+			logMap.put("memberIp", ip);
+			logMap.put("memberAccessPath", "kakaoTalk");
+			frontDAO.insertMemberAccessLog(logMap);
 		}
 		
-		//카카오톡 로그인을 처음하지 않은 사람은 여기서 세션에 해당 kakaoId값 박아서, 그 세션값으로 여기저기서 쓰면될듯
-		session.setAttribute("loginIdx", alreadyMember.get("IDX"));
-		session.setAttribute("loginId", alreadyMember.get("EMAIL_ID"));
-		session.setAttribute("loginName", alreadyMember.get("NAME"));
-		session.setAttribute("loginNickName", alreadyMember.get("NICKNAME"));
-		session.setAttribute("loginKakaoId", alreadyMember.get("KAKAO_ID"));
-		
-		//ip 주소 정보 가져오기
-		InetAddress local = InetAddress.getLocalHost();
-		String ip = local.getHostAddress();
-		
-		//로그인접속 정보 T_ACCESS_LOG 에 저장
-		Map<String, Object> logMap = new HashMap<String, Object>();
-		logMap.put("memberIdx", alreadyMember.get("IDX"));
-		logMap.put("memberIp", ip);
-		logMap.put("memberAccessPath", "kakaoTalk");
-		frontDAO.insertMemberAccessLog(logMap);
 	}
 	
 	@Override

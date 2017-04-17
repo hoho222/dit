@@ -18,6 +18,12 @@ function validSubmit() {
 	var startDateStr = f.startdate.value;
 	var endDateStr = f.enddate.value;
 	
+	if(f.goalTitle.value == ""){
+		alert("목표 타이틀을 입력해주세요!");
+		f.goalTitle.focus();
+		return false;
+	}
+	
 	if(startDate == ""){
 		alert("시작일을 입력해주세요!");
 		f.startdate.focus();
@@ -48,10 +54,71 @@ function validSubmit() {
 		
 		//입력한 주기일 수가 종료일-시작일 차이 일 수 보다 큰 경우는 불가능하므로 처리해줌.
 		if(beetweenDay < goalCheckPeriod){
-			alert("입력한 주기일 수는 시작일-종료일 총 일수 보다 적어야합니다.\n입력주기일수:"+goalCheckPeriod+" / 총 일수:"+Math.floor(beetweenDay));
+			alert("입력한 목표 체크 주기일 수는 시작일-종료일 총 일수 보다 적어야합니다.\n입력주기일수:"+goalCheckPeriod+" / 총 일수:"+Math.floor(beetweenDay));
+			return false;
+		}
+		
+		if(goalCheckPeriod == ""){
+			alert("목표 체크 주기를 입력해주세요!");
+			f.goalCheckPeriod.focus();
 			return false;
 		}
 	
+	}
+	
+	if(f.has_penalty_yn.value == "Y"){
+		//패널티 상품 있을경우
+		if(f.penalty.value == ""){
+			alert("하늘색의 '패널티 상풍 선택' 버튼을 눌러 패널티 상품을 골라주세요!");
+			f.penalty.focus();
+			return false;
+		}
+		if(f.failReceiver.value == ""){
+			alert("실패 시 상품 수령자를 입력해주세요.");
+			f.failReceiver.focus();
+			return false;
+		}
+		if(f.failReceiverPhone.value == ""){
+			alert("실패 시 상품 수령자 핸드폰 번호를 입력해주세요.");
+			f.failReceiverPhone.focus();
+			return false;
+		}
+	}
+	
+	if(f.category.value == ""){
+		alert("카테고리는 반드시 한가지를 선택해야합니다!");
+		return false;
+	}
+	
+	if(f.goalContents.value == ""){
+		alert("구체적 목표와 계획을 입력해주세요.");
+		f.goalContents.focus();
+		return false;
+	}
+	
+	if(f.has_goalchecker_yn.value == "Y"){
+		//목표달성 확인자가 타인일 경우
+		if(f.goalCheckerName.value == ""){
+			alert("목표달성 확인자 명을 입력해주세요.");
+			f.goalCheckerName.focus();
+			return false;
+		}
+		if(f.goalCheckerEmail.value == ""){
+			alert("목표달성 확인자 이메일을 입력해주세요.");
+			f.goalCheckerEmail.focus();
+			return false;
+		}
+	}
+	
+	if(f.kakao_notice_yn.value == ""){
+		alert("카카오톡 알림 도움 동의 여부를 선택해주세요.");
+		return false;
+	}
+	
+	if(f.privacy_yn.value == "" || f.privacy_yn.value == "N"){
+		alert("개인정보제공에 반드시 동의해주셔야 서비스를 이용하실 수 있습니다.");
+		document.getElementById("privacy_Y").focus();
+		return false;
 	}
 	
 	f.action="goals"
@@ -91,11 +158,20 @@ function checkBeetweenDay(){
 	var beetweenDay = (endDate.getTime() -  startDate.getTime())/1000/60/60/24;
 	beetweenDay += 1;
 	
+	if(Number(Math.floor(beetweenDay)) < 0){
+		document.getElementById("beetweenDay").value = "";
+		alert("시작일은 종료일보다 앞선 날짜로 입력해주세요!");
+		return false;
+	}
+	
 	document.getElementById("beetweenDay").value = Math.floor(beetweenDay);
+	
+	
 }
 
 $(function() {
     $( "#startdate" ).datepicker({ 
+    	minDate: 0,
     	dateFormat: 'yy-mm-dd',
     	changeMonth: true, 
         changeYear: true,
@@ -104,6 +180,7 @@ $(function() {
    	});
     
     $( "#enddate" ).datepicker({ 
+    	minDate: 0,
     	dateFormat: 'yy-mm-dd',
    		changeMonth: true, 
         changeYear: true,
@@ -180,7 +257,7 @@ $(function() {
 			<tr>
 				<!-- chap1) 목표설정 -->
 				<th>01 목표설정</th>
-				<td>나의목표
+				<td>목표타이틀
 					<br><input type="text" name="goalTitle"/>
 					<br>시작일 ~ 종료일
 					<br><input type="text" id="startdate" name="startdate" size="8" readonly="readonly"/> ~ <input type="text" id="enddate" name="enddate" size="8" readonly="readonly"/>
@@ -204,7 +281,7 @@ $(function() {
 					
 					<div id="penaltyGoodsView">
 					<button type="button" class="btn btn-info btn btn-sm" data-toggle="modal" data-target="#myModal" id="activeModal" href="penalty_modal">패널티 상품 선택</button>
-					<input type="text" id="penalty" name="penalty" readonly="readonly" placeholder="패널티 상품을 먼저 골라주세요" size="16"/> <div id="penaltyPrice"></div>
+					<input type="text" id="penalty" name="penalty" readonly="readonly" placeholder="패널티 상품을 먼저 골라주세요" size="16"/> <span id="penaltyPrice"></span>
 					<input type="hidden" id="penaltyIdx" name="penaltyIdx" value="0"/> <!-- 패널티 일련번호 저장 -->
 					<br><div id="failReceiver">실패 시 상품 수령자<input type="text" name="failReceiver"/></div>
 					<br><div id="failReceiverPhone">상품 수령자 핸드폰 번호<input type="text" name="failReceiverPhone"/></div>

@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<a href="goalsform"><input type="button" class="btn btn-primary btn-sm" value="목표 설정하기"/></a>
+
 <center>
 	<c:choose>
 		<c:when test="${fn:length(goalList) > 0}">
@@ -33,8 +35,6 @@
 	</c:choose>
 </center>
 
-
-<a href="goalsform">목표 설정하기</a>
 </body>
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>
