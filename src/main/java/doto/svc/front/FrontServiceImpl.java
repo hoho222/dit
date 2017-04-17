@@ -163,7 +163,6 @@ public class FrontServiceImpl  implements FrontService {
 	
 	@Override
 	public void insertGoal(Map<String, Object> map) throws Exception {
-		System.out.println("다시올려맵> "+map);
 		
 		String goalCheckPeriod = map.get("goalCheckPeriod").toString();
 		String has_goal_check_period_value = map.get("has_goal_check_period_value").toString();
@@ -179,7 +178,7 @@ public class FrontServiceImpl  implements FrontService {
 	
 	@Override
 	public void insertGoalComment(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		System.out.println("코멘틍 매핑잉2 > "+map);
+		
 		frontDAO.insertGoalComment(map);
 		
 		map.put("GB", "commentImg");
@@ -187,7 +186,6 @@ public class FrontServiceImpl  implements FrontService {
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(map, request);
 		
 		for(int i=0; i<list.size(); i++){
-			System.out.println("이미지 매핑잉2 > "+list);
 			frontDAO.insertGoalCommentImg(list.get(i));
 		}
 		

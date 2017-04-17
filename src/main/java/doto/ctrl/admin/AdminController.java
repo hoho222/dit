@@ -41,9 +41,7 @@ Logger log = Logger.getLogger(this.getClass());
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String adminLogin() throws Exception {
-		System.out.println("어드민 로긘 포모옴 ");
 		return "admin/loginform";
-
 	}
 	
 	

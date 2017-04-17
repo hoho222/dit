@@ -242,7 +242,7 @@ public class FrontController {
 	 */
 	@RequestMapping(value = "/goals/comments", method = RequestMethod.POST)
 	public String createGoalCommentAct(@RequestParam Map<String,Object> map, HttpServletRequest request) throws Exception {
-		System.out.println("들어오지 > "+map);
+
 		frontService.insertGoalComment(map, request);
 		
 		return "redirect:/goals/"+map.get("goalIdx").toString();

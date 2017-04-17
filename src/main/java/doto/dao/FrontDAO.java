@@ -26,7 +26,6 @@ public class FrontDAO extends AbstractDAO{
 	}
 	
 	public void updateGoalPeriodHit(@RequestParam Map<String,Object> map) throws Exception{
-		System.out.println("띠바 왜 > "+map);
 		update("front.updateGoal", map);
 	}
 	
