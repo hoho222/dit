@@ -69,7 +69,7 @@ function validSubmit() {
 	if(f.has_penalty_yn.value == "Y"){
 		//패널티 상품 있을경우
 		if(f.penalty.value == ""){
-			alert("하늘색의 '패널티 상풍 선택' 버튼을 눌러 패널티 상품을 골라주세요!");
+			alert("하늘색의 '패널티 상품 선택' 버튼을 눌러 패널티 상품을 골라주세요!");
 			f.penalty.focus();
 			return false;
 		}
@@ -106,6 +106,15 @@ function validSubmit() {
 		if(f.goalCheckerEmail.value == ""){
 			alert("목표달성 확인자 이메일을 입력해주세요.");
 			f.goalCheckerEmail.focus();
+			return false;
+		}
+	}
+	
+	if(f.kakao_notice_yn.value == "Y"){
+		//카카오톡 알림을 받는 경우에는 작성자 핸드폰 번호를 반드시 입력해야함
+		if(f.writerPhone.value == ""){
+			alert("카카오톡 알림을 받는 경우에는 작성자 핸드폰 번호를 반드시 입력해야합니다.");
+			f.writerPhone.focus();
 			return false;
 		}
 	}
@@ -210,6 +219,7 @@ $(function() {
 		if($("#has_goal_check_period").is(":checked") == true) {
 			document.getElementById("has_goal_check_period_value").value = "N";
 			$("#goalCheckPeriod").hide();
+			$("#goalCheckPeriodVal").val("");
 		}  else {
 			document.getElementById("has_goal_check_period_value").value = "Y";
 			$("#goalCheckPeriod").show();
@@ -224,6 +234,10 @@ $(function() {
     	//패널티 상품 없는 경우
 		if($("#has_penalty_N").is(":checked") == true) {
 		    $("#penaltyGoodsView").hide();
+		    $("#penalty").val("");
+		    $("#penaltyIdx").val("");
+		    $("#failReceiverVal").val("");
+		    $("#failReceiverPhoneVal").val("");
 		}  
 		//패널티 상품 있는 경우
 		else if($("#has_penalty_Y").is(":checked") == true) {
@@ -238,6 +252,8 @@ $(function() {
 		if($("#has_goalchecker_N").is(":checked") == true) {
 			$("#goalCheckerName").hide();
 			$("#goalCheckerEmail").hide();
+			$("#goalCheckerName").val("");
+			$("#goalCheckerEmail").val("");
 		}  else if($("#has_goalchecker_Y").is(":checked") == true) {
 			$("#goalCheckerName").show();
 			$("#goalCheckerEmail").show();
@@ -269,7 +285,7 @@ $(function() {
 					한번에 달성</font><input type="checkbox" id="has_goal_check_period" name="has_goal_check_period" checked/>
 					<input type="hidden" id="has_goal_check_period_value" name="has_goal_check_period_value" value="N" />
 					<div id="goalCheckPeriod">
-						<input type="text" name="goalCheckPeriod" onkeyPress="InpuOnlyNumber(this);" style="ime-mode:disabled"/> 일에 한번
+						<input type="text" id="goalCheckPeriodVal" name="goalCheckPeriod" onkeyPress="InpuOnlyNumber(this);" style="ime-mode:disabled"/> 일에 한번
 					</div>
 				</td>
 				
@@ -283,8 +299,8 @@ $(function() {
 					<button type="button" class="btn btn-info btn btn-sm" data-toggle="modal" data-target="#myModal" id="activeModal" href="penalty_modal">패널티 상품 선택</button>
 					<input type="text" id="penalty" name="penalty" readonly="readonly" placeholder="패널티 상품을 먼저 골라주세요" size="16"/> <span id="penaltyPrice"></span>
 					<input type="hidden" id="penaltyIdx" name="penaltyIdx" value="0"/> <!-- 패널티 일련번호 저장 -->
-					<br><div id="failReceiver">실패 시 상품 수령자<input type="text" name="failReceiver"/></div>
-					<br><div id="failReceiverPhone">상품 수령자 핸드폰 번호<input type="text" name="failReceiverPhone"/></div>
+					<br><div id="failReceiver">실패 시 상품 수령자<input type="text" id="failReceiverVal" name="failReceiver"/></div>
+					<br><div id="failReceiverPhone">상품 수령자 핸드폰 번호<input type="text" id="failReceiverPhoneVal" name="failReceiverPhone"/></div>
 					</div>
 					<!-- 패널티 상품 고르는 모달 팝업 -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -335,7 +351,7 @@ $(function() {
 					<br>옐로아이디(카카오톡) 알림으로 도움을 받으시겠습니까?
 					<br>예 <input type="radio" id="kakao_notice_Y" name="kakao_notice_yn" value="Y"/>
 					아니오 <input type="radio" id="kakao_notice_N" name="kakao_notice_yn" value="N"/>
-					<br>작성자 핸드폰 번호(선택)<input type="text" name="writerPhone"/>
+					<br>작성자 핸드폰 번호(카톡 알림 받지 않는 경우에만 선택)<input type="text" name="writerPhone"/>
 					<br>개인정보제공 동의
 					<font size="1">
 						<ul>

@@ -19,8 +19,10 @@ public class FileUtils {
 	private static String filePath = "";
 	
 	//configuration.xml 에서 해당 값 불러옴
-	@Value("#{config['GOAL_COMMENT_IMG_PATH_LOCAL']}") String goalCommentImgPath;
-	@Value("#{config['GOAL_RESULT_IMG_PATH_LOCAL']}") String goalResultImgPath;
+	@Value("#{config['GOAL_COMMENT_IMG_PATH_LOCAL']}") String goalCommentImgPathLocal;
+	@Value("#{config['GOAL_RESULT_IMG_PATH_LOCAL']}") String goalResultImgPathLocal;
+	@Value("#{config['GOAL_COMMENT_IMG_PATH']}") String goalCommentImgPath;
+	@Value("#{config['GOAL_RESULT_IMG_PATH']}") String goalResultImgPath;
 	
 	public List<Map<String,Object>> parseInsertFileInfo(Map<String,Object> map, HttpServletRequest request) throws Exception{
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;

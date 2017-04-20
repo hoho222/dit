@@ -5,5 +5,8 @@
 	<comment>File Upload Path</comment>
 	<entry key="GOAL_COMMENT_IMG_PATH_LOCAL">D:\\Project\\workspace\\doto\\src\\main\\webapp\\resources\\comment_imgs\\</entry>
 	<entry key="GOAL_RESULT_IMG_PATH_LOCAL">D:\\Project\\workspace\\doto\\src\\main\\webapp\\resources\\result_imgs\\</entry>
+	<entry key="GOAL_COMMENT_IMG_PATH">/home/hosting_users/yeagrina3/tomcat/webapps/doto/resources/comment_imgs/</entry>
+	<entry key="GOAL_RESULT_IMG_PATH">/home/hosting_users/yeagrina3/tomcat/webapps/doto/resources/result_imgs/</entry>
+
 
 </properties>
