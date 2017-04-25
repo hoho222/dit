@@ -6,11 +6,21 @@
                         http://www.springframework.org/schema/jdbc  http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
      
     <!-- dotodb 스키마에 연결 -->
-    <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    
+    <!-- 실DB -->
+    <!-- <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/yeagrina3"/>
         <property name="username" value="yeagrina3"/>
         <property name="password" value="goaqjrdlfks1220*"/>
+    </bean> -->
+    
+    <!-- 테스트DB -->
+    <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost/dotodb"/>
+        <property name="username" value="khw_k"/>
+        <property name="password" value="1331"/>
     </bean>
     
     <!-- 로그에서 SQL문을 예쁘게 보여주기 -->

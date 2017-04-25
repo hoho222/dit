@@ -12,7 +12,15 @@
 
 </head>
 <body>
-인덱스 메인페이지
+  <div id="wrap">
+    
+  dfsf
+  
+  
+  
+  </div>
+    <!-- wrap e -->
+  
 </body>
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>
