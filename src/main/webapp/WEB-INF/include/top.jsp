@@ -17,11 +17,11 @@
 <c:set var="sessionName"><%= (String)session.getAttribute("loginName") %></c:set>
 <c:set var="sessionNickName"><%= (String)session.getAttribute("loginNickName") %></c:set> 
 
-<div id="top" style="background-color:#FFA7A7">
+<div id="top" >
 	
 	<br>
 	
-	<c:choose>
+	<%-- <c:choose>
 	<c:when test="${sessionIdx != 'null' && sessionId != 'null' && sessionName != 'null' && sessionNickName != 'null'}">
 		<div align="right" style="float: right;">
 			<div class="dropdown">
@@ -43,7 +43,7 @@
 			<a href="${pageContext.request.contextPath}/users/login">간편로그인</a>
 		</div>
 	</c:otherwise>
-	</c:choose>
+	</c:choose> --%>
 	
 </div>
 

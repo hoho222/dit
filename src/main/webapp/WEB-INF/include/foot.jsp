@@ -10,10 +10,11 @@
 </head>
 <body>
 
-<div id="foot" style="background-color:#FFA7A7">
-
-Copyright &copy; 경호원
-
+<div id="foot">
+     <div class="footer">
+     <p>Copyright &copy; 경호원</p>
+     </div>
+     
 </div>
 
 </body>

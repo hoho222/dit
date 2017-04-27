@@ -13,10 +13,18 @@
 </head>
 <body>
   <div id="wrap">
+   <div class="content">
+     <div class="name">
+        <p class="font_01">당신의 목표달성을 위해 함께하겠습니다</p>
+        <p class="font_02">여러분의 <strong>다짐</strong>을 적어주세요</p>
+        <p class="font_03"><img src="./resources/imgs/en.png"></p>
+        <p class="font_04"><a href="${pageContext.request.contextPath}/goals">목표달성하러가기</a></p>
+    </div>
+    <!-- name e -->
     
-  dfsf
-  
-  
+   
+   </div>
+   <!-- content e -->
   
   </div>
     <!-- wrap e -->
