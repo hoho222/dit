@@ -48,11 +48,11 @@
 			   url : 'login',  
 			   success : function(rData, textStatus, xhr) {
 				   if(rData == "true"){
-					   
 					   //로그인 성공하면 index 페이지로 리로드
 					   location.replace(f.contextPath.value + "/index");
 				   }else if(rData == "false"){
-					   document.getElementById("loginResult").innerHTML = "<font color='red'>아이디 또는 비밀번호가 일치하지 않습니다.</font>";
+					   alert("아이디 또는 비밀번호가 일치하지 않습니다!");
+					   history.back();
 				   }
 			   },
 			   error : function(xhr, status, e) {  
@@ -68,16 +68,42 @@
 
 <center>
 	
-	<form name="loginFrm" method="post">
-		<input type="hidden" name="contextPath" value="${pageContext.request.contextPath}"/>
-		<input type="text" name="emailId" placeholder="아이디(이메일)" style="width:222px; height:49px;"/>
-		<br>
-		<input type="password" name="pwd" placeholder="비밀번호" style="width:222px; height:49px;"/>
-		<div id="loginResult"></div>
-		<input type="button" value="로그인" onclick="validSubmit();" style="width:222px; height:49px;"/>
-		
-	</form>
-	
+   <div id="login" class="contents-area">
+		<div id="" class="section">
+			<div class="s-container">
+				<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">LOGIN</h2>
+				
+			</div>
+		</div>
+	</div>
+    
+    <div class="login_field">
+		<form name="loginFrm" method="post" id="form">
+			<input type="hidden" name="contextPath" value="${pageContext.request.contextPath}">
+			<div class="login_input">
+				<p class="l_i_wrap"><input type="text" name="emailId" size="20" tabindex="1" placeholder="ID(E-mail)"></p>
+				<p class="l_i_wrap"><input type="password" name="pwd" size="20" tabindex="2" placeholder="PASSWORD"></p>
+				<p class="btn_login"><input type="image" src="../resources/imgs/login_com_btn.png" tabindex="3" onclick="validSubmit();"></p>
+			</div>
+		</form>
+		<!-- login_input End-->
+					
+		<p class="join_btn"><a href="${pageContext.request.contextPath}/users/joinform" class="join_txt1">회원가입</a></p>
+	    
+	    <p class="sns_txt"><strong class="red">S</strong><strong class="grn">N</strong><strong class="blue">S</strong>로 로그인하세요.</p>
+	    
+	    <!-- 
+	    <div class="sns_icon">
+		    <ul>
+			    <li><a href="#"><img src="../resources/imgs/fbloginbtn.png"></a></li>
+			    <li><a href="#"><img src="../resources/imgs/kakao_icon.png"></a></li>
+		    </ul>
+	    </div>
+	    -->
+	    <!-- sns_icon End-->
+	</div>
+    <!-- login_field End-->
+    
 	<br>
 	
 	
@@ -152,7 +178,7 @@
     }
     </script>
 
-	<div style="background-color: lightblue; width:222px; height:49px;"><a href="#" onclick="checkFacebookLogin();"><img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/imgs/fbloginbtn.png'/>" style="width: 222px; height: 49px;" ></a></div>
+	<div><a onclick="checkFacebookLogin();"><img alt="페이스북으로 로그인" src="<c:url value='/resources/imgs/fbloginbtn.png'/>" style="width: 222px; height: 49px;" ></a></div>
 	<!-- 페이스북 로긘 -->
 
 
@@ -198,7 +224,7 @@
 	        /* alert(JSON.stringify(authObj)); --> 이렇게 찍으면 object Object 형태도 내부를 알 수 있음 */
 	      },
 	      fail: function(err) {
-	         alert(JSON.stringify(err));
+	         
 	      }
 	    });
 	    
@@ -217,11 +243,6 @@
 	</script>
 	<!-- 카카오톡 로긘 -->
 	
-	<br>
-	
-	<a href="${pageContext.request.contextPath}/users/joinform">
-		<input type="button" value="회원가입"/>
-	</a>
 </center>
 
 </body>

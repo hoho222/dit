@@ -6,12 +6,12 @@
 
 <%@ include file="/WEB-INF/include/gnb.jsp" %>
 <%@ include file="/WEB-INF/include/top.jsp" %>
-<%@ include file="/WEB-INF/include/head.jsp" %>
+<%@ include file="/WEB-INF/include/head_index.jsp" %>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>
-<body>
+<body id="index">
   <div id="wrap">
    <div class="content">
      <div class="name">

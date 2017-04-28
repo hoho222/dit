@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div id="head" style="background-color: #333;">
+<div id="head">
    <div class="life">
    	<li class="logo"><a href="${pageContext.request.contextPath}/index">로고</a></li>
    </div>

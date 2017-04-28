@@ -16,7 +16,7 @@ li{ list-style-type: none;
     margin: 0;
     padding: 0;}
 
-body{ background: url(../resources/imgs/indexBackground.jpg) no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; width:100%; height: 100vh; }
+#index{ background: url(../resources/imgs/indexBackground.jpg) no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover; width:100%; height: 100vh; }
 #wrap{ position:relative}
 #head{ width:1200px; height:63px; margin:0 auto; border-bottom:1px solid #fff}
 #head .logo{ background-image:url(../resources/imgs/logo.png); width:170px; height:20px; text-indent:-999px; }
@@ -92,4 +92,57 @@ body{ background: url(../resources/imgs/indexBackground.jpg) no-repeat center ce
 .footer{ clear:both; position:absolute; bottom:6px; width:1200px; margin:0 auto; text-align:center}
 .footer p{ color:#ccc; }
 
+/* login */
+.s-container {
+	/*width: 1380px;*/
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 95px;
+	padding-bottom: 40px;
+	text-align: center;
+}
+
+.s-container > .section-title {
+	font-size: 30px;
+	letter-spacing: 2.5px;
+	font-family: 'Avenir', 'NotoSansKR';
+	position: relative;
+	opacity: 0;
+	word-break: keep-all;
+	font-weight: 600;
+	z-index: 10;
+}
+
+.s-container > .section-title.ko {
+	font-family: 'NotoSansKR';
+}
+
+.s-container > .section-title:after,
+.s-container > .section-title:before {
+	display: inline-block;
+	background: #b49759;
+	content : " ";
+	margin-top: -3px;
+	vertical-align: middle;
+	margin-right: 30px;
+	width: 43px;
+	height: 1px;
+}
+
+.s-container > .section-title:after {
+	margin-left: 25px;
+	margin-right: 0px;
+}
+
+.login_field{ position:relative; width:305px; padding-left:-253px; margin:0 auto 0 auto; text-align:left; letter-spacing:-1px;}
+.login_field .login_input{ position:relative; margin-top:17px; padding:4px 0;}
+.login_field .login_input .l_i_wrap{ padding:4px 0}
+.login_field .login_input .l_i_wrap input{ width:190px; height:45px; padding:0 10px; border:0; background:url(http://ai.esmplus.com/podopod/uploads/img/etc/input_bg.gif) left top no-repeat;}
+.login_field .login_input .btn_login{ position:absolute; top:0; right:-13px;}
+.sns_txt .red{ color:#F00} .sns_txt .grn{ color:#090} .sns_txt .blue{ color:#03C}
+.sns_txt strong{  font-size:17px; letter-spacing:0.5px}
+.sns_txt{ width:305px; text-align:center; margin-top:60px;}
+.login_field li{ float:left; margin-right:6px;}
+.login_field .sns_icon{width:500px; margin-left:-2px; margin-top:22px;}
+.login_field .join_btn{ background:url(../resources/imgs/circle.png) left top no-repeat; padding-left:26px; }
 
