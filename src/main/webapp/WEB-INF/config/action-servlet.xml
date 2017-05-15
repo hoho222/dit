@@ -39,17 +39,16 @@
     
     <!-- 이메일 보내기 -->
     <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
-        <property name="host" value="smtp.gmail.com" />
-        <property name="port" value="587" />
+        <property name="host" value="mw-002.cafe24.com" />
+        <property name="port" value="25" />
         <property name="defaultEncoding" value="utf-8"/>
-        <property name="username" value="dotomailsender@gmail.com" />
-        <property name="password" value="rudghdnjs1121" />
+        <property name="username" value="master@doit2gether.tk" />
+        <property name="password" value="rudghdnjs1220" />
        
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.smtp.starttls.enable">true</prop>
                 <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.ssl.enable">false</prop>
             </props>
         </property>
        

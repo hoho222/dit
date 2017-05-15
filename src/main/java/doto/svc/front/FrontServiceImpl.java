@@ -7,8 +7,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +32,7 @@ import doto.common.util.FileUtils;
 import doto.dao.FrontDAO;
 import doto.mail.Email;
 import doto.mail.EmailSender;
+import doto.mail.MyAuthentication;
 
 
 @Service("frontService")
@@ -218,12 +227,45 @@ public class FrontServiceImpl  implements FrontService {
 					successStr = "실패;(";
 				}
 				
-				email.setReceiver(goalCheckerEmailId); 										  			
+				/*email.setReceiver(goalCheckerEmailId); 										  			
 				email.setSubject("[DOit,TOgether] "+writerName+"님의 목표 달성 결과입니다.");   
 				email.setContent("안녕하세요 " + goalCheckerName + "님, " + writerName + "님의 목표 달성은 "+successStr+" 했습니다.\n\n"+
 								 "목표 타이틀 : "+goalTitle+"\n"+
 								 "목표 세부내용 : "+goalContents+"\n");
-				emailSender.SendEmail(email);
+				emailSender.SendEmail(email);*/
+				
+				//메일발송
+				String subject = "[DoIt,Together]이메일 인증 번호가 도착했습니다.";                       
+				String msgText = "안녕하세요 " + goalCheckerName + "님, " + writerName + "님의 목표 달성은 "+successStr+" 했습니다.\n\n"+
+								 "목표 타이틀 : "+goalTitle+"\n"+
+								 "목표 세부내용 : "+goalContents+"\n";     
+				String host = "mw-002.cafe24.com";                
+				String from = "master@doit2gether.tk";                  
+				String to = goalCheckerEmailId;                        
+
+				Properties props = new Properties();
+				props.put("mail.smtp.host", host);
+				props.put("mail.smtp.auth","true");
+
+				Authenticator auth = new MyAuthentication();
+				Session sess = Session.getInstance(props, auth);
+
+				try {
+				        Message msg = new MimeMessage(sess);
+				        msg.setFrom(new InternetAddress(from));
+				        InternetAddress[] address = {new InternetAddress(to)};
+				        msg.setRecipients(Message.RecipientType.TO, address);
+				        msg.setSubject(subject);
+				        msg.setSentDate(new Date());
+				        msg.setText(msgText);
+
+				        Transport.send(msg);
+				        System.out.println("목표달성 결과 메일 전송 성공>_<");
+				} catch (MessagingException mex) {
+						System.out.println(mex.getMessage()+"<br>"+mex.getCause());
+						System.out.println("목표달성 결과 메일 전송 실패T^T.");
+				}
+				
 			}
 					
 		}
@@ -350,10 +392,41 @@ public class FrontServiceImpl  implements FrontService {
 		
 		String authNo = EmailSender.RandomNum();
 		
-		email.setReceiver(emailId); 										  //메일 받을사람
+		/*email.setReceiver(emailId); 										  //메일 받을사람
 		email.setSubject("[DOit,TOgether]이메일 인증 번호가 도착했습니다.");  //메일 제목
 		email.setContent("이메일 인증번호 ["+authNo+"]");					  //메일 내용
-		emailSender.SendEmail(email);
+		
+		System.out.println("이메일 >> "+email);
+		emailSender.SendEmail(email);*/
+		
+		String subject = "[DoIt,Together]이메일 인증 번호가 도착했습니다.";                       
+		String msgText = "하단의 인증번호를 인증창에 입력해주세요.\n이메일 인증번호 ["+authNo+"]";       
+		String host = "mw-002.cafe24.com";                
+		String from = "master@doit2gether.tk";                  
+		String to = emailId;                        
+
+		Properties props = new Properties();
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.auth","true");
+
+		Authenticator auth = new MyAuthentication();
+		Session sess = Session.getInstance(props, auth);
+
+		try {
+		        Message msg = new MimeMessage(sess);
+		        msg.setFrom(new InternetAddress(from));
+		        InternetAddress[] address = {new InternetAddress(to)};
+		        msg.setRecipients(Message.RecipientType.TO, address);
+		        msg.setSubject(subject);
+		        msg.setSentDate(new Date());
+		        msg.setText(msgText);
+
+		        Transport.send(msg);
+		        System.out.println("인증 메일 전송 성공>_<");
+		} catch (MessagingException mex) {
+				System.out.println(mex.getMessage()+"<br>"+mex.getCause());
+				System.out.println("인증 메일 전송 실패T^T.");
+		}
 		
 		map.put("authNo", authNo);
 		
