@@ -98,6 +98,12 @@ public interface FrontService {
 	Map<String, Object> selectMemberDetail(Map<String, Object> map) throws Exception;
 	
 	/**
+	* 회원 정보 update (비밀번호)
+	* @throws Exception the exception
+	*/
+	boolean updateMemberInfo(@RequestParam Map<String,Object> map) throws Exception;
+	
+	/**
     * 회원 Create
     * @throws Exception the exception
     */

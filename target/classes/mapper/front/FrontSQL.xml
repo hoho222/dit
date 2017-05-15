@@ -92,6 +92,22 @@
 	     WHERE 1=1 
 	     AND IDX = #{idx}
      </select>
+     
+     <update id="front.updateMemberInfo">
+    	UPDATE T_MEMBER
+    	<set>
+	    	<if test="newPassword != null and newPassword != '' and newPasswordRe != null and newPasswordRe != '' and newPassword == newPasswordRe">
+	    	PWD = #{newPassword}
+	    	</if>
+	    	<if test="newNickName != null and newNickName != ''">
+    		NICKNAME = #{newNickName}
+    		</if>
+    	</set>
+    	
+    	<if test="idx != null and idx != ''">
+    		WHERE IDX = #{idx}
+    	</if>
+    </update>
     
     <insert id="front.insertGoal">
     	

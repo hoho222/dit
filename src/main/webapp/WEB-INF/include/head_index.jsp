@@ -23,6 +23,12 @@
                <c:choose>
 				<c:when test="${sessionIdx != 'null' && sessionId != 'null' && sessionName != 'null' && sessionNickName != 'null'}">
 					<li class="mainmenu04"><c:out value="${sessionNickName}"></c:out></li>
+					
+					<c:if test="${!fn:contains(sessionNickName, 'facebook') && !fn:contains(sessionNickName, 'kakao_talk')}">
+					<li class="mainmenu05"><a href="${pageContext.request.contextPath}/mypages/${sessionIdx}">회원정보 수정</a></li>
+					</c:if>
+					
+					<li class="mainmenu05"><a href="${pageContext.request.contextPath}/mypages/goals">지난 목표들</a></li>
 					<li class="mainmenu05"><a href="${pageContext.request.contextPath}/users/logout">로그아웃</a></li>
 				</c:when>
 				<c:otherwise>

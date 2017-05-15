@@ -105,6 +105,10 @@ public class FrontDAO extends AbstractDAO{
 		return (Map<String, Object>)selectOne("front.selectMember", map);
 	}
 	
+	public void updateMemberInfo(@RequestParam Map<String,Object> map) throws Exception{
+		update("front.updateMemberInfo", map);
+	}
+	
 	public String isMemberCnt(Map<String, Object> map) {
 		
 		return (String)selectOne("front.isMemberCnt", map);

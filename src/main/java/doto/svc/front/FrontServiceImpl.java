@@ -287,6 +287,24 @@ public class FrontServiceImpl  implements FrontService {
 	}
 	
 	@Override
+	public boolean updateMemberInfo(@RequestParam Map<String,Object> map) throws Exception {
+		String idx = map.get("idx").toString();
+		String password = map.get("password").toString();
+		
+		Map<String, Object> memberMap = frontDAO.selectMemberDetail2(idx);
+		
+		//해당 비밀번호가 해당 회원의 비밀번호가 맞는지부터 조회.
+		if(password.equals(memberMap.get("PWD").toString())){
+			frontDAO.updateMemberInfo(map);
+			return true;
+		} else {
+			//비밀번호 틀리므로 회원정보 수정 불가능
+			return false;
+		}
+		
+	}
+	
+	@Override
 	public void insertMember(Map<String, Object> map) throws Exception {
 		
 		String emailId = (map.get("emailFront")).toString() + "@" + (map.get("emailBack")).toString();

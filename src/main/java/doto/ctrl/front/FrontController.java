@@ -122,6 +122,25 @@ public class FrontController {
 
 	}
 	
+	/*
+	 * 마이페이지 회원정보 수정 ( -> 원래는 닉네임도 바꿀 수 있게 했었는데, 닉넴 바꾸면 세션 다시 초기화 해야될 것 같아서 일단 비번만 바꾸게 함)
+	 */
+	@RequestMapping(value = "/mypages/change", method = RequestMethod.POST)
+	public String updateMypageInfo(@RequestParam Map<String,Object> map, ModelMap model) throws Exception {
+		
+		boolean isOk = frontService.updateMemberInfo(map);
+		
+		if(!isOk){
+			model.addAttribute("msg", "현재 비밀번호가 올바르지 않습니다. 올바르게 입력해주세요."); 
+		} else {
+			model.addAttribute("msg", "비밀번호 변경 성공!"); 
+		}
+		model.addAttribute("url", "/doto/mypages/"+map.get("idx").toString()); 
+		
+		return "front/mypage/memberinfoAct";
+
+	}
+	
 	
 	/*
 	 * 마이페이지 목표들list(다 건) 조회
