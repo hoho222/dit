@@ -31,7 +31,7 @@ function validSubmit() {
 		return false;
 	}
 	
-	if(document.getElementById("emailAuthFin").innerHTML != "인증완료"){
+	if(document.getElementById("isEmailAuthOk").value != "T"){
 		alert("이메일 인증을 반드시 해주세요!");
 		return false;
 	}
@@ -166,7 +166,7 @@ function emailAuth() {
 			<td>이메일(ID)</td>
 			<td>
 				<input type="hidden" name="emailAddr"/>
-				<input type="text" name="emailFront"/>@<input type="text" id="emailBack" name="emailBack">
+				<input type="text" id="emailFront" name="emailFront"/>@<input type="text" id="emailBack" name="emailBack">
 			    <select id="emailBack_sel" name="emailBack_sel" onchange="email_change()">
 				    <option value="">직접입력</option>
 				    <option value="naver.com">naver.com</option>
@@ -182,6 +182,7 @@ function emailAuth() {
 			    </div>
 			    
 			    <div>
+			    	<input type="hidden" id="isEmailAuthOk" value="F" />
 				    <input type="button" onclick="emailAuth();" value="이메일인증"/>
 				    <div id="emailAuthFin" style="float: right;"><font color="red">이메일 인증이 필요합니다.</font></div>
 			    </div>
