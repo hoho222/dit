@@ -86,6 +86,12 @@ public interface FrontService {
 	void insertGoalComment(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 	/**
+    * 목표 상세 -> 코멘트 Update or Delete (처리)
+    * @throws Exception the exception
+    */
+	void processGoalCommentAct(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	
+	/**
     * 목표 상세 -> 성공or실패 소감 Create
     * @throws Exception the exception
     */

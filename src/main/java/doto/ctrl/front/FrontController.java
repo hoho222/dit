@@ -269,6 +269,18 @@ public class FrontController {
 	}
 	
 	/*
+	 * 목표상세에서 코멘트 수정/삭제 act
+	 */
+	@RequestMapping(value = "/goals/comments_action", method = RequestMethod.POST)
+	public String processGoalCommentAct(@RequestParam Map<String,Object> map, HttpServletRequest request) throws Exception {
+		
+		frontService.processGoalCommentAct(map, request);
+		
+		return "redirect:/goals/"+map.get("goalIdx").toString();
+
+	}
+	
+	/*
 	 * 목표 성공/실패 소감 등록 act
 	 */
 	@RequestMapping(value = "/goals/results", method = RequestMethod.POST)

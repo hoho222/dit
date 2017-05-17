@@ -88,6 +88,57 @@ function resultCheck() {
 	
 }
 
+//코멘트에서 '수정' 버튼 눌렀을 때
+function commentEdit(commentIdx) {
+	
+	//기존 댓글 안보이게
+	var commentOld = document.getElementById("contentsOld_"+commentIdx);
+	commentOld.style.display = 'none';
+	
+	//새로 수정한 댓글 보이게
+	var commentNew = document.getElementById("contentsNew_"+commentIdx);
+	commentNew.style.display = 'block';
+	
+	//수정버튼 안보이게
+	var editBtn = document.getElementById("editBtn_"+commentIdx);
+	editBtn.style.display = 'none';
+	
+	//등록버튼 보이게
+	var editFinBtn = document.getElementById("editFinBtn_"+commentIdx);
+	editFinBtn.style.display = 'block';
+    
+}
+
+function commentEditFin(commentIdx) {
+	var f = document.commentEditFrm;
+	var contentsNew = document.getElementById("contentsNew_"+commentIdx).value;
+	
+	f.contentsNew.value = contentsNew;
+	f.mode.value = "EDIT";
+	f.commentIdx.value = commentIdx;
+	
+	if(f.contentsNew.value == ""){
+		alert("수정할 코멘트 내용을 입력해주세요!");
+		document.getElementById("contentsNew_"+commentIdx).focus();
+		return false;
+	}
+	
+	f.action = "comments_action";
+	f.submit();
+}
+
+function commentDel(commentIdx) {
+	var f = document.commentEditFrm;
+	f.mode.value = "DEL";
+	f.commentIdx.value = commentIdx;
+	
+	if(confirm("해당 코멘트를 삭제하시겠습니까?")){
+		f.action = "comments_action";
+		f.submit();
+	}
+	
+}
+
 $(function() {
 	
 		var totalDays = ${goalMap.TOTAL_DAYS};
@@ -104,12 +155,17 @@ $(function() {
         document.getElementById("GB").innerHTML = "목표 달성을 축하합니다!! ><";
     });
 	
-  //모달 팝업창 열림(실패)
+  	//모달 팝업창 열림(실패)
     $('#activeModalFail').on("click", function () {
     	document.getElementById("successGB").value = "fail";
         document.getElementById("GB").innerHTML = "아쉽습니당 ㅜㅜ";
     });
+  	
+  	//코멘트 내용 수정할 글 text박스 첨에는 안보이게
+  	$("#editFinBtn").hide();
+  	
 });
+
 </script>
 
 </head>
@@ -235,26 +291,38 @@ $(function() {
 	<div id="commentRead">
 		<strong>코멘트</strong>
 		<br>
-		
 		<c:choose>
+			
 	        <c:when test="${fn:length(goalCommentList) > 0}">
+	        <form name="commentEditFrm" method="post">
+				<input type="hidden" name="mode" value=""/>
+                <input type="hidden" name="contentsNew" value=""/>
+                <input type="hidden" name="commentIdx" value=""/>
+                <input type="hidden" name="goalIdx" value="${idx}"/>
+                
 	            <c:forEach items="${goalCommentList }" var="row">
 	            	<div class="round-border">
-	            		
-	            		<c:if test="${row.STORED_FILE_NAME ne 'none' && row.STORED_FILE_NAME ne ''}">
+	            		<c:if test="${row.ORIGINAL_FILE_NAME ne 'none' && row.ORIGINAL_FILE_NAME ne ''}">
 		            		<img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/comment_imgs/${row.STORED_FILE_NAME }'/>" style="width: 200px; height: 140px;" >
 		            	</c:if>
-		                ${row.CONTENTS} &nbsp; ${row.CREATE_DT }
-		                <input type="button" class="btn btn-default btn-xs" value="수정"/>
-						<input type="button" class="btn btn-default btn-xs" value="삭제"/>
+		                <span id="contentsOld_${row.IDX }">${row.CONTENTS}</span>
+		                <input type="text" id="contentsNew_${row.IDX }" value="${row.CONTENTS}" style="display:none"/>
+		                &nbsp; 
+		                ${row.CREATE_DT }
+		                
+		                <input type="button" class="btn btn-default btn-xs" id="editBtn_${row.IDX }" value="수정" onclick="commentEdit(${row.IDX });"/>
+		                <input type="button" class="btn btn-default btn-xs" id="editFinBtn_${row.IDX }" value="등록" onclick="commentEditFin(${row.IDX });" style="display:none"/>
+						<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="commentDel(${row.IDX });"/>
 						<input type="button" class="btn btn-primary btn-xs" value="페이스북"/>
-						
 		            </div>
                 </c:forEach>
+                </form>
             </c:when>
+            
             <c:otherwise>
                 등록된 코멘트가 없습니다.
             </c:otherwise>
+            
         </c:choose>
         
 	</div>

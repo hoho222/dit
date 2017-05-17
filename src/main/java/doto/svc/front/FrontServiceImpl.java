@@ -201,6 +201,23 @@ public class FrontServiceImpl  implements FrontService {
 	}
 	
 	@Override
+	public void processGoalCommentAct(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		
+		System.out.println("삭제 뽕 > "+map);
+		
+		//코멘트 내용 수정
+		if("EDIT".equals(map.get("mode").toString())){
+			frontDAO.updateGoalComment(map);
+		} 
+		
+		//코멘트 삭제
+		else if("DEL".equals(map.get("mode").toString())){
+			frontDAO.deleteGoalComment(map);
+		}
+		
+	}
+	
+	@Override
 	public void insertGoalResult(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		
 		frontDAO.insertGoalResult(map);

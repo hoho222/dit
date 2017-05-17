@@ -71,6 +71,14 @@ public class FrontDAO extends AbstractDAO{
 		insert("front.insertGoalComment", map);
 	}
 	
+	public void updateGoalComment(Map<String, Object> map) throws Exception{
+		insert("front.updateGoalComment", map);
+	}
+	
+	public void deleteGoalComment(Map<String, Object> map) throws Exception{
+		insert("front.deleteGoalComment", map);
+	}
+	
 	public void insertGoalCommentImg(Map<String, Object> map) throws Exception{
 		insert("front.insertGoalCommentImg", map);
 	}

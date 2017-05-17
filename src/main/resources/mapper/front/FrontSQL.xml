@@ -181,6 +181,21 @@
     	]]>
     </insert>
     
+    <update id="front.updateGoalComment">
+    	<![CDATA[
+    	UPDATE T_GOAL_COMMENT 
+    	SET CONTENTS = #{contentsNew} 
+    	WHERE IDX = #{commentIdx}
+    	]]>
+    </update>
+    
+    <delete id="front.deleteGoalComment">
+    	<![CDATA[
+    	DELETE FROM T_GOAL_COMMENT
+    	WHERE IDX = #{commentIdx}
+    	]]>
+    </delete>
+    
     <insert id="front.insertGoalCommentImg">
     	<![CDATA[
     	INSERT INTO T_GOAL_COMMENT_IMG
