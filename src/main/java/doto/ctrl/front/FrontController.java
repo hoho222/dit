@@ -353,11 +353,21 @@ public class FrontController {
 		} 
 		//kakaoJoin 키가 map안에 존재하는지 여부에 따라분기(카카오톡으로 가입).
 		else if(map.containsKey("kakaoJoin")){
+			
+			PrintWriter out = response.getWriter();
+			
+			boolean isFirstKakaoLogin = false;
+			
 			if("OK".equals(map.get("kakaoJoin"))){
 				//카카오톡으로 가입
-				frontService.insertMemberKakao(map, request);
+				isFirstKakaoLogin = frontService.insertMemberKakao(map, request);
 				
 			}
+			
+			//ajax 처리
+			out.print(isFirstKakaoLogin); //이 값이 rData로 넘어감
+			out.flush();
+			out.close();
 			return "redirect:login";
 		} else {
 			//두잇투게더로 가입

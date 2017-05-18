@@ -133,38 +133,40 @@
     }
     
     function testAPI() {
-		  
 	      console.log('Welcome!  Fetching your information.... ');
-	      
 	      FB.api('/me', {fields: 'email,name'}, function(response) {
 		      
 	    	  console.log('Successful FACEBOOK login for: ' + response.name);
-		      
-		      //페이스북 로그인 최초 성공 시, 해당 페이스북 ID와 name 을 DB 처리 하기위한 ajax
-		      $.ajax({
-				   type : 'POST',  
-				   data:"fbEmailId=" + response.email + "&fbId="+ response.id + "&fbName=" + response.name + "&fbJoin=OK",
-				   dataType : 'text',
-				   url : 'join',  
-				   success : function(rData, textStatus, xhr) {
-					   if(rData == "true"){
-					   		window.location.href = "../users/login";
-					   } else {
-						   window.location.href = "../index";
+		      if(response.id == "undefined" || response.status == "unknown"){
+		    	  alert("유효하지 않은 페이스북 회원이거나\n로그인이 성공적으로 이뤄지지 않았습니다!\n다시 시도해 주세요.");
+		      } else {
+			      //페이스북 로그인 최초 성공 시, 해당 페이스북 ID와 name 을 DB 처리 하기위한 ajax
+			      $.ajax({
+					   type : 'POST',  
+					   data:"fbEmailId=" + response.email + "&fbId="+ response.id + "&fbName=" + response.name + "&fbJoin=OK",
+					   dataType : 'text',
+					   url : 'join',  
+					   success : function(rData, textStatus, xhr) {
+						   if(rData == "true"){
+							   alert("페이스북 가입성공!\n페이스북으로 로그인 버튼을 한번 더 누르시면 로그인 됩니다.");
+						   		window.location.href = "../users/login";
+						   } else {
+							   window.location.href = "../index";
+						   }
+					   },
+					   error : function(xhr, status, e) {  
+					   		alert("페이스북 가입을 할 수 없습니다!");
+					   		console.log("페이스북 가입 에러 원인 >> "+e);
 					   }
-				   },
-				   error : function(xhr, status, e) {  
-				   		alert("페이스북 가입을 할 수 없습니다!");
-				   		console.log("페이스북 가입 에러 원인 >> "+e);
-				   }
-				});  
-	    	  
+					});  
+		      }
 	    });
 	  }
 
     function checkFacebookLogin() 
     {
         FB.getLoginStatus(function(response) {
+        	
           if (response.status === 'connected') {
         	  testAPI();
           } else {
@@ -176,7 +178,10 @@
     function initiateFBLogin()
     {
         FB.login(function(response) {
-        	testAPI();
+        	
+        	if(response.status != "unknown"){
+        		testAPI();
+        	}
          });
     }
     </script>
@@ -203,10 +208,10 @@
 	    		  url: '/v1/user/me',
 	    		  success: function(res) {
 	    			  
-   					  //카카오톡 로그인 버튼 감추기
+   					  /* //카카오톡 로그인 버튼 감추기 --> 필요없어졌음
    					  document.getElementById('kakaologin').innerHTML = "";
    					  document.getElementById('kakaologout').innerHTML = "<input type='button' onclick='kakaoLogout()' value='카카오톡 로그아웃'/>";
-   					  document.getElementById('statusKakao').innerHTML ="<font size=1> 카카오톡 :" + res.properties.nickname + "님";
+   					  document.getElementById('statusKakao').innerHTML ="<font size=1> 카카오톡 :" + res.properties.nickname + "님"; */
 	    			  
 	    		      //카카오톡 로그인 최초 성공 시, 해당 페이스북 ID와 name 을 DB 처리 하기위한 ajax
 	    		      $.ajax({
@@ -215,7 +220,13 @@
 	    				   dataType : 'text',
 	    				   url : 'join',  
 	    				   success : function(rData, textStatus, xhr) {
-	    					   window.location.href = "../index";
+	    					   if(rData == "true"){
+								   alert("카카오톡으로 가입성공!\카카오계정으로 로그인 버튼을 한번 더 누르시면 로그인 됩니다.");
+							   		window.location.href = "../users/login";
+							   } else {
+								   window.location.href = "../index";
+							   }
+	    					   
 	    				   },
 	    				   error : function(xhr, status, e) {  
 	    				   		alert("카카오톡 가입(로그인)을 할 수 없습니다!");

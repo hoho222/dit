@@ -375,15 +375,17 @@ public class FrontServiceImpl  implements FrontService {
 	}
 	
 	@Override
-	public void insertMemberKakao(Map<String, Object> map, HttpServletRequest request) throws Exception {
+	public boolean insertMemberKakao(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		
 		HttpSession session = request.getSession();
 		
 		//카카오톡으로 회원가입 하기전, 이미 가입된 회원인지 부터 확인
 		Map<String, Object> alreadyMember = frontDAO.selectMember(map);
+		boolean isFirstKakoLogin = false;
 		
 		//이미 해당 카카오톡ID로 가입된 회원이 아닐때만 insert 됨
 		if(alreadyMember == null) {
+			isFirstKakoLogin = true;
 			frontDAO.insertMemberKakao(map);
 		} else {
 			//카카오톡 로그인을 처음하지 않은 사람은 여기서 세션에 해당 kakaoId값 박아서, 그 세션값으로 여기저기서 쓰면될듯
@@ -405,6 +407,7 @@ public class FrontServiceImpl  implements FrontService {
 			frontDAO.insertMemberAccessLog(logMap);
 		}
 		
+		return isFirstKakoLogin;
 	}
 	
 	@Override

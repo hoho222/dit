@@ -125,7 +125,7 @@ public interface FrontService {
     * 카카오톡 회원 Create
     * @throws Exception the exception
     */
-	void insertMemberKakao(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	boolean insertMemberKakao(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
 	/**
     * 회원 가입 시 이메일 주소 중복확인
