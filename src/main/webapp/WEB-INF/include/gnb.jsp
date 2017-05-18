@@ -27,6 +27,7 @@
 
 <!-- css 파일 import -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/base.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css'/>" />
 
 <title>DIT</title>
 </head>
