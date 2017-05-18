@@ -56,7 +56,7 @@
 				   }
 			   },
 			   error : function(xhr, status, e) {  
-			   		alert("로그인 처리를 할 수 없습니다!");
+			   		alert("데이터 Access 실패! 다시 한번 로그인 해주세요.");
 			   		console.log("로그인 처리 에러 원인 >> "+e);
 			   }
 			});  
@@ -83,7 +83,10 @@
 			<div class="login_input">
 				<p class="l_i_wrap"><input type="text" name="emailId" size="20" tabindex="1" placeholder="ID(E-mail)"></p>
 				<p class="l_i_wrap"><input type="password" name="pwd" size="20" tabindex="2" placeholder="PASSWORD"></p>
-				<p class="btn_login"><input type="image" src="../resources/imgs/login_com_btn.png" tabindex="3" onclick="validSubmit();"></p>
+				<p class="btn_login">
+					<!-- <input type="image" src="../resources/imgs/login_com_btn.png" tabindex="3" onclick="validSubmit();"> -->
+					<input type="button" onclick="validSubmit();" value="GO" style="background-image: url(../resources/imgs/login_com_btn.png) no-repeat;">
+				</p>
 			</div>
 		</form>
 		<!-- login_input End-->
