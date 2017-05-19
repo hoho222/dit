@@ -6,7 +6,7 @@
 
 <%@ include file="/WEB-INF/include/gnb.jsp" %>
 <%@ include file="/WEB-INF/include/top.jsp" %>
-<%@ include file="/WEB-INF/include/head_index.jsp" %>
+<%@ include file="/WEB-INF/include/head.jsp" %>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 

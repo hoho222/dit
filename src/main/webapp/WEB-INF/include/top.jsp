@@ -17,35 +17,5 @@
 <c:set var="sessionName"><%= (String)session.getAttribute("loginName") %></c:set>
 <c:set var="sessionNickName"><%= (String)session.getAttribute("loginNickName") %></c:set> 
 
-<div id="top" >
-	
-	<br>
-	
-	<%-- <c:choose>
-	<c:when test="${sessionIdx != 'null' && sessionId != 'null' && sessionName != 'null' && sessionNickName != 'null'}">
-		<div align="right" style="float: right;">
-			<div class="dropdown">
-			    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><c:out value="${sessionNickName}"></c:out>
-			    <span class="caret"></span></button>
-			    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-			      <li role="presentation"><a role="menuitem" tabindex="-1" href="${pageContext.request.contextPath}/mypages/${sessionIdx}">마이페이지</a></li>
-			      <li role="presentation"><a role="menuitem" tabindex="-1" href="${pageContext.request.contextPath}/mypages/goals">지난 목표들</a></li>
-			      <li role="presentation" class="divider"></li>
-			      <li role="presentation"><a role="menuitem" tabindex="-1" href="${pageContext.request.contextPath}/users/logout">로그아웃</a></li>
-			    </ul>
-		  	</div>
-			
-		</div>
-	</c:when>
-	<c:otherwise>
-		<div align="right" style="float: right;">
-			<a href="${pageContext.request.contextPath}/users/joinform">회원가입</a>
-			<a href="${pageContext.request.contextPath}/users/login">간편로그인</a>
-		</div>
-	</c:otherwise>
-	</c:choose> --%>
-	
-</div>
-
 </body>
 </html>

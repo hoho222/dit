@@ -10,12 +10,36 @@
 </head>
 <body>
 
-<div id="foot">
-     <div class="footer">
-     <p>Copyright &copy; 경호원</p>
-     </div>
-     
+	<div id="footer">
+	     <div class="container">
+	     	<div class="row">
+				<div class="12u">
+	
+					<!-- Contact -->
+						<section class="contact">
+							<header>
+								<h3><p>Copyright &copy; 경호원</p></h3>
+							</header>
+							<p>경호원</p>
+						</section>
+	
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; 경호원. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+	
+				</div>
+	
+			</div>
+	     </div>
+	     
+	</div>
+
+<!-- 이 밑의 </div>는 head에 있는 div id="page-wrapper" 닫는 div태그임 -->
 </div>
+
 
 </body>
 </html>
