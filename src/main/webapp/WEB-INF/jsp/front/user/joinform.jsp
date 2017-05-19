@@ -25,7 +25,7 @@ function email_change(){
 
 function validSubmit() {
 	var f = document.frm;
-	
+
 	if(f.isOverlapCheck.value != "Y"){
 		alert("이메일 중복 확인을 안했거나 중복된 이메일 입니다.\n이메일 주소를 다시 확인해 주세요!");
 		return false;
@@ -77,8 +77,11 @@ function validSubmit() {
 		return false;
 	}
 	
+	f.target="_self";
 	f.action="join";
 	f.submit();
+	
+	
 }
 
 //이메일 아이디 중복확인(ajax로 구현)
@@ -112,7 +115,7 @@ function emailOverlap() {
 			   }
 		   },
 		   error : function(xhr, status, e) {  
-		   		alert("중복확인을 할 수 없습니다!");
+		   		alert("데이터 Access 에러! 중복확인을 할 수 없습니다!\n다시 시도해 주세요.");
 		   		console.log("중복확인 에러 원인 >> "+e);
 		   }
 		});  
@@ -148,7 +151,7 @@ function emailAuth() {
 	f.action = "joinauth";
 	f.method = "post";
 	f.submit();
-
+	
 }
 
 </script>
