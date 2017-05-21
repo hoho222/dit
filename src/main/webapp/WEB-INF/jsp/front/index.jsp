@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>
-<body id="index">
+<%-- <body id="index">
   <div id="wrap">
    <div class="content">
      <div class="name">
@@ -29,6 +29,22 @@
   </div>
     <!-- wrap e -->
   
-</body>
+</body> --%>
+<section id="banner">
+	<header>
+		<h2>Hi. You're looking at <strong>DoIt Together</strong>.</h2>
+		<p>
+			
+			    <div class="name">
+			        <p class="font_01">당신의 목표달성을 위해 함께하겠습니다</p>
+			        <p class="font_02">여러분의 <strong>다짐</strong>을 적어주세요</p>
+			        <p class="font_03"><img src="./resources/imgs/en.png"></p>
+			        <p class="font_04"><a href="${pageContext.request.contextPath}/goals">목표달성하러가기</a></p>
+			    </div>
+	    <!-- name e -->
+	    
+		</p>
+	</header>
+</section>
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>

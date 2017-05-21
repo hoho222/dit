@@ -37,6 +37,16 @@ public class FrontController {
 	}
 	
 	/*
+	 * 템플릿 샘플 화면
+	 */
+	@RequestMapping(value = "/sample", method = RequestMethod.GET)
+	public String sample() throws Exception {
+
+		return "front/sample";
+
+	}
+	
+	/*
 	 * 공지사항 list(다 건) 조회
 	 */
 	@RequestMapping(value = "/notices", method = RequestMethod.GET)
