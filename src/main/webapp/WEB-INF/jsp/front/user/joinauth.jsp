@@ -5,7 +5,9 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>이메일인증</title>
+
 <script type="text/javascript">
 
 function check() {
@@ -27,8 +29,9 @@ function check() {
 
 <body>
 
+
 <center>
-	<h3>인증번호 7자리를 입력하세요.</h3>
+	<h3>메일로 전송된 인증번호 7자리를 입력하세요.</h3>
 	
 	<div>
 		<form name="authFrm" method="post">

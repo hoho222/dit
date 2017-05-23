@@ -47,7 +47,7 @@ function validSubmit() {
 <center>
 	<div id="" class="section">
 		<div class="s-container">
-			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">비밀번호 변경</h2>
+			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">MY PAGE</h2>
 		</div>
 	</div>
 	<form id="frm" name="frm" method="post">

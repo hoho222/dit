@@ -41,7 +41,7 @@
 
 
 <!-- js파일 -->
-<script type="text/javascript" src="<c:url value='/js/jquery.min.js'/>"></script>
+<%-- <script type="text/javascript" src="<c:url value='/js/jquery.min.js'/>"></script> --%>
 <script type="text/javascript" src="<c:url value='/js/jquery.dropotron.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery.scrolly.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery.onvisible.min.js'/>"></script>

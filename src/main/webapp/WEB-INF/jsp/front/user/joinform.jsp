@@ -157,76 +157,80 @@ function emailAuth() {
 </script>
 
 </head>
-<body>
 
 <center>
-<h2>회원가입</h2>
-
-<form id="frm" name="frm" method="post">
+	<div id="" class="section">
+		<div class="s-container">
+			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">SIGN UP</h2>
+		</div>
+	</div>
 	
-	<table border="1">
-		<tr>
-			<td>이메일(ID)</td>
-			<td>
-				<input type="hidden" name="emailAddr"/>
-				<input type="text" id="emailFront" name="emailFront"/>@<input type="text" id="emailBack" name="emailBack">
-			    <select id="emailBack_sel" name="emailBack_sel" onchange="email_change()">
-				    <option value="">직접입력</option>
-				    <option value="naver.com">naver.com</option>
-				    <option value="gmail.com">gmail.com</option>
-				    <option value="hanmail.net">hanmail.net</option>
-				    <option value="nate.com">nate.com</option>
-			    </select>
-			    
-			    <div>
-			    	<input type="hidden" id="isOverlapCheck" value="not" />
-				    <input type="button" onclick="emailOverlap();" value="이메일 중복확인"/>
-				    <div id="emailOverlapFin" style="float: right;"><font color="red">이메일 중복확인을 해주세요.</font></div>
-			    </div>
-			    
-			    <div>
-			    	<input type="hidden" id="isEmailAuthOk" value="F" />
-				    <input type="button" onclick="emailAuth();" value="이메일인증"/>
-				    <div id="emailAuthFin" style="float: right;"><font color="red">이메일 인증이 필요합니다.</font></div>
-			    </div>
-			    
-			</td>
-		</tr>
-		<tr>
-			<td>이름</td>
-			<td><input type="text" name="name"/></td>
-		</tr>
-		<tr>
-			<td>닉네임</td>
-			<td><input type="text" name="nickName"/></td>
-		</tr>
-		<tr>
-			<td>비밀번호</td>
-			<td><input type="password" name="password"/></td>
-		</tr>
-		<tr>
-			<td>비밀번호 확인</td>
-			<td><input type="password" name="re_password"/></td>
-		</tr>
-		<tr>
-			<td>핸드폰 번호</td>
-			<td><input type="text" name="hp" placeholder="ex) 01012347890" maxlength="11"/></td>
-		</tr>
-		<tr>
-			<td>생년월일</td>
-			<td><input type="text" name="birthDate" maxlength="8" placeholder="ex) 19931121"/></td>
-		</tr>
-		<tr>
-			<td>성별</td>
-			<td>
-				남<input type="radio" name="gender" id="male" value="M"/>
-				여<input type="radio" name="gender" id="female" value="F"/>
-			</td> 
-		</tr>
-	</table> 
-	<input type="button" value="작성완료" onclick="validSubmit();"/>
-</form>
+	<form id="frm" name="frm" method="post">
+		
+		<table border="1">
+			<tr>
+				<td>이메일(ID)</td>
+				<td>
+					<input type="hidden" name="emailAddr"/>
+					<input type="text" id="emailFront" name="emailFront"/>@<input type="text" id="emailBack" name="emailBack">
+				    <select id="emailBack_sel" name="emailBack_sel" onchange="email_change()">
+					    <option value="">직접입력</option>
+					    <option value="naver.com">naver.com</option>
+					    <option value="daum.net">daum.net</option>
+					    <option value="gmail.com">gmail.com</option>
+					    <option value="hanmail.net">hanmail.net</option>
+					    <option value="nate.com">nate.com</option>
+				    </select>
+				    
+				    <div>
+				    	<input type="hidden" id="isOverlapCheck" value="not" />
+					    <input type="button" onclick="emailOverlap();" value="이메일 중복확인"/>
+					    <div id="emailOverlapFin" style="float: right;"><font color="red">이메일 중복확인을 해주세요.</font></div>
+				    </div>
+				    
+				    <div>
+				    	<input type="hidden" id="isEmailAuthOk" value="F" />
+					    <input type="button" onclick="emailAuth();" value="이메일인증"/>
+					    <div id="emailAuthFin" style="float: right;"><font color="red">이메일 인증이 필요합니다.</font></div>
+				    </div>
+				    
+				</td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="name"/></td>
+			</tr>
+			<tr>
+				<td>닉네임</td>
+				<td><input type="text" name="nickName"/></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="password"/></td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인</td>
+				<td><input type="password" name="re_password"/></td>
+			</tr>
+			<tr>
+				<td>핸드폰 번호</td>
+				<td><input type="text" name="hp" placeholder="ex) 01012347890" maxlength="11"/></td>
+			</tr>
+			<tr>
+				<td>생년월일</td>
+				<td><input type="text" name="birthDate" maxlength="8" placeholder="ex) 19931121"/></td>
+			</tr>
+			<tr>
+				<td>성별</td>
+				<td>
+					남<input type="radio" name="gender" id="male" value="M"/>
+					여<input type="radio" name="gender" id="female" value="F"/>
+				</td> 
+			</tr>
+		</table> 
+		<input type="button" value="작성완료" onclick="validSubmit();"/>
+	</form>
 </center>
-</body>
+
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>

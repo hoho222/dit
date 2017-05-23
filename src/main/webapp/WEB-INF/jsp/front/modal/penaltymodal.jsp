@@ -7,7 +7,7 @@
 
 <%@ include file="/WEB-INF/include/gnb.jsp" %>
 </head>
-<body>
+
 
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -49,7 +49,4 @@
 	        <button type="button" class="btn btn-primary" data-dismiss="modal">저장</button>
 	</div>
 
-
-</body>
-<%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>

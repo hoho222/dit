@@ -16,7 +16,7 @@
 
 	<div id="" class="section">
 		<div class="s-container">
-			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">FINISH LIST</h2>
+			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">FINISH</h2>
 		</div>
 	</div>
 

@@ -266,6 +266,12 @@ $(function() {
 <body>
 
 <center>
+	<div id="" class="section">
+		<div class="s-container">
+			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">목표 쓰기</h2>
+		</div>
+	</div>
+
 	<form id="Frm" name="Frm" method="post">
 		<input type="hidden" name="writerId" value="${sessionId}"/>
 		<input type="hidden" name="writerIdx" value="${loginNo}"/> 
