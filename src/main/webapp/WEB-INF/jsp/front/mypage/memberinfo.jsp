@@ -43,23 +43,25 @@ function validSubmit() {
 </script>
 
 </head>
-<body>
 
 <center>
-<h2>비밀번호 변경</h2>
-<form id="frm" name="frm" method="post">
-	<input type="hidden" name="idx" value="${memberMap.IDX}"/>
-	아이디 : ${memberMap.EMAIL_ID} <br>
-	현재 비밀번호 : <input type="password" name="password"/><br>
-	변경할 비밀번호 : <input type="password" name="newPassword"/><br>
-	변경할 비밀번호 확인 : <input type="password" name="newPasswordRe"/><br>
-	<%-- 닉네임 : <input type="text" name="newNickName" value="${memberMap.NICKNAME}"/><br> --%>
-	<%-- 성별 : ${memberMap.GENDER} <br>
-	생일 : ${memberMap.BIRTH_DT} <br> --%>
-	<input type="button" value="변경" onclick="validSubmit();"/>
-</form>
+	<div id="" class="section">
+		<div class="s-container">
+			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">비밀번호 변경</h2>
+		</div>
+	</div>
+	<form id="frm" name="frm" method="post">
+		<input type="hidden" name="idx" value="${memberMap.IDX}"/>
+		아이디<br> <strong>${memberMap.EMAIL_ID}</strong> <br><br>
+		현재 비밀번호 <input type="password" name="password"/><br>
+		변경할 비밀번호 <input type="password" name="newPassword"/><br>
+		변경할 비밀번호 확인 <input type="password" name="newPasswordRe"/><br>
+		<%-- 닉네임 : <input type="text" name="newNickName" value="${memberMap.NICKNAME}"/><br> --%>
+		<%-- 성별 : ${memberMap.GENDER} <br>
+		생일 : ${memberMap.BIRTH_DT} <br> --%>
+		<input type="button" value="변경" onclick="validSubmit();"/>
+	</form>
 </center>
 
-</body>
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>

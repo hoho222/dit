@@ -64,9 +64,9 @@
 </script>
 
 </head>
-<body>
 
-<center>
+
+
 	
    <div id="login" class="contents-area">
 		<div id="" class="section">
@@ -80,36 +80,24 @@
     <div class="login_field">
 		<form name="loginFrm" method="post" id="form">
 			<input type="hidden" name="contextPath" value="${pageContext.request.contextPath}">
-			<div class="login_input">
+			<div class="form-inputs">
 				<p class="l_i_wrap"><input type="text" name="emailId" size="20" tabindex="1" placeholder="ID(E-mail)"></p>
 				<p class="l_i_wrap"><input type="password" name="pwd" size="20" tabindex="2" placeholder="PASSWORD"></p>
+				
 				<p class="btn_login">
-					<!-- <input type="image" src="../resources/imgs/login_com_btn.png" tabindex="3" onclick="validSubmit();"> -->
-					<input type="button" onclick="validSubmit();" value="GO" style="background-image: url(../resources/imgs/login_com_btn.png) no-repeat;">
+					<input type="button" onclick="validSubmit();" value="GO">
 				</p>
+				
+				<p class="join_btn"><a href="${pageContext.request.contextPath}/users/joinform" class="join_txt1">회원가입</a></p>
 			</div>
+			
+			
 		</form>
 		<!-- login_input End-->
-					
-		<p class="join_btn"><a href="${pageContext.request.contextPath}/users/joinform" class="join_txt1">회원가입</a></p>
-	    
-	    <p class="sns_txt"><strong class="red">S</strong><strong class="grn">N</strong><strong class="blue">S</strong>로 로그인하세요.</p>
-	    
-	    <!-- 
-	    <div class="sns_icon">
-		    <ul>
-			    <li><a href="#"><img src="../resources/imgs/fbloginbtn.png"></a></li>
-			    <li><a href="#"><img src="../resources/imgs/kakao_icon.png"></a></li>
-		    </ul>
-	    </div>
-	    -->
-	    <!-- sns_icon End-->
+		
 	</div>
     <!-- login_field End-->
     
-	<br>
-	
-	
 	<!-- 페이스북 로긘 -->
 	<div id="fb-root"></div>
 	<script>
@@ -186,16 +174,21 @@
     }
     </script>
 
-	<div><a onclick="checkFacebookLogin();"><img alt="페이스북으로 로그인" src="<c:url value='/resources/imgs/fbloginbtn.png'/>" style="width: 222px; height: 49px;" ></a></div>
-	<!-- 페이스북 로긘 -->
-
-
-	<!-- 카카오톡 로긘 -->
-	<div id="kakaologin"><a id="kakao-login-btn"></a></div>
-	<div id="kakaologout"></div>
-	<div id="statusKakao"></div>
+	<center>
+		<p class="sns_txt"><strong class="red">S</strong><strong class="grn">N</strong><strong class="blue">S</strong>로 로그인하세요.</p>
+		
+		<div><a onclick="checkFacebookLogin();"><img alt="페이스북으로 로그인" src="<c:url value='/resources/imgs/fbloginbtn.png'/>" style="width: 222px; height: 49px;" ></a></div>
+		<!-- 페이스북 로긘 -->
+		
+		<!-- 카카오톡 로긘 -->
+		<div id="kakaologin"><a id="kakao-login-btn"></a></div> <!-- 카카오톡계정으로 로그인 -->
+		<div id="kakaologout"></div>
+		<div id="statusKakao"></div>
+		
+		<a href="http://developers.kakao.com/logout"></a>
+		<br>
+	</center>
 	
-	<a href="http://developers.kakao.com/logout"></a>
 	<script type='text/javascript'>
 	  //<![CDATA[
 	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -208,11 +201,6 @@
 	    		  url: '/v1/user/me',
 	    		  success: function(res) {
 	    			  
-   					  /* //카카오톡 로그인 버튼 감추기 --> 필요없어졌음
-   					  document.getElementById('kakaologin').innerHTML = "";
-   					  document.getElementById('kakaologout').innerHTML = "<input type='button' onclick='kakaoLogout()' value='카카오톡 로그아웃'/>";
-   					  document.getElementById('statusKakao').innerHTML ="<font size=1> 카카오톡 :" + res.properties.nickname + "님"; */
-	    			  
 	    		      //카카오톡 로그인 최초 성공 시, 해당 페이스북 ID와 name 을 DB 처리 하기위한 ajax
 	    		      $.ajax({
 	    				   type : 'POST',  
@@ -221,7 +209,7 @@
 	    				   url : 'join',  
 	    				   success : function(rData, textStatus, xhr) {
 	    					   if(rData == "true"){
-								   alert("카카오톡으로 가입성공!\카카오계정으로 로그인 버튼을 한번 더 누르시면 로그인 됩니다.");
+								   alert("카카오톡으로 가입성공!\n카카오계정으로 로그인 버튼을 한번 더 누르시면 로그인 됩니다.");
 							   		window.location.href = "../users/login";
 							   } else {
 								   window.location.href = "../index";
@@ -257,8 +245,6 @@
 	</script>
 	<!-- 카카오톡 로긘 -->
 	
-</center>
 
-</body>
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>

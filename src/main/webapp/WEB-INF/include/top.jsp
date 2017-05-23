@@ -10,12 +10,10 @@
 <%@ include file="/WEB-INF/include/gnb.jsp" %>
 
 </head>
-<body>
 
 <c:set var="sessionIdx"><%= session.getAttribute("loginIdx") %></c:set>
 <c:set var="sessionId"><%= (String)session.getAttribute("loginId") %></c:set>
 <c:set var="sessionName"><%= (String)session.getAttribute("loginName") %></c:set>
 <c:set var="sessionNickName"><%= (String)session.getAttribute("loginNickName") %></c:set> 
 
-</body>
 </html>

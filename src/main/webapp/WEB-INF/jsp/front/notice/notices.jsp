@@ -10,46 +10,35 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
-<table class="boardlist" style="border:1px solid #ccc"  align="center">
-	<colgroup>
-	    <col width="10%"/>
-	    <col width="30%"/>
-	    <col width="15%"/>
-	    <col width="20%"/>
-	    <col width="20%"/>
-	</colgroup>
-	<thead>
-	    <tr>
-	        <th>글번호</th>
-	        <th>제목</th>
-	        <th>조회수</th>
-	        <th>작성일</th>
-	        <th>작성자</th>
-	    </tr>
-	</thead>
-	<tbody>
-    	<c:choose>
-	        <c:when test="${fn:length(list) > 0}">
-	            <c:forEach items="${list }" var="row">
-	                <tr>
-	                    <td>${row.IDX }</td>
-	                    <td><a href="${pageContext.request.contextPath}/notices/${row.IDX}">${row.TITLE }</a></td>
-	                    <td>${row.HIT_CNT }</td>
-	                    <td>${row.CREATE_DT }</td>
-	                    <td>${row.WRITER_NAME }</td>
-	                    </tr>
-                </c:forEach>
-            </c:when>
-            <c:otherwise>
-                <tr>
-                    <td colspan="4">조회된 결과가 없습니다.</td>
-                </tr>
-            </c:otherwise>
-        </c:choose>
-        
-    </tbody>
-</table>
-</body>
+
+<center>
+	<div id="" class="section">
+		<div class="s-container">
+			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">공지사항</h2>
+		</div>
+	</div>
+	
+   	<c:choose>
+        <c:when test="${fn:length(list) > 0}">
+            <c:forEach items="${list }" var="row">
+            	<div class="container" style="padding-top:20px;text-align:center;">
+	                <div class="panel panel-default">
+                  		<div class="panel-body" >
+                			<a href="${pageContext.request.contextPath}/notices/${row.IDX}">${row.TITLE }</a><br>
+                			${row.HIT_CNT }<br>
+                			${row.CREATE_DT }<br>
+                			${row.WRITER_NAME }<br>
+                		</div>
+                	</div>
+                </div>
+               </c:forEach>
+           </c:when>
+           <c:otherwise>
+           	조회된 결과가 없습니다.
+           </c:otherwise>
+       </c:choose>
+	        
+</center>
+
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>

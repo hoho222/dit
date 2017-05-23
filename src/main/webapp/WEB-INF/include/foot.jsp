@@ -8,7 +8,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
 
 	<div id="footer">
 	     <div class="container">
@@ -40,6 +39,15 @@
 <!-- 이 밑의 </div>는 head에 있는 div id="page-wrapper" 닫는 div태그임 -->
 </div>
 
+
+<!-- js파일 -->
+<script type="text/javascript" src="<c:url value='/js/jquery.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery.dropotron.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery.scrolly.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery.onvisible.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/skel.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/util.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/main.js'/>"></script>
 
 </body>
 </html>

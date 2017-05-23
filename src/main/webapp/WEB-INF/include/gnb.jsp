@@ -18,14 +18,7 @@
 <!-- jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 
-<!-- js파일 -->
-<script type="text/javascript" src="<c:url value='/js/jquery.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/jquery.dropotron.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/jquery.scrolly.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/jquery.onvisible.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/skel.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/util.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/main.js'/>"></script>
+
 
 <!-- 부트스트랩 파일들은 받아놓긴 했지만(/doto/src/main/webapp/resources에 있음), 일단은 절대경로로 가져옴 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" />  
@@ -41,11 +34,9 @@
 
 <title>DIT</title>
 </head>
-<body>
 
 <div id="gnb" style="background-color:#FFD8D8">
 
 </div>
 
-</body>
 </html>

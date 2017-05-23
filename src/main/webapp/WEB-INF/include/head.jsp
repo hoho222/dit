@@ -18,22 +18,11 @@
 			<!-- Inner -->
 			<div class="inner">
 				<header>
-					<h1 style="text-shadow: 2px 2px 2px black;">당신의 목표달성을 위해 함께하겠습니다</h1>
-					<hr>
-					<p style="text-shadow: 2px 2px 2px black;">여러분의 <span style="font-size:32px; font-weight:bold; color:#ef8376;
-					                        text-shadow: 1px 1px 1px black;">다짐</span>을 적어주세요</p>
-					<p><img src="<c:url value='/resources/images/dit.png'/>"></p>
+					<h1 style="text-shadow: 2px 2px 2px black;"><a href="index.html" id="logo">DIT</a></h1>
 				</header>
-				<footer>
-					<a href="${pageContext.request.contextPath}/goals" class="button circled scrolly">목표달성하러가기</a>
-					
-					
-					
-				</footer>
-				
 				
 			</div>
-
+			
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
