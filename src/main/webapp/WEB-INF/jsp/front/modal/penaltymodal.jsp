@@ -16,34 +16,69 @@
 
 	<div class="modal-body">
 		<center>패널티 상품명을 선택하고 저장 버튼을 눌러주세요.</center>
-		<table class="boardlist" style="border:1px solid #ccc" align="center">
-		    	<c:choose>
-			        <c:when test="${fn:length(penaltyList) > 0}">
-			            <c:forEach items="${penaltyList }" var="row">
-			            	<tr>
-			                    <td>${row.CATEGORY_BIG }</td>
-			                </tr>
-			                
-			                <tr>    
-			                    <td>${row.CATEGORY_SMALL}</td>
-			                </tr>
-			                
-			                <tr>
-			                    <td>
-			                    	${row.NAME } (+${row.PRICE })&nbsp;<input type="radio" name="penaltySelector" onclick="setPenaltyGoods('${row.NAME }', '${row.PRICE }', '${row.IDX}');" />
-			                    </td>
-			                </tr>
-		                </c:forEach>
-		            </c:when>
-		            <c:otherwise>
-		                <tr>
-		                    <td colspan="4">등록된 패널티 상품이 없습니다.</td>
-		                </tr>
-		            </c:otherwise>
-		        </c:choose>
-		        
-		</table>
+		
+		<c:choose>
+	        <c:when test="${fn:length(penaltyList) > 0}">
+	        
+            	<!-- 카테고리 아코디언 메뉴 start -->
+				<div class="accordion">영화</div>
+				<div class="panel">
+				  <c:forEach items="${penaltyList }" var="row">
+					  <c:if test="${row.CATEGORY_BIG eq '영화'}">
+					  	<p>
+							${row.CATEGORY_SMALL} - ${row.NAME } (+${row.PRICE })&nbsp;<input type="radio" name="penaltySelector" onclick="setPenaltyGoods('${row.NAME }', '${row.PRICE }', '${row.IDX}');" />
+						</p>
+					  </c:if>
+				  </c:forEach>
+				</div>
+				
+				<div class="accordion">음료/커피</div>
+				<div class="panel">
+				  <c:forEach items="${penaltyList }" var="row">
+					  <c:if test="${row.CATEGORY_BIG eq '음료/커피'}">
+					  	<p>
+							${row.CATEGORY_SMALL} - ${row.NAME } (+${row.PRICE })&nbsp;<input type="radio" name="penaltySelector" onclick="setPenaltyGoods('${row.NAME }', '${row.PRICE }', '${row.IDX}');" />
+						</p>
+					  </c:if>
+				  </c:forEach>
+				</div>
+				
+				<div class="accordion">치킨</div>
+				<div class="panel">
+				  <c:forEach items="${penaltyList }" var="row">
+					  <c:if test="${row.CATEGORY_BIG eq '치킨'}">
+					  	<p>
+							${row.CATEGORY_SMALL} - ${row.NAME } (+${row.PRICE })&nbsp;<input type="radio" name="penaltySelector" onclick="setPenaltyGoods('${row.NAME }', '${row.PRICE }', '${row.IDX}');" />
+						</p>
+					  </c:if>
+				  </c:forEach>
+				</div>
+				<!-- 카테고리 아코디언 메뉴 end -->
+	            	
+            </c:when>
+            <c:otherwise>
+            	등록된 패널티 상품이 없습니다.
+            </c:otherwise>
+        </c:choose>
+		
 	</div>
+	
+	<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+	
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    } 
+	  }
+	}
+	</script>
 	
 	<div class="modal-footer">
 	        <button type="button" class="btn btn-primary" data-dismiss="modal">저장</button>

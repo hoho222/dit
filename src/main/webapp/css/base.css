@@ -146,3 +146,41 @@ li{ list-style-type: none;
 .login_field .sns_icon{width:500px; margin-left:-2px; margin-top:22px;}
 .login_field .join_btn{ background:url(../resources/imgs/circle.png) left top no-repeat; padding-left:26px; }
 
+
+/* 아코디언 메뉴 */
+div.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+div.accordion.active, div.accordion:hover {
+    background-color: #ddd;
+}
+
+div.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+div.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}

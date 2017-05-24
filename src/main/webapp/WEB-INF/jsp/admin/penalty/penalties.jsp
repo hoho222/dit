@@ -87,74 +87,92 @@ function validSubmit() {
 </script>
 
 </head>
-<body>
 
-<center>
-	<h3>패널티 상품 관리</h3>
-	<br>
-	<form name="penaltyFrm" method="post">
-		<input type="hidden" name="contextPath" value="${pageContext.request.contextPath}"/>
-		<!-- <input type="text" name="categoryBig" placeholder="대분류 카테고리명"/> > <input type="text" name="categorySmall" placeholder="소분류 카테고리명"/> -->
-		카테고리 :
-		<select id="categoryBig" name="categoryBig" onchange="itemChange(this.value);">
-			<option value="">대분류</option>
-			<option value="영화">영화</option>
-		    <option value="음료/커피">음료/커피</option>
-		    <option value="치킨">치킨</option>
-		    <option value="베이커리">베이커리</option>
-		    <option value="아이스크림">아이스크림</option>
-		    <option value="문화상품권">문화상품권</option>
-		    <option value="햄버거">햄버거</option>
-		    <option value="피자">피자</option>
-		    <option value="레스토랑">레스토랑</option>
-	    </select>
-		<select id="categorySmall" name="categorySmall">
-			<option value="">소분류</option>
-	    </select>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        패널티상품 관리
+        <small>패널티로 지정할 상품을 등록/관리 합니다.</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>ADMIN</a></li>
+        <li class="active">PENALTY</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+		<center>
+			<form name="penaltyFrm" method="post">
+				<input type="hidden" name="contextPath" value="${pageContext.request.contextPath}"/>
+				<!-- <input type="text" name="categoryBig" placeholder="대분류 카테고리명"/> > <input type="text" name="categorySmall" placeholder="소분류 카테고리명"/> -->
+				카테고리 :
+				<select id="categoryBig" name="categoryBig" onchange="itemChange(this.value);">
+					<option value="">대분류</option>
+					<option value="영화">영화</option>
+				    <option value="음료/커피">음료/커피</option>
+				    <option value="치킨">치킨</option>
+				    <option value="베이커리">베이커리</option>
+				    <option value="아이스크림">아이스크림</option>
+				    <option value="문화상품권">문화상품권</option>
+				    <option value="햄버거">햄버거</option>
+				    <option value="피자">피자</option>
+				    <option value="레스토랑">레스토랑</option>
+			    </select>
+				<select id="categorySmall" name="categorySmall">
+					<option value="">소분류</option>
+			    </select>
+				
+				<input type="text" name="penaltyName" placeholder="패널티상품명"/>
+				<input type="text" name="penaltyPrice" placeholder="가격"/>
+				<input type="button" value="등록" onclick="validSubmit();"/>
+			</form>
 		
-		<input type="text" name="penaltyName" placeholder="패널티상품명"/>
-		<input type="text" name="penaltyPrice" placeholder="가격"/>
-		<input type="button" value="등록" onclick="validSubmit();"/>
-	</form>
+			<br>
+		
+			<table class="boardlist" style="border:1px solid #ccc"  align="center">
+				<colgroup>
+				    <col width="30%"/>
+				    <col width="15%"/>
+				    <col width="20%"/>
+				    <col width="20%"/>
+				</colgroup>
+				<thead>
+				    <tr>
+				        <th>패널티 상품명</th>
+				        <th>가격</th>
+				        <th>카테고리 (대분류 > 소분류)</th>
+				    </tr>
+				</thead>
+				<tbody>
+			    	<c:choose>
+				        <c:when test="${fn:length(list) > 0}">
+				            <c:forEach items="${list }" var="row">
+				                <tr>
+				                    <td><a href="${pageContext.request.contextPath}/notices/${row.IDX}">${row.NAME }</a></td>
+				                    <td>${row.PRICE }</td>
+				                    <td>${row.CATEGORY_BIG } > ${row.CATEGORY_SMALL }</td>
+				                    </tr>
+			                </c:forEach>
+			            </c:when>
+			            <c:otherwise>
+			                <tr>
+			                    <td colspan="4">등록된 패널티 상품이 없습니다.</td>
+			                </tr>
+			            </c:otherwise>
+			        </c:choose>
+			        
+			    </tbody>
+			</table>
+		
+		</center>
+	
+	</section>
+    <!-- /.content -->
+  </div>
 
-	<br>
-
-	<table class="boardlist" style="border:1px solid #ccc"  align="center">
-		<colgroup>
-		    <col width="30%"/>
-		    <col width="15%"/>
-		    <col width="20%"/>
-		    <col width="20%"/>
-		</colgroup>
-		<thead>
-		    <tr>
-		        <th>패널티 상품명</th>
-		        <th>가격</th>
-		        <th>카테고리 (대분류 > 소분류)</th>
-		    </tr>
-		</thead>
-		<tbody>
-	    	<c:choose>
-		        <c:when test="${fn:length(list) > 0}">
-		            <c:forEach items="${list }" var="row">
-		                <tr>
-		                    <td><a href="${pageContext.request.contextPath}/notices/${row.IDX}">${row.NAME }</a></td>
-		                    <td>${row.PRICE }</td>
-		                    <td>${row.CATEGORY_BIG } > ${row.CATEGORY_SMALL }</td>
-		                    </tr>
-	                </c:forEach>
-	            </c:when>
-	            <c:otherwise>
-	                <tr>
-	                    <td colspan="4">등록된 패널티 상품이 없습니다.</td>
-	                </tr>
-	            </c:otherwise>
-	        </c:choose>
-	        
-	    </tbody>
-	</table>
-
-</center>
-
-</body>
+<%@ include file="/WEB-INF/include/bottom.jsp" %>
 </html>

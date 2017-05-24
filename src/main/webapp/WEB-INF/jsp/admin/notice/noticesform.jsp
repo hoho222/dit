@@ -30,16 +30,35 @@ function validSubmit() {
 </script>
 
 </head>
-<body>
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        공지사항 쓰기
+        <small>공지사항으로 등록할 글을 입력하세요.</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>ADMIN</a></li>
+        <li class="active">NOTICE REG</li>
+      </ol>
+    </section>
 
-<form name="noticeFrm" method="POST">
-	<input type="hidden" name="writerIdx" value="${sessionAdminIdx}"/>
-	<input type="hidden" name="writerId" value="${sessionAdminId}"/>
-	<input type="hidden" name="writerName" value="${sessionAdminName}"/>
-	제목 : <input type="text" name="title"><br>
-	내용 : <textarea name="contents" rows="3" cols="60"></textarea><br>
-	<input type="submit" class="btn btn-default btn-sm" value="등록" onclick="validSubmit();"/>
-</form>
+    <!-- Main content -->
+    <section class="content">
+		<form name="noticeFrm" method="POST">
+			<input type="hidden" name="writerIdx" value="${sessionAdminIdx}"/>
+			<input type="hidden" name="writerId" value="${sessionAdminId}"/>
+			<input type="hidden" name="writerName" value="${sessionAdminName}"/>
+			제목 : <input type="text" name="title"><br>
+			내용 : <textarea name="contents" rows="3" cols="60"></textarea><br>
+			<input type="submit" class="btn btn-default btn-sm" value="등록" onclick="validSubmit();"/>
+		</form>
 
-</body>
+	</section>
+    <!-- /.content -->
+  </div>
+
+<%@ include file="/WEB-INF/include/bottom.jsp" %>
+
 </html>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <%@ include file="/WEB-INF/include/gnb.jsp" %>
 
@@ -34,7 +35,7 @@ function validSubmit() {
 				   //로그인 성공하면 index 페이지로 리로드
 				   location.replace(f.contextPath.value + "/admin/index");
 			   }else if(rData == "false"){
-				   alert("로그인 실패! 아이디 및 로그인을 다시 확인해주세요!!");
+				   alert("로그인 실패! 아이디 또는 비밀번호를 다시 확인해주세요!!");
 			   }
 		   },
 		   error : function(xhr, status, e) {  
@@ -56,7 +57,6 @@ function validSubmit() {
 	<form name="loginFrm" method="post">
 		<input type="hidden" name="contextPath" value="${pageContext.request.contextPath}"/>
 		<input type="text" name="adminId" placeholder="아이디" style="width:222px; height:49px;"/>
-		<br>
 		<input type="password" name="adminPwd" placeholder="비밀번호" style="width:222px; height:49px;"/>
 		<div id="loginResult"></div>
 		<input type="button" value="로그인" onclick="validSubmit();" style="width:222px; height:49px;"/>
