@@ -152,7 +152,7 @@ function validSubmit() {
 				        <c:when test="${fn:length(list) > 0}">
 				            <c:forEach items="${list }" var="row">
 				                <tr>
-				                    <td><a href="${pageContext.request.contextPath}/notices/${row.IDX}">${row.NAME }</a></td>
+				                    <td>${row.NAME }</td>
 				                    <td>${row.PRICE }</td>
 				                    <td>${row.CATEGORY_BIG } > ${row.CATEGORY_SMALL }</td>
 				                    </tr>
