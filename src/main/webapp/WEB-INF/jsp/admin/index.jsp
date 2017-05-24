@@ -27,14 +27,13 @@
     <!-- Main content -->
     <section class="content">
 
-
 	<!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>디비로 불러오기</h3>
+              <h3>${statusMap.GOAL_CNT_TOTAL }</h3>
 
               <p>등록된 목표 Total</p>
             </div>
@@ -49,7 +48,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>디비로 불러오기2<sup style="font-size: 20px">..</sup></h3>
+              <h3>${statusMap.GOAL_CNT_TODAY }<sup style="font-size: 20px">개</sup></h3>
 
               <p>오늘 등록된 목표 갯수</p>
             </div>
@@ -64,7 +63,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>디비로 불러오기3</h3>
+              <h3>${statusMap.MEM_CNT_TOTAL }</h3>
 
               <p>총 회원 수</p>
             </div>
@@ -79,7 +78,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>디비로 불러오기4</h3>
+              <h3>${statusMap.MEM_CNT_TODAY }</h3>
 
               <p>오늘 가입한 회원 수</p>
             </div>

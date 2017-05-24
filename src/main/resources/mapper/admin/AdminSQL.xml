@@ -3,6 +3,42 @@
 
 <mapper namespace="admin">
 
+	<select id="admin.selectMemberCnt" parameterType="hashmap" resultType="String">
+	     SELECT COUNT(*) 
+	     		<choose>
+		     	 	<when test="isToday != null and isToday != '' and isToday == 'OK'">
+		     	 		AS MEM_CNT_TODAY
+		     	 	</when>
+		     	 	<otherwise>
+		     	 		AS MEM_CNT_TOTAL
+		     	 	</otherwise>
+	     		</choose>
+	     FROM T_MEMBER
+	     <where>
+		     <if test="isToday != null and isToday != '' and isToday == 'OK'">
+		     	CREATE_DT between #{TodayStart} and #{TodayEnd}
+		     </if>
+	     </where>
+    </select>
+    
+    <select id="admin.selectGoalCnt" parameterType="hashmap" resultType="String">
+	     SELECT COUNT(*)
+	     		<choose>
+		     	 	<when test="isToday != null and isToday != '' and isToday == 'OK'">
+		     	 		AS GOAL_CNT_TODAY
+		     	 	</when>
+		     	 	<otherwise>
+		     	 		AS GOAL_CNT_TOTAL
+		     	 	</otherwise>
+	     		</choose>
+	     FROM T_GOAL
+	     <where>
+		     <if test="isToday != null and isToday != '' and isToday == 'OK'">
+		     	CREATE_DT between #{TodayStart} and #{TodayEnd}
+		     </if>
+	     </where>
+    </select>
+
 	<select id="admin.isAdminCnt" parameterType="hashmap" resultType="String">
 	     <![CDATA[
 	     SELECT COUNT(*)

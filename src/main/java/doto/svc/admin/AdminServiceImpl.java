@@ -1,8 +1,11 @@
 package doto.svc.admin;
 
-import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,13 +16,44 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import doto.dao.AdminDAO;
-import doto.dao.FrontDAO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
 	
 	@Resource(name="adminDAO")
 	private AdminDAO adminDAO;
+	
+	@Override
+	public Map<String,Object> findStatus() throws Exception {
+		
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		Map<String,Object> statusResult = new HashMap<String,Object>();
+		
+		params.clear();
+		String memCntTotal = adminDAO.selectMemberCnt(params);
+		String goalCntTotal = adminDAO.selectGoalCnt(params);
+		
+		//오늘날짜 구하기
+		SimpleDateFormat formatterS = new SimpleDateFormat ( "yyyy-MM-dd 00:00:00", Locale.KOREA );
+		SimpleDateFormat formatterE = new SimpleDateFormat ( "yyyy-MM-dd 23:59:59", Locale.KOREA );
+		Date currentTime = new Date ( );
+		String TodayStart = formatterS.format ( currentTime );
+		String TodayEnd = formatterE.format ( currentTime );
+		
+		params.put("isToday", "OK");
+		params.put("TodayStart", TodayStart);
+		params.put("TodayEnd", TodayEnd);
+		String memCntToday = adminDAO.selectMemberCnt(params);
+		String goalCntToday = adminDAO.selectGoalCnt(params);
+		
+		statusResult.put("MEM_CNT_TOTAL", memCntTotal);
+		statusResult.put("GOAL_CNT_TOTAL",goalCntTotal);
+		statusResult.put("MEM_CNT_TODAY", memCntToday);
+		statusResult.put("GOAL_CNT_TODAY", goalCntToday);
+		
+		return statusResult;
+	}
 	
 	@Override
 	public boolean isAdminLoginOk(Map<String,Object> map, HttpServletResponse response, HttpServletRequest request) throws Exception {

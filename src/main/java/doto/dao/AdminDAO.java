@@ -8,6 +8,18 @@ import org.springframework.stereotype.Repository;
 @Repository("adminDAO")
 public class AdminDAO extends AbstractDAO {
 	
+	@SuppressWarnings("unchecked")
+	public String selectMemberCnt(Map<String, Object> map) {
+		
+		return (String)selectOne("admin.selectMemberCnt", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String selectGoalCnt(Map<String, Object> map) {
+		
+		return (String)selectOne("admin.selectGoalCnt", map);
+	}
+	
 	public String isAdminCnt(Map<String, Object> map) {
 		
 		return (String)selectOne("admin.isAdminCnt", map);

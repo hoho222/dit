@@ -30,8 +30,11 @@ Logger log = Logger.getLogger(this.getClass());
 	 * 어드민 인덱스(홈) 화면
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index() throws Exception {
+	public String index(ModelMap model) throws Exception {
 
+		Map<String,Object> statusMap = adminService.findStatus();
+		model.addAttribute("statusMap", statusMap);
+		
 		return "admin/index";
 
 	}

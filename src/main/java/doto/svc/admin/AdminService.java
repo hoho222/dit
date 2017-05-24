@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface AdminService {
+	
+	/**
+    * 어드민 패널티 상품 리스트 Read
+    * @throws Exception the exception
+    */
+	Map<String,Object> findStatus() throws Exception;
 
 	/**
     * 어드민 로그인 성공여부 파악 
