@@ -122,7 +122,7 @@
           
           <!-- sign out -->
           <li>
-            <a href="#" data-toggle="control-sidebar">sign out</a>
+            <a href="${pageContext.request.contextPath}/admin/logout">Sign out</a>
           </li>
           
           <!-- Control Sidebar Toggle Button -->

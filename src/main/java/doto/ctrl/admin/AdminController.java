@@ -62,6 +62,17 @@ Logger log = Logger.getLogger(this.getClass());
 	}
 	
 	/*
+	 * 로그아웃
+	 */
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "redirect:/admin/login";
+	}
+	
+	/*
 	 * 패널티 상품 list(다 건) 조회
 	 */
 	@RequestMapping(value = "/penalty", method = RequestMethod.GET)
@@ -106,7 +117,7 @@ Logger log = Logger.getLogger(this.getClass());
 	}
 	
 	/*
-	 * 목표 등록하기 폼
+	 * 공지사항 등록하기 폼
 	 */
 	@RequestMapping(value = "/noticesform", method = RequestMethod.GET)
 	public String createGoalForm(Map<String,Object> map, ModelMap model, HttpSession session) throws Exception {
@@ -116,7 +127,7 @@ Logger log = Logger.getLogger(this.getClass());
 	}
 	
 	/*
-	 * 목표 등록 act
+	 * 공지사항 등록 act
 	 */
 	@RequestMapping(value = "/notices", method = RequestMethod.POST)
 	public String createGoalAct(@RequestParam Map<String,Object> map) throws Exception {
