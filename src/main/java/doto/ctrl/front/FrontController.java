@@ -216,6 +216,12 @@ public class FrontController {
 		model.addAttribute("goalMap", goalMap);
 		model.addAttribute("idx", idx);
 		
+		//총 체크할 일자 계산
+		int totalDays = Integer.parseInt(goalMap.get("TOTAL_DAYS").toString());
+		int periodDays = Integer.parseInt(goalMap.get("GOAL_CHECK_PERIOD").toString());
+		int totalPeriodDays = (int)Math.floor(totalDays/periodDays);
+		model.addAttribute("totalPeriodDayss", Integer.toString(totalPeriodDays));
+		
 		//해당글의 코멘트 + 업로드 했던 이미지 select
 		List<Map<String,Object>> goalCommentList = frontService.selectGoalCommentList(idx);
 		model.addAttribute("goalCommentList", goalCommentList);

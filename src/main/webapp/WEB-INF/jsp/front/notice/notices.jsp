@@ -22,23 +22,23 @@
         <c:when test="${fn:length(list) > 0}">
             <c:forEach items="${list }" var="row">
             	<div class="container" style="padding-top:20px;text-align:center;">
-	                <div class="panel panel-default">
+	                <div class="w3-border w3-round-xlarge w3-pale-yellow">
                   		<div class="panel-body" >
                 			<a href="${pageContext.request.contextPath}/notices/${row.IDX}">${row.TITLE }</a><br>
-                			${row.HIT_CNT }<br>
+                			<span class="glyphicon glyphicon-eye-open">&nbsp;${row.HIT_CNT }</span><br>
                 			${row.CREATE_DT }<br>
-                			${row.WRITER_NAME }<br>
+                			<span class="glyphicon glyphicon-pencil">&nbsp;${row.WRITER_NAME }</span><br>
                 		</div>
                 	</div>
                 </div>
                </c:forEach>
            </c:when>
            <c:otherwise>
-           	조회된 결과가 없습니다.
+           공지사항이 없습니다.
            </c:otherwise>
        </c:choose>
 	        
 </center>
-
+<hr/>
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>

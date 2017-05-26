@@ -184,3 +184,10 @@ div.panel {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
+.bgig {
+	width:355px;
+    height:529px;
+    background: url(../resources/imgs/paper_small.png) no-repeat center;
+    padding: 1% 0 0 0;
+}

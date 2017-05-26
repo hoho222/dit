@@ -8,6 +8,13 @@
 <%@ include file="/WEB-INF/include/head.jsp" %>
 <%@ include file="/WEB-INF/include/gnb.jsp" %>
 
+<style>
+.w3-container
+{
+ padding: 10px 10px 10px 10px;
+}
+</style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script>
@@ -275,11 +282,15 @@ $(function() {
 	<form id="Frm" name="Frm" method="post">
 		<input type="hidden" name="writerId" value="${sessionId}"/>
 		<input type="hidden" name="writerIdx" value="${loginNo}"/> 
-		<table border="1">
-			<tr>
+		
+			
+			<div class="w3-cell-row">
 				<!-- chap1) 목표설정 -->
-				<th>01 목표설정</th>
-				<td>목표타이틀
+				<div class="w3-container w3-leftbar w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
+					<h1>01</h1><br>목표설정
+				</div>
+				<div class="w3-container w3-leftbar w3-border-yellow w3-cell w3-mobile" style="width:30%;">
+					목표타이틀
 					<br><input type="text" name="goalTitle"/>
 					<br>시작일 ~ 종료일
 					<br><input type="text" id="startdate" name="startdate" size="8" readonly="readonly"/> ~ <input type="text" id="enddate" name="enddate" size="8" readonly="readonly"/>
@@ -293,12 +304,15 @@ $(function() {
 					<div id="goalCheckPeriod">
 						<input type="text" id="goalCheckPeriodVal" name="goalCheckPeriod" onkeyPress="InpuOnlyNumber(this);" style="ime-mode:disabled"/> 일에 한번
 					</div>
-				</td>
-				
+				</div>
+			
+			
 				<!-- chap2) 패널티설정 -->
-				<th>02 패널티설정</th>
-				<td>실패 시 패널티 상품
-				
+				<div class="w3-container w3-leftbar w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
+					<h1>02</h1><br>패널티설정
+				</div>
+				<div class="w3-container w3-leftbar w3-border-yellow w3-cell w3-mobile" style="width:30%;">
+					실패 시 패널티 상품
 					<br>있음<input type="radio" id="has_penalty_Y" name="has_penalty_yn" value="Y"/> 없음<input type="radio" id="has_penalty_N" name="has_penalty_yn" value="N" checked/>
 					
 					<div id="penaltyGoodsView">
@@ -310,17 +324,19 @@ $(function() {
 					</div>
 					<!-- 패널티 상품 고르는 모달 팝업 -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-					    <div class="modal-content">
-					    <!-- penaltymodal.jsp 내용이 여기로옴 -->
-					    </div>
-				  	</div>
-				</td>
-			</tr>
-			
-			<tr>
+						<div class="modal-content">
+						<!-- penaltymodal.jsp 내용이 여기로옴 -->
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="w3-cell-row">
 				<!-- chap3) 카테고리 -->
-				<th>03 카테고리</th>
-				<td colspan="3">
+				<div class="w3-container w3-leftbar w3-border-top w3-border-bottom w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
+					<h1>03</h1><br>카테고리 
+				</div>
+				<div class="w3-container w3-leftbar w3-border-top w3-border-bottom w3-border-yellow w3-cell w3-mobile" style="width:80%; padding:40px 0 30px 0;">
 					<center>
 					체중조절<input type="radio" id="cate_1" name="category" value="체중조절"/>
 					운동<input type="radio" id="cate_2" name="category" value="운동"/>
@@ -336,24 +352,33 @@ $(function() {
 					독서<input type="radio" id="cate_10" name="category" value="독서"/>
 					기타<input type="radio" id="cate_11" name="category" value="기타"/>
 					</center>
-				</td>
-			</tr>
-			
-			
-			<tr>
+				</div>
+			</div>
+		
+		
+		
+			<!-- chap4) 세부목표설정 -->
+			<div class="w3-cell-row">
 				<!-- chap4) 세부목표설정 -->
-				<th>04 세부목표설정</th>
-				<td>구체적 목표와 계획<input type="text" name="goalContents"/>
+				<div class="w3-container w3-leftbar w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
+					<h1>04</h1><br>세부목표설정
+				</div>
+				<div class="w3-container w3-leftbar w3-border-yellow w3-cell w3-mobile" style="width:30%;">
+					구체적 목표와 계획<input type="text" name="goalContents"/>
 					<br>목표달성 확인자
 					<br>본인<input type="radio" id="has_goalchecker_N" name="has_goalchecker_yn" value="N" checked/> 타인<input type="radio" id="has_goalchecker_Y" name="has_goalchecker_yn" value="Y"/>
 					<br><input type="text" id="goalCheckerName" name="goalCheckerName" placeholder="목표달성 확인자 명"/>
 					<br><input type="text" id="goalCheckerEmail" name="goalCheckerEmail" placeholder="목표달성 확인자 이메일"/>
 					<br>
-				</td>
-				
+				</div>
+			
+			
 				<!-- chap5) 알림도움 및 정보제공 동의 -->
-				<th>05 알림도움 및 정보제공 동의</th>
-				<td>알림 도움 동의 여부
+				<div class="w3-container w3-leftbar w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
+					<h1>05</h1><br>알림도움 및 정보제공 동의
+				</div>
+				<div class="w3-container w3-leftbar w3-border-yellow w3-cell w3-mobile" style="width:30%;">
+					알림 도움 동의 여부
 					<br>옐로아이디(카카오톡) 알림으로 도움을 받으시겠습니까?
 					<br>예 <input type="radio" id="kakao_notice_Y" name="kakao_notice_yn" value="Y"/>
 					아니오 <input type="radio" id="kakao_notice_N" name="kakao_notice_yn" value="N"/>
@@ -369,10 +394,8 @@ $(function() {
 						예 <input type="radio" id="privacy_Y" name="privacy_yn" value="Y"/>
 						아니오 <input type="radio" id="privacy_N" name="privacy_yn" value="N"/>
 					</font>
-				</td>
-			</tr>
-			
-		</table> 
+				</div>
+			</div>
 		<input type="button" value="작성완료" onclick="validSubmit();"/>
 	</form>
 </center>

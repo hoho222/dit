@@ -172,41 +172,80 @@ $(function() {
 <body>
 
 <center>
-<h2>나의 다짐</h2>
+	<div id="" class="section">
+		<div class="s-container">
+			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">나의 다짐</h2>
+		</div>
+	</div>
 
-<div id="myGoal">
-	${goalMap.WRITER_NAME} 은(는) ${goalMap.START_DT} 부터<br>
-	${goalMap.END_DT} 까지 ${goalMap.GOAL_TITLE} 을(를) 할 것입니다. <br>
-	
-	<c:if test="${goalMap.FAIL_RECEIVER != '' and goalMap.PENALTY_NAME != ''}">
-		만약 목표 달성 실패 시, ${goalMap.FAIL_RECEIVER} 에게<br>
-		${goalMap.PENALTY_NAME} 을(를) 줄 것입니다.<br>
-	</c:if>
-	
-	<c:choose>
-		<c:when test="${goalMap.IS_KAKAO_NOTICE == 'Y'}">
-			카카오톡 알림으로 도움을 받겠습니다.
-		</c:when>
-		<c:when test="${goalMap.IS_KAKAO_NOTICE == 'N'}">
-			카카오톡 알림으로 도움을 받지않습니다.
-		</c:when>
-		<c:otherwise>
-			카카오톡 알림 설정이 안되어있습니다.
-		</c:otherwise>
-	</c:choose>
-	<br>
+	<div id="myGoal" class="bgig">
+		<div>
+			${goalMap.WRITER_NAME} 은(는) ${goalMap.START_DT} 부터<br>
+			${goalMap.END_DT} 까지 ${goalMap.GOAL_TITLE} 을(를) 할 것입니다. <br>
+			
+			<c:if test="${goalMap.FAIL_RECEIVER != '' and goalMap.PENALTY_NAME != ''}">
+				만약 목표 달성 실패 시, ${goalMap.FAIL_RECEIVER} 에게<br>
+				${goalMap.PENALTY_NAME} 을(를) 줄 것입니다.<br>
+			</c:if>
+			
+			<c:choose>
+				<c:when test="${goalMap.IS_KAKAO_NOTICE == 'Y'}">
+					카카오톡 알림으로 도움을 받겠습니다.
+				</c:when>
+				<c:when test="${goalMap.IS_KAKAO_NOTICE == 'N'}">
+					카카오톡 알림으로 도움을 받지않습니다.
+				</c:when>
+				<c:otherwise>
+					카카오톡 알림 설정이 안되어있습니다.
+				</c:otherwise>
+			</c:choose>
+			
+			<c:if test="${goalMap.HAS_GOAL_CHECK_PERIOD == 'Y'}">
+				<div id="period">
+					<input type="hidden" id="goalCheckPeriodHit" value="${goalMap.GOAL_CHECK_PERIOD_HIT}"/>
+					<input type="hidden" id="goalCheckPeriod" value="${goalMap.GOAL_CHECK_PERIOD}"/>
+					<input type="hidden" id="totalPeriodDays"/>
+					<br>목표 달성주기<br>
+					총 ${goalMap.TOTAL_DAYS} 일, ${goalMap.GOAL_CHECK_PERIOD} 일 마다 한번씩 체크하기 미션!<br>
+					${goalMap.GOAL_CHECK_PERIOD_HIT} / <span id="totalPeriodDaysHtml"></span> 
+					<input type="button" value="오늘체크!" onclick="checkToday();"/>
+					<br>
+					<div style="margin:5px 0 2px 0; overflow:auto; width:320px; height:200px;">
+						<c:forEach begin="1" end="${totalPeriodDayss}" varStatus="no">
+						
+							<c:if test="${no.count % 2 == 0 }">
+								<div class="w3-border w3-col m2 w3-center w3-yellow">
+								    <p>
+								    	${no.count}
+								    	<c:if test="${no.count le goalMap.GOAL_CHECK_PERIOD_HIT}">
+								    		<span class="glyphicon glyphicon-ok"></span>
+								    	</c:if>
+								    </p>
+					  			</div>
+							</c:if>
+							<c:if test="${no.count % 2 != 0 }">
+								<div class="w3-border w3-col m2 w3-center w3">
+								    <p>
+								    	${no.count}
+								    	<c:if test="${no.count le goalMap.GOAL_CHECK_PERIOD_HIT}">
+								    		<span class="glyphicon glyphicon-ok"></span>
+								    	</c:if>
+								    </p>
+					  			</div>
+							</c:if>
+						
+						</c:forEach>
+					</div>
+					
+				</div>
+			</c:if>
+		</div>
+	</div>
+	<hr>
+
 	<c:choose>
 		<c:when test="${goalMap.HAS_GOAL_CHECK_PERIOD == 'Y'}">
-			<div id="period">
-				<input type="hidden" id="goalCheckPeriodHit" value="${goalMap.GOAL_CHECK_PERIOD_HIT}"/>
-				<input type="hidden" id="goalCheckPeriod" value="${goalMap.GOAL_CHECK_PERIOD}"/>
-				<input type="hidden" id="totalPeriodDays"/>
-				<br>목표 달성주기<br>
-				총 ${goalMap.TOTAL_DAYS} 일, ${goalMap.GOAL_CHECK_PERIOD} 일 마다 한번씩 체크하기 미션!<br>
-				${goalMap.GOAL_CHECK_PERIOD_HIT} / <span id="totalPeriodDaysHtml"></span>
-				<input type="button" value="오늘체크!" onclick="checkToday();"/>
-			</div>
-			<br>
+			
 			<div id="goalBtn">
 				<a href="${pageContext.request.contextPath}/goals"><input type="button" class="btn btn-default" value="목록으로"/></a>
 				
@@ -224,7 +263,7 @@ $(function() {
 							<input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalResult" id="activeModalSuccess" value="목표 결과 확인"/>
 						</c:when>
 						<c:otherwise>
-							<input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalResult" id="activeModalFail" value="목표 결과 확인2"/>
+							<input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalResult" id="activeModalFail" value="목표 결과 확인"/>
 						</c:otherwise>
 					</c:choose>
 				</c:if>
@@ -270,29 +309,36 @@ $(function() {
 	    	</div>
 	    </div>
   	</div>
-	
-	
-</div>
-<br>
 
-<br>
-<div id="comment">
+
+<hr>
+<div id="comment" style="margin-top:10%;">
+	
 	<div id="commentWrite">
-		<form name="commentFrm" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="goalIdx" value="${idx}"/>
-			<input type="hidden" name="writerIdx" value="${goalMap.WRITER_IDX}"/>
-			<textarea name="comment" rows="3" cols="60">의견을 남겨주세요.</textarea>
-			<br>
-			<input type="file" id="fileuploader" name="fileuploader"/>
-			<input type="submit" class="btn btn-default btn-sm" value="등록" onclick="validSubmit();"/>
-		</form>
+		<header>
+			<h2>Comment<strong> Reg</strong></h2>
+		</header>
+		<div class="container" style="padding-top:20px;text-align:center;">
+           	<div class="w3-border w3-round-xlarge w3-pale-grey">
+        		<div class="panel-body" >
+					<form name="commentFrm" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="goalIdx" value="${idx}"/>
+						<input type="hidden" name="writerIdx" value="${goalMap.WRITER_IDX}"/>
+						<textarea name="comment" rows="3" cols="60">의견을 남겨주세요.</textarea>
+						<br>
+						<input type="file" id="fileuploader" name="fileuploader"/>
+						<input type="submit" class="btn btn-default btn-sm" value="등록" onclick="validSubmit();"/>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	<br>
 	<div id="commentRead">
-		<strong>코멘트</strong>
-		<br>
+		<header>
+			<h2>Comment<strong> View</strong></h2>
+		</header>
 		<c:choose>
-			
 	        <c:when test="${fn:length(goalCommentList) > 0}">
 	        <form name="commentEditFrm" method="post">
 				<input type="hidden" name="mode" value=""/>
@@ -301,19 +347,23 @@ $(function() {
                 <input type="hidden" name="goalIdx" value="${idx}"/>
                 
 	            <c:forEach items="${goalCommentList }" var="row">
-	            	<div class="round-border">
-	            		<c:if test="${row.ORIGINAL_FILE_NAME ne 'none' && row.ORIGINAL_FILE_NAME ne ''}">
-		            		<img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/comment_imgs/${row.STORED_FILE_NAME }'/>" style="width: 200px; height: 140px;" >
-		            	</c:if>
-		                <span id="contentsOld_${row.IDX }">${row.CONTENTS}</span>
-		                <input type="text" id="contentsNew_${row.IDX }" value="${row.CONTENTS}" style="display:none"/>
-		                &nbsp; 
-		                ${row.CREATE_DT }
-		                
-		                <input type="button" class="btn btn-default btn-xs" id="editBtn_${row.IDX }" value="수정" onclick="commentEdit(${row.IDX });"/>
-		                <input type="button" class="btn btn-default btn-xs" id="editFinBtn_${row.IDX }" value="등록" onclick="commentEditFin(${row.IDX });" style="display:none"/>
-						<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="commentDel(${row.IDX });"/>
-						<input type="button" class="btn btn-primary btn-xs" value="페이스북"/>
+	            	<div class="container" style="padding-top:20px;text-align:center;">
+	                	<div class="w3-border w3-round-xlarge w3-pale-yellow">
+                  			<div class="panel-body" >
+			            		<c:if test="${row.ORIGINAL_FILE_NAME ne 'none' && row.ORIGINAL_FILE_NAME ne ''}">
+				            		<img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/comment_imgs/${row.STORED_FILE_NAME }'/>" style="width: 200px; height: 140px;" >
+				            	</c:if>
+				                <span id="contentsOld_${row.IDX }">${row.CONTENTS}</span>
+				                <input type="text" id="contentsNew_${row.IDX }" value="${row.CONTENTS}" style="display:none"/>
+				                &nbsp; 
+				                ${row.CREATE_DT }
+				                
+				                <input type="button" class="btn btn-default btn-xs" id="editBtn_${row.IDX }" value="수정" onclick="commentEdit(${row.IDX });"/>
+				                <input type="button" class="btn btn-default btn-xs" id="editFinBtn_${row.IDX }" value="등록" onclick="commentEditFin(${row.IDX });" style="display:none"/>
+								<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="commentDel(${row.IDX });"/>
+								<input type="button" class="btn btn-primary btn-xs" value="페이스북"/>
+							</div>
+						</div>
 		            </div>
                 </c:forEach>
                 </form>
@@ -327,7 +377,7 @@ $(function() {
         
 	</div>
 </div>
-<br>
+<hr>
 </center>
 
 </body>

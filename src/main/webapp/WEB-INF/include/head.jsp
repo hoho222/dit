@@ -18,7 +18,7 @@
 			<!-- Inner -->
 			<div class="inner">
 				<header>
-					<h1 style="text-shadow: 2px 2px 2px black;"><a href="index.html" id="logo">DIT</a></h1>
+					<h1 style="text-shadow: 2px 2px 2px black;"><a href="${pageContext.request.contextPath}/index" id="logo">DIT</a></h1>
 				</header>
 				
 			</div>

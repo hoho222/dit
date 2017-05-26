@@ -1903,7 +1903,7 @@
 		form select:focus,
 		form textarea:focus {
 			background: #fff;
-			border-color: #df7366;
+			border-color: #EDEDCB;
 		}
 
 	form input[type="text"],
@@ -1990,7 +1990,7 @@
 	.button {
 		position: relative;
 		display: inline-block;
-		background: #df7366;
+		background: #73730c;
 		color: #fff;
 		text-align: center;
 		border-radius: 0.5em;

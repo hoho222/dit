@@ -31,6 +31,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/base.css'/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css'/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/font-awesome.min.css'/>" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <title>DIT</title>
 </head>
