@@ -65,8 +65,8 @@ function validSubmit() {
 			return false;
 		}
 		
-		if(goalCheckPeriod == ""){
-			alert("목표 체크 주기를 입력해주세요!");
+		if(goalCheckPeriod == "" || goalCheckPeriod == "0"){
+			alert("목표 체크 주기를 1 이상의 숫자로 입력해주세요!");
 			f.goalCheckPeriod.focus();
 			return false;
 		}
