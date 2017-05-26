@@ -284,121 +284,132 @@ $(function() {
 		<input type="hidden" name="writerId" value="${sessionId}"/>
 		<input type="hidden" name="writerIdx" value="${loginNo}"/> 
 		
-			
-			<div class="w3-cell-row">
-				<!-- chap1) 목표설정 -->
-				<div class="w3-container w3-leftbar w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
-					<h1>01</h1><br>목표설정
-				</div>
-				<div class="w3-container w3-leftbar w3-border-yellow w3-cell w3-mobile" style="width:30%;">
-					목표타이틀
-					<br><input type="text" name="goalTitle"/>
-					<br>시작일 ~ 종료일
-					<br><input type="text" id="startdate" name="startdate" size="8" readonly="readonly"/> ~ <input type="text" id="enddate" name="enddate" size="8" readonly="readonly"/>
-						<input type="button" onclick="checkBeetweenDay();" class="btn btn-success btn-xs" value="총 일수 확인"/>
-						<p>
-							총 일수 : 총 <input type="text" id="beetweenDay" name="totalDays" readonly="readonly"/>일
-						</p>
-					<br>목표 체크 주기 <font size="2">
-					한번에 달성</font><input type="checkbox" id="has_goal_check_period" name="has_goal_check_period" checked/>
-					<input type="hidden" id="has_goal_check_period_value" name="has_goal_check_period_value" value="N" />
-					<div id="goalCheckPeriod">
-						<input type="text" id="goalCheckPeriodVal" name="goalCheckPeriod" onkeyPress="InpuOnlyNumber(this);" style="ime-mode:disabled"/> 일에 한번
-					</div>
-				</div>
-			
-			
-				<!-- chap2) 패널티설정 -->
-				<div class="w3-container w3-leftbar w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
-					<h1>02</h1><br>패널티설정
-				</div>
-				<div class="w3-container w3-leftbar w3-border-yellow w3-cell w3-mobile" style="width:30%;">
-					실패 시 패널티 상품
-					<br>있음<input type="radio" id="has_penalty_Y" name="has_penalty_yn" value="Y"/> 없음<input type="radio" id="has_penalty_N" name="has_penalty_yn" value="N" checked/>
+			<span style="font-family:'Hanna', serif;">
+				<div class="w3-cell-row">
 					
-					<div id="penaltyGoodsView">
-					<button type="button" class="btn btn-info btn btn-sm" data-toggle="modal" data-target="#myModal" id="activeModal" href="penalty_modal">패널티 상품 선택</button>
-					<input type="text" id="penalty" name="penalty" readonly="readonly" placeholder="패널티 상품을 먼저 골라주세요" size="16"/> <span id="penaltyPrice"></span>
-					<input type="hidden" id="penaltyIdx" name="penaltyIdx" value="0"/> <!-- 패널티 일련번호 저장 -->
-					<br><div id="failReceiver">실패 시 상품 수령자<input type="text" id="failReceiverVal" name="failReceiver"/></div>
-					<br><div id="failReceiverPhone">상품 수령자 핸드폰 번호<input type="text" id="failReceiverPhoneVal" name="failReceiverPhone"/></div>
+					<!-- chap1) 목표설정 -->
+					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:20%; background-color: #f9d9e4; padding:10% 0 10% 0; padding:10% 0 10% 0;">
+						<span style="font-size:xx-large; font-weight: bolder; color:#b72058;">01</span><br><span style="font-size:xx-large;">목표설정</span>
 					</div>
-					<!-- 패널티 상품 고르는 모달 팝업 -->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-						<div class="modal-content">
-						<!-- penaltymodal.jsp 내용이 여기로옴 -->
+					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:30%; padding:2% 2% 2% 2%;">
+						<span class="glyphicon glyphicon-asterisk" style="color:#b72058;"></span><span style="font-size:large;">목표타이틀</span>
+						<br><input type="text" name="goalTitle"/>
+						<br><span class="glyphicon glyphicon-asterisk" style="color:#b72058;"></span><span style="font-size:large;">시작일 ~ 종료일</span>
+						<br><input type="text" id="startdate" name="startdate" size="8" readonly="readonly"/> ~ <input type="text" id="enddate" name="enddate" size="8" readonly="readonly"/>
+						<br><input type="button" onclick="checkBeetweenDay();" value="총 일수 확인"/>
+							<input type="text" id="beetweenDay" name="totalDays" readonly="readonly" placeholder="총 일수 확인 버튼을 누르시면 자동으로 채워집니다."/>
+						<br><span style="font-size:large;">목표 체크 주기</span> 
+						<span style="font-size: x-small">한번에 달성</span><input type="checkbox" id="has_goal_check_period" name="has_goal_check_period" checked/>
+						<input type="hidden" id="has_goal_check_period_value" name="has_goal_check_period_value" value="N" />
+						<div id="goalCheckPeriod">
+							<input type="text" id="goalCheckPeriodVal" name="goalCheckPeriod" onkeyPress="InpuOnlyNumber(this);" style="ime-mode:disabled"/> 일에 한번
+						</div>
+					</div>
+				
+				
+					<!-- chap2) 패널티설정 -->
+					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:20%; background-color: #f9d9e4; padding:10% 0 10% 0;">
+						<span style="font-size:xx-large; font-weight: bolder; color:#b72058;">02</span>
+						<br>
+						<span style="font-size:xx-large;">패널티설정</span>
+					</div>
+					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:30%; padding:4% 2% 2% 2%;">
+						<span style="font-size:large;">실패 시 패널티 상품</span>
+						<br>있음<input type="radio" id="has_penalty_Y" name="has_penalty_yn" value="Y"/> 없음<input type="radio" id="has_penalty_N" name="has_penalty_yn" value="N" checked/>
+						
+						<div id="penaltyGoodsView">
+						<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal" id="activeModal" href="penalty_modal" style="background-color: #b72058; margin:5% 2% 2% 2%;">패널티 상품 선택</button>
+						<input type="text" id="penalty" name="penalty" readonly="readonly" placeholder="패널티 상품을 먼저 골라주세요" size="16"/> <span id="penaltyPrice"></span>
+						<input type="hidden" id="penaltyIdx" name="penaltyIdx" value="0"/> <!-- 패널티 일련번호 저장 -->
+						<br><div id="failReceiver"><span style="font-size:large;">실패 시 상품 수령자</span><input type="text" id="failReceiverVal" name="failReceiver"/></div>
+						<br><div id="failReceiverPhone"><span style="font-size:large;">상품 수령자 핸드폰 번호</span><input type="text" id="failReceiverPhoneVal" name="failReceiverPhone"/></div>
+						</div>
+						<!-- 패널티 상품 고르는 모달 팝업 -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+							<div class="modal-content">
+							<!-- penaltymodal.jsp 내용이 여기로옴 -->
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		
-			<div class="w3-cell-row">
-				<!-- chap3) 카테고리 -->
-				<div class="w3-container w3-leftbar w3-border-top w3-border-bottom w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
-					<h1>03</h1><br>카테고리 
+			
+				<div class="w3-cell-row">
+					<!-- chap3) 카테고리 -->
+					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:20%; background-color: #f9d9e4; padding:10% 0 10% 0;"> 
+						<span style="font-size:xx-large; font-weight: bolder; color:#b72058;">03</span>
+						<br>
+						<span class="glyphicon glyphicon-asterisk" style="color:#b72058; font-size: xx-large;"></span><span style="font-size:xx-large;">카테고리</span>
+					</div>
+					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:80%; padding:12% 2% 12% 2%;">
+						<center>
+						체중조절<input type="radio" id="cate_1" name="category" value="체중조절"/>
+						운동<input type="radio" id="cate_2" name="category" value="운동"/>
+						취미<input type="radio" id="cate_3" name="category" value="취미"/>
+						어학<input type="radio" id="cate_3" name="category" value="어학"/>
+						봉사<input type="radio" id="cate_4" name="category" value="봉사"/>
+						금연<input type="radio" id="cate_6" name="category" value="금연"/>
+						<br>
+						재테크<input type="radio" id="cate_5" name="category" value="재테크"/>
+						종교<input type="radio" id="cate_7" name="category" value="종교"/>
+						환경<input type="radio" id="cate_8" name="category" value="환경"/>
+						학습<input type="radio" id="cate_9" name="category" value="학습"/>
+						독서<input type="radio" id="cate_10" name="category" value="독서"/>
+						기타<input type="radio" id="cate_11" name="category" value="기타"/>
+						</center>
+					</div>
 				</div>
-				<div class="w3-container w3-leftbar w3-border-top w3-border-bottom w3-border-yellow w3-cell w3-mobile" style="width:80%; padding:40px 0 30px 0;">
-					<center>
-					체중조절<input type="radio" id="cate_1" name="category" value="체중조절"/>
-					운동<input type="radio" id="cate_2" name="category" value="운동"/>
-					취미<input type="radio" id="cate_3" name="category" value="취미"/>
-					어학<input type="radio" id="cate_3" name="category" value="어학"/>
-					봉사<input type="radio" id="cate_4" name="category" value="봉사"/>
-					재테크<input type="radio" id="cate_5" name="category" value="재테크"/>
-					<br>
-					금연<input type="radio" id="cate_6" name="category" value="금연"/>
-					종교<input type="radio" id="cate_7" name="category" value="종교"/>
-					환경<input type="radio" id="cate_8" name="category" value="환경"/>
-					학습<input type="radio" id="cate_9" name="category" value="학습"/>
-					독서<input type="radio" id="cate_10" name="category" value="독서"/>
-					기타<input type="radio" id="cate_11" name="category" value="기타"/>
-					</center>
-				</div>
-			</div>
-		
-		
-		
-			<!-- chap4) 세부목표설정 -->
-			<div class="w3-cell-row">
+			
+			
+			
 				<!-- chap4) 세부목표설정 -->
-				<div class="w3-container w3-leftbar w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
-					<h1>04</h1><br>세부목표설정
-				</div>
-				<div class="w3-container w3-leftbar w3-border-yellow w3-cell w3-mobile" style="width:30%;">
-					구체적 목표와 계획<input type="text" name="goalContents"/>
-					<br>목표달성 확인자
-					<br>본인<input type="radio" id="has_goalchecker_N" name="has_goalchecker_yn" value="N" checked/> 타인<input type="radio" id="has_goalchecker_Y" name="has_goalchecker_yn" value="Y"/>
-					<br><input type="text" id="goalCheckerName" name="goalCheckerName" placeholder="목표달성 확인자 명"/>
-					<br><input type="text" id="goalCheckerEmail" name="goalCheckerEmail" placeholder="목표달성 확인자 이메일"/>
-					<br>
-				</div>
-			
-			
-				<!-- chap5) 알림도움 및 정보제공 동의 -->
-				<div class="w3-container w3-leftbar w3-border-yellow w3-pale-yellow w3-cell w3-mobile" style="width:20%;">
-					<h1>05</h1><br>알림도움 및 정보제공 동의
-				</div>
-				<div class="w3-container w3-leftbar w3-border-yellow w3-cell w3-mobile" style="width:30%;">
-					알림 도움 동의 여부
-					<br>옐로아이디(카카오톡) 알림으로 도움을 받으시겠습니까?
-					<br>예 <input type="radio" id="kakao_notice_Y" name="kakao_notice_yn" value="Y"/>
-					아니오 <input type="radio" id="kakao_notice_N" name="kakao_notice_yn" value="N"/>
-					<br>작성자 핸드폰 번호(카톡 알림 받지 않는 경우에만 선택)<input type="text" name="writerPhone"/>
-					<br>개인정보제공 동의
-					<font size="1">
+				<div class="w3-cell-row">
+					<!-- chap4) 세부목표설정 -->
+					<div class="w3-container w3-cell w3-border-left  w3-border-top w3-border-bottom w3-border w3-mobile" style="width:20%; background-color: #f9d9e4; padding:10% 0 10% 0; border-style:solid; border-color:#b72058;">
+						<span style="font-size:xx-large; font-weight: bolder; color:#b72058;">04</span>
+						<br>
+						<span style="font-size:xx-large;">세부목표설정</span>
+					</div>
+					<div class="w3-container w3-border-left  w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:30%; padding:4% 2% 2% 2%;">
+						<span class="glyphicon glyphicon-asterisk" style="color:#b72058;"></span><span style="font-size:large;">구체적 목표와 계획</span><input type="text" name="goalContents"/>
+						<br><span style="font-size:large;">목표달성 확인자</span>
+						<br>본인<input type="radio" id="has_goalchecker_N" name="has_goalchecker_yn" value="N" checked/> 타인<input type="radio" id="has_goalchecker_Y" name="has_goalchecker_yn" value="Y"/>
+						<br><input type="text" id="goalCheckerName" name="goalCheckerName" placeholder="목표달성 확인자 명"/>
+						<br><input type="text" id="goalCheckerEmail" name="goalCheckerEmail" placeholder="목표달성 확인자 이메일"/>
+						<br>
+					</div>
+				
+				
+					<!-- chap5) 알림도움 및 정보제공 동의 -->
+					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:20%; background-color: #f9d9e4; padding:10% 0 10% 0; border-style:solid; border-color:#b72058;">
+						<span style="font-size:xx-large; font-weight: bolder; color:#b72058;">05</span>
+						<br>
+						<span style="font-size:xx-large;">알림도움 및 정보제공 동의</span>
+					</div>
+					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:30%; padding:10% 0 10% 0;">
+						<span class="glyphicon glyphicon-asterisk" style="color:#b72058;"></span><span style="font-size:large;">알림 도움 동의 여부</span>
+						<br>옐로아이디(카카오톡) 알림으로 도움을 받으시겠습니까?
+						<br>예 <input type="radio" id="kakao_notice_Y" name="kakao_notice_yn" value="Y"/>
+						아니오 <input type="radio" id="kakao_notice_N" name="kakao_notice_yn" value="N"/>
+						<br><br><span style="font-size:large;">작성자 핸드폰 번호(카톡 알림 받지 않는 경우에만 선택)</span><input type="text" name="writerPhone" placeholder="ex) 01012345678"/>
+						<br><span class="glyphicon glyphicon-asterisk" style="color:#b72058;"></span><span style="font-size:large;">개인정보제공 동의</span>
+						
 						<ul>
-							<li>수집항목:수령자 정보 및 본인, 목표달성 확인자정보</li>
-							<li>수집목적:목표달성글 작성 및 확인</li>
-							<li>보유이용기간:회원탈퇴 시 즉시파기</li>
-							<li>귀하는 개인정보 수집 및 이용에 거부할 수 있는 권리가 있으며, 동의 거부시 목표달성 서비스가 제한됩니다. 동의하시겠습니까?</li>
+							<span style="font-size: x-small">
+								<li>수집항목:수령자 정보 및 본인, 목표달성 확인자정보</li>
+								<li>수집목적:목표달성글 작성 및 확인</li>
+								<li>보유이용기간:회원탈퇴 시 즉시파기</li>
+								<li>귀하는 개인정보 수집 및 이용에 거부할 수 있는 권리가 있으며, 동의 거부시 목표달성 서비스가 제한됩니다. 동의하시겠습니까?</li>
+							</span>
 						</ul>
 						예 <input type="radio" id="privacy_Y" name="privacy_yn" value="Y"/>
 						아니오 <input type="radio" id="privacy_N" name="privacy_yn" value="N"/>
-					</font>
+						
+					</div>
 				</div>
-			</div>
+			</span>
 		<input type="button" value="작성완료" onclick="validSubmit();"/>
 	</form>
+	
 </center>
 
 </body>

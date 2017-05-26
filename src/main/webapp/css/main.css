@@ -16,6 +16,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		font-family:'Jeju Gothic', serif;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -2011,8 +2012,8 @@
 		input[type="reset"]:hover,
 		button:hover,
 		.button:hover {
-			color: #fff;
-			background: #ef8376;
+			color: #ffffff;
+			background: #e36092;
 		}
 
 		input[type="button"].alt,
