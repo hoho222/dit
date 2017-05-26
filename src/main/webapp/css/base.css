@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+@import url(http://fonts.googleapis.com/earlyaccess/kopubbatang.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
 .round-border {
     border: 2px solid gray;
     border-radius: 12px;
@@ -186,8 +190,15 @@ div.panel {
 }
 
 .bgig {
-	width:355px;
-    height:529px;
-    background: url(../resources/imgs/paper_small.png) no-repeat center;
+    background-color: #EDEDCB;
     padding: 1% 0 0 0;
+}
+
+@media ( min-width: 768px ) {
+	.bgig {
+		width:355px;
+	    height:529px;
+	    background: url(../resources/imgs/paper_small.png) no-repeat center;
+	    padding: 1% 0 0 0;
+	}
 }
