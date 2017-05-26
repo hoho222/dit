@@ -11,13 +11,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>
-<body>
-<h2>${idx} 번 글 입니다.</h2>
-제목 : ${noticeMap.TITLE} <br>
-내용 : ${noticeMap.CONTENTS} <br>
-조회수 : ${noticeMap.HIT_CNT} <br>
-등록일 : ${noticeMap.CREATE_DT} <br>
-작성자ID : ${noticeMap.WRITER_ID}
-</body>
+
+<div class="container" style="padding:10% 0 10% 0; text-align:center;">
+	<div class="w3-border">
+		<div class="panel-heading" style="background-color: #f9d9e4;">
+			<h3><span style="font-size:xx-large;">${noticeMap.TITLE}</span></h3>
+		</div>
+		<div class="panel-body">
+			${noticeMap.CONTENTS}
+		</div>
+		<p style="text-align:right;font-size:15px;color:gray;"><span class="glyphicon glyphicon-eye-open">${noticeMap.HIT_CNT}</p>
+		<p style="text-align:right;font-size:15px;color:gray;">${noticeMap.WRITER_ID}</p>
+		<p style="text-align:right;font-size:15px;color:gray;"><span class="glyphicon glyphicon-pencil">${noticeMap.CREATE_DT}</p>
+		
+	</div>
+</div>
+
 <%@ include file="/WEB-INF/include/foot.jsp" %>
 </html>

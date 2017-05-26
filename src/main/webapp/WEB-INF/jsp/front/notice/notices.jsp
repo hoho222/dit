@@ -22,7 +22,7 @@
         <c:when test="${fn:length(list) > 0}">
             <c:forEach items="${list }" var="row">
             	<div class="container" style="padding-top:20px;text-align:center;">
-	                <div class="w3-border w3-round-xlarge w3-pale-yellow">
+	                <div class="w3-border w3-round-xlarge" style="background-color: #f9d9e4;">
                   		<div class="panel-body" >
                 			<a href="${pageContext.request.contextPath}/notices/${row.IDX}">${row.TITLE }</a><br>
                 			<span class="glyphicon glyphicon-eye-open">&nbsp;${row.HIT_CNT }</span><br>
