@@ -29,15 +29,30 @@
 						<article class="round-border">
 							<a class="image featured">NO. ${status.count}</a><br>
 							<header>
-								<h3><a href="${pageContext.request.contextPath}/goals/${row.IDX}">${row.GOAL_TITLE }</a></h3>
+								<c:choose>
+							        <c:when test="${fn:length(row.GOAL_TITLE) > 8}">
+										<h3><a href="${pageContext.request.contextPath}/goals/${row.IDX}">${fn:substring(row.GOAL_TITLE,0,7)}...</a></h3>
+									</c:when>
+									<c:otherwise>
+										<h3><a href="${pageContext.request.contextPath}/goals/${row.IDX}">${row.GOAL_TITLE }</a></h3>
+									</c:otherwise>
+								</c:choose>
 							</header>
 							<p>
-								${row.GOAL_CONTENTS}<br>
+								<c:choose>
+							        <c:when test="${fn:length(row.GOAL_CONTENTS) > 14}">
+										${fn:substring(row.GOAL_CONTENTS,0,13)}...
+									</c:when>
+									<c:otherwise>
+										${row.GOAL_CONTENTS}
+									</c:otherwise>
+								</c:choose>
+								<br>
 								${row.START_DT}<br>
 								${row.END_DT}<br>
 								${row.PENALTY_NAME}<br>
 								${row.FAIL_RECEIVER }<br>
-								${row.CREATE_DT }
+								<span class="glyphicon glyphicon-pencil">${fn:substring(row.CREATE_DT,0,10)}</span>
 							</p>
 						</article>
 					 </c:forEach>
