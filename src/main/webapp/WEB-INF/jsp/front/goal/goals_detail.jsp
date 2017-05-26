@@ -39,15 +39,27 @@ function checkToday() {
 			   dataType : 'text',
 			   url : 'update_goal_period_hit',  
 			   success : function(rData, textStatus, xhr) {
-				   if(rData=='true'){
+				   if(rData=='pass'){
 					   alert("짝짝짝! 축하합니다.\n오늘도 목표에 한 걸음 더 가까워지셨네요!!")
 					   location.reload(true);
+				   } else if(rData=='fail1') {
+					   alert("주기일 체크 실패T^T\n\n"+
+							 "이런..! 오늘은 이미 체크를 하셨네요!\n"+
+						     "주기일에 맞춰 체크해주세요 :)\n");
+				   } else if(rData=='fail2') {
+					   alert("주기일 체크 실패T^T\n\n"+
+							 "이번 주기에는 이미 체크가 되었습니다!\n"+
+					     	 "주기일에 맞춰 체크해주세요 :)\n");
+				   } else if(rData=='fail3') {
+					   alert("주기일 체크 실패T^T\n\n"+
+							 "오늘이 종료일이거나 종료일이 지났습니다!\n"+
+					     	 "종료일이 지나면 체크하실 수 없습니다.\n");
+				   } else if(rData=='fail4') {
+					   alert("주기일 체크 실패T^T\n\n"+
+							 "아직 시작일이 되지 않았습니다.\n"+
+					     	 "시작일부터 체크를 시작해주세요 :)\n");
 				   } else {
-					   alert("주기일을 체크할 수 없습니다!\n\n"+
-							 "1)오늘과 체크한 날이 같은 날일 경우\n"+
-							 "2)체크한 날이 주기일 수 보다 적은 경우\n"+
-							 "3)오늘이 목표 종료일이거나 종료일이 지났을 경우\n\n"+
-							 "위 3가지 경우를 확인해주시고, 다시 체크해주세요!");
+					   alert("주기일 체크 실패T^T\n\n");
 				   }
 			   },
 			   error : function(xhr, status, e) {  
@@ -275,7 +287,7 @@ $(function() {
 			<br>
 			<c:if test="${goalMap.IS_SUCCESS eq 'D'}">
 				<div id="goalBtn">
-					<input type="button" class="btn btn-default" value="목록으로"/>
+					<a href="${pageContext.request.contextPath}/goals"><input type="button" class="btn btn-default" value="목록으로"/></a>
 					<input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalResult" id="activeModalSuccess" value="목표달성"/>
 					<input type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalResult" id="activeModalFail" value="목표실패"/>
 					<input type="button" class="btn btn-primary" value="페이스북"/>

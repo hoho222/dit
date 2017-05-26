@@ -323,9 +323,9 @@ public class FrontController {
 		PrintWriter out = response.getWriter();
 		
 		//주기 1 cnt up
-		boolean isOk = frontService.updateGoalPeriodHit(map);
+		String passOrFail = frontService.updateGoalPeriodHit(map);
 		
-		out.print(isOk); //이 값이 rData로 넘어감
+		out.print(passOrFail); //이 값이 rData로 넘어감
 		out.flush();
 		out.close();
 		

@@ -31,13 +31,13 @@ function validSubmit() {
 		return false;
 	}
 	
-	if(startDate == ""){
+	if(startDateStr == ""){
 		alert("시작일을 입력해주세요!");
 		f.startdate.focus();
 		return false;
 	}
 	
-	if(endDate == ""){
+	if(endDateStr == ""){
 		alert("종료일을 입력해주세요!");
 		f.enddate.focus();
 		return false;
@@ -137,6 +137,7 @@ function validSubmit() {
 		return false;
 	}
 	
+	f.enddate.value = endDateStr + " 23:59:59";
 	f.action="goals"
 	f.submit();
 }

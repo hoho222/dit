@@ -35,7 +35,7 @@ public interface FrontService {
     * 목표상세 -> 주기체크 -> 1 cnt up!
     * @throws Exception the exception
     */
-	boolean updateGoalPeriodHit(@RequestParam Map<String,Object> map) throws Exception;
+	String updateGoalPeriodHit(@RequestParam Map<String,Object> map) throws Exception;
 	
 	/**
     * 목표 1건 (상세) 업데이트

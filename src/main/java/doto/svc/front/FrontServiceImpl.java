@@ -71,11 +71,12 @@ public class FrontServiceImpl  implements FrontService {
 	}
 	
 	@Override
-	public boolean updateGoalPeriodHit(@RequestParam Map<String,Object> map) throws Exception {
+	public String updateGoalPeriodHit(@RequestParam Map<String,Object> map) throws Exception {
 		//업데이트 하기 전, 카운트 수 부터 비교
 		String idx = map.get("idx").toString();
 		Map<String,Object> goalMap = frontDAO.selectGoalDetail(idx);
 		
+		String start = goalMap.get("START_DT").toString(); //시작일(DATE)
 		String end =  goalMap.get("END_DT").toString(); //종료일(DATE)
 		String checkReg =  goalMap.get("GOAL_CHECK_PERIOD_HIT_REGDATE").toString(); //체크일(DATE)
 		String today =  goalMap.get("TODAY").toString(); //오늘(DATE)
@@ -84,6 +85,7 @@ public class FrontServiceImpl  implements FrontService {
 		
 		try {
 	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	        Date startDate = formatter.parse(start);
 	        Date endDate = formatter.parse(end);
 	        Date checkRegDate = formatter.parse(checkReg);
 	        Date todayDate = formatter.parse(today);
@@ -94,13 +96,16 @@ public class FrontServiceImpl  implements FrontService {
 	        
 	        long diff2 = todayDate.getTime() - endDate.getTime();
 	        long diffDays2 = diff2 / (24 * 60 * 60 * 1000);
+	        
+	        long diff3 = startDate.getTime() - todayDate.getTime();
+	        long diffDays3 = diff3 / (24 * 60 * 60 * 1000);
 	 
 	        //오늘과 체크한 날이 같은 날일 경우 -> 체크못함
 	        if(diffDays == 0){
 	        	if (log.isDebugEnabled()) {
 	        		log.debug("체크불가이유 : 오늘과 체크한 날이 같은 날일 경우 | 오늘 - 체크한날 일수 = "+diffDays);
 	        	}
-	        	return false;
+	        	return "fail1";
 	        }
 	        
 	        //체크한 날이 주기일 수 보다 적은 경우 -> 체크못함
@@ -108,7 +113,7 @@ public class FrontServiceImpl  implements FrontService {
 	        	if (log.isDebugEnabled()) {
 	        		log.debug("체크불가이유 : 체크한 날이 주기일 수 보다 적은 경우 | 오늘 - 체크한날 일수 = "+diffDays + " | 주기일수>> "+checkDays);
 	        	}
-	        	return false;
+	        	return "fail2";
 	        }
 	        
 	        //오늘이 목표 종료일이거나 종료일이 지났을 경우 -> 체크못함
@@ -116,7 +121,15 @@ public class FrontServiceImpl  implements FrontService {
 	        	if (log.isDebugEnabled()) {
 	        		log.debug("체크불가이유 : 종료일이 지난 경우 | 오늘 - 종료일 일수 = "+diffDays2);
 	        	}
-	        	return false;
+	        	return "fail3";
+	        }
+	        
+	        //오늘이 시작일보다 앞 선 날짜인데, 먼저 체크하려고 하는 경우 -> 체크못함
+	        if(diffDays3  > 0){
+	        	if (log.isDebugEnabled()) {
+	        		log.debug("체크불가이유 : 체크하려는 오늘이 시작일 전인 경우 | 시작일 - 오늘 일수 = "+diffDays3);
+	        	}
+	        	return "fail4";
 	        }
 	        
 	        int periodHitInt = Integer.parseInt((map.get("periodHit").toString()));
@@ -125,13 +138,13 @@ public class FrontServiceImpl  implements FrontService {
 			
 			frontDAO.updateGoalPeriodHit(map);
 			
-			return true;
+			return "pass";
 	        
 	    } catch (ParseException e) {
 	        e.printStackTrace();
 	    }
 
-		return true;
+		return "pass";
 	}
 	
 	@Override
@@ -202,8 +215,6 @@ public class FrontServiceImpl  implements FrontService {
 	
 	@Override
 	public void processGoalCommentAct(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		
-		System.out.println("삭제 뽕 > "+map);
 		
 		//코멘트 내용 수정
 		if("EDIT".equals(map.get("mode").toString())){
