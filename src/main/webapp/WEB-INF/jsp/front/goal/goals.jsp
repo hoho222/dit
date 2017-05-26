@@ -27,7 +27,7 @@
 				<div class="reel">
 					<c:forEach items="${goalList }" var="row" varStatus="status">
 						<article class="round-border">
-							<a class="image featured">NO. ${status.count}</a><br>
+							<p class="image featured">NO. ${status.count}</p><br>
 							<header>
 								<c:choose>
 							        <c:when test="${fn:length(row.GOAL_TITLE) > 8}">

@@ -190,7 +190,7 @@ div.panel {
 }
 
 .bgig {
-    background-color: #EDEDCB;
+    background-color: #f9d9e4;
     padding: 1% 0 0 0;
 }
 
@@ -199,6 +199,20 @@ div.panel {
 		width:355px;
 	    height:529px;
 	    background: url(../resources/imgs/paper_small.png) no-repeat center;
+	    padding: 1% 0 0 0;
+	}
+}
+
+.bgig-finish {
+    background-color: #f9d9e4;
+    padding: 1% 0 0 0;
+}
+
+@media ( min-width: 768px ) {
+	.bgig-finish {
+		width:355px;
+	    height:250px;
+	    background: url(../resources/imgs/fin_paper_small.png) no-repeat center;
 	    padding: 1% 0 0 0;
 	}
 }

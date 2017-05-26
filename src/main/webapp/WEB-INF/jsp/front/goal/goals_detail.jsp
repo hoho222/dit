@@ -92,10 +92,10 @@ function resultCheck() {
 	
 	if(goalCheckPeriodHit != goalCheckPeriod) {
     	document.getElementById("successGB").value = "fail";
-        document.getElementById("GB").innerHTML = "아쉽습니당 ㅜㅜ";
+        document.getElementById("GB").innerHTML = "아쉽습니당 T^T";
 	} else if (goalCheckPeriodHit == goalCheckPeriod) {
         document.getElementById("successGB").value = "success";
-        document.getElementById("GB").innerHTML = "목표 달성을 축하합니다!! ><";
+        document.getElementById("GB").innerHTML = "목표 달성을 축하합니다!! :)";
 	}
 	
 }
@@ -186,7 +186,7 @@ $(function() {
 <center>
 	<div id="" class="section">
 		<div class="s-container">
-			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">나의 다짐</h2>
+			<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">서약서</h2>
 		</div>
 	</div>
 
@@ -196,7 +196,7 @@ $(function() {
 			${goalMap.WRITER_NAME} 은(는)<br>
 			<span style="font-size:1.2em;">${goalMap.START_DT}</span> 부터<br>
 			<span style="font-size:1.2em;">${goalMap.END_DT}</span> 까지<br>
-			<span style="font-size:1.5em; color:#73730c; font-weight: bold;">${goalMap.GOAL_TITLE}</span> 을(를) 할 것입니다. <br>
+			<span style="font-size:1.5em; color:#b72058; font-weight: bold;">${goalMap.GOAL_TITLE}</span> 을(를) 할 것입니다. <br>
 			
 			<c:if test="${goalMap.FAIL_RECEIVER != '' and goalMap.PENALTY_NAME != ''}">
 				만약 목표 달성 실패 시, ${goalMap.FAIL_RECEIVER} 에게<br>
@@ -364,7 +364,7 @@ $(function() {
                 
 	            <c:forEach items="${goalCommentList }" var="row">
 	            	<div class="container" style="padding-top:20px;text-align:center;">
-	                	<div class="w3-border w3-round-xlarge w3-pale-yellow">
+	                	<div class="w3-border w3-round-xlarge" style="background-color: #f9d9e4;">
                   			<div class="panel-body" >
 			            		<c:if test="${row.ORIGINAL_FILE_NAME ne 'none' && row.ORIGINAL_FILE_NAME ne ''}">
 				            		<img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/comment_imgs/${row.STORED_FILE_NAME }'/>" style="width: 200px; height: 140px;" >

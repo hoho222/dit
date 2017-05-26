@@ -17,57 +17,68 @@
 </head>
 <body>
 
-<c:choose> 
-	<c:when test="${goalMap.IS_SUCCESS == 'Y'}">
-		성공한 목표입니다 :)
-	</c:when>
-	<c:when test="${goalMap.IS_SUCCESS == 'N'}">
-		실패한 목표입니다 T^T
-	</c:when>
-	<c:otherwise></c:otherwise>
-</c:choose>
-
-
 <center>
-<h2>나의 다짐(지난 내역 입니다.)</h2>
+<div id="" class="section">
+	<div class="s-container">
+		<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">지난목표</h2>
+	</div>
+</div>
 
-<div id="myGoal">
-	${goalMap.WRITER_ID} 은(는) ${goalMap.START_DT} 부터<br>
-	${goalMap.END_DT} 까지 ${goalMap.GOAL_TITLE} 을(를) 할 것입니다. <br>
-	만약 목표 달성 실패 시, ${goalMap.FAIL_RECEIVER} 에게<br>
-	${goalMap.PENALTY_NAME} 을(를) 줄 것입니다.<br>
+<div id="myGoal" class="bgig-finish">
+	<c:choose> 
+		<c:when test="${goalMap.IS_SUCCESS == 'Y'}">
+			<span style="font-size:x-large;">성공한 목표입니다<span class="glyphicon glyphicon-thumbs-up"></span></span><br>
+		</c:when>
+		<c:when test="${goalMap.IS_SUCCESS == 'N'}">
+			<span style="font-size:x-large;">실패한 목표입니다<span class="glyphicon glyphicon-thumbs-down"></span></span><br>
+		</c:when>
+		<c:otherwise></c:otherwise>
+	</c:choose>
+	${goalMap.WRITER_NAME} 은(는)<br>
+	<span style="font-size:1.2em;">${goalMap.START_DT}</span> 부터<br>
+	<span style="font-size:1.2em;">${goalMap.END_DT}</span> 까지<br>
+	<span style="font-size:1.5em; color:#b72058; font-weight: bold;">${goalMap.GOAL_TITLE}</span> 을(를) 할 것입니다. <br>
+	<c:if test="${goalMap.FAIL_RECEIVER != '' and goalMap.PENALTY_NAME != ''}">
+		만약 목표 달성 실패 시, ${goalMap.FAIL_RECEIVER} 에게<br>
+		${goalMap.PENALTY_NAME} 을(를) 줄 것입니다.<br>
+	</c:if>
+	
 	<c:choose>
 		<c:when test="${goalMap.IS_KAKAO_NOTICE == 'Y'}">
-			카카오톡 알림으로 도움을 받겠습니다.
+			<span style="font-size:0.7em;">카카오톡 알림으로 도움을 받겠습니다.</span>
 		</c:when>
 		<c:when test="${goalMap.IS_KAKAO_NOTICE == 'N'}">
-			카카오톡 알림으로 도움을 받지않습니다.
+			<span style="font-size:0.7em;">카카오톡 알림으로 도움을 받지않습니다.</span>
 		</c:when>
 		<c:otherwise>
-			카카오톡 알림 설정이 안되어있습니다.
+			<span style="font-size:0.7em;">카카오톡 알림 설정이 안되어있습니다.</span>
 		</c:otherwise>
 	</c:choose>
 	
-	<div id="btn">
-		<a href="${pageContext.request.contextPath}/mypages/goals"><input type="button" class="btn btn-default" value="목록으로"/></a>
-		<input type="button" class="btn btn-primary" value="페이스북"/>
-	</div>	
 </div>
-<br>
 
-<br>
-<div id="comment">
+<div id="btn">
+	<a href="${pageContext.request.contextPath}/mypages/goals"><input type="button" class="btn btn-default" value="목록으로"/></a>
+	<input type="button" class="btn btn-primary" value="페이스북"/>
+</div>	
+
+<hr>
+<div id="comment" style="margin-top:5%;">
 	<div id="commentRead">
-		<strong>소감</strong>
-		<br>
-		
+		<header>
+			<h2><strong>소감</strong></h2>
+		</header>
 		<c:choose>
 	        <c:when test="${fn:length(resultMap) > 0}">
-	            	<div class="round-border">
-	            		<c:if test="${resultMap.ORIGINAL_FILE_NAME ne 'none' && resultMap.STORED_FILE_NAME ne ''}">
-		            		<img alt="${resultMap.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/result_imgs/${resultMap.STORED_FILE_NAME}'/>" style="width: 200px; height: 140px;" >
-		            	</c:if>
-		                ${resultMap.CONTENTS} &nbsp; ${resultMap.CREATE_DT }
+	            	<div class="container" style="padding-top:20px;text-align:center;">
+	                	<div class="w3-border w3-round-xlarge" style="background-color: #f9d9e4;">
+                  			<div class="panel-body" >
+			            		<c:if test="${resultMap.ORIGINAL_FILE_NAME ne 'none' && resultMap.STORED_FILE_NAME ne ''}">
+				            		<img alt="${resultMap.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/result_imgs/${resultMap.STORED_FILE_NAME}'/>" style="width: 200px; height: 140px;" >
+				            	</c:if>
+				                ${resultMap.CONTENTS} &nbsp; ${resultMap.CREATE_DT }
+				            </div>
+				        </div>
 		            </div>
             </c:when>
             <c:otherwise>
