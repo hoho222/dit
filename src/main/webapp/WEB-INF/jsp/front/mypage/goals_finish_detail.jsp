@@ -76,7 +76,7 @@
 			            		<c:if test="${resultMap.ORIGINAL_FILE_NAME ne 'none' && resultMap.STORED_FILE_NAME ne ''}">
 				            		<img alt="${resultMap.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/result_imgs/${resultMap.STORED_FILE_NAME}'/>" style="width: 200px; height: 140px;" >
 				            	</c:if>
-				                ${resultMap.CONTENTS} &nbsp; ${resultMap.CREATE_DT }
+				                <span style="font-weight:bold;">${resultMap.CONTENTS}</span> &nbsp;${fn:substring(resultMap.CREATE_DT,0,10)}
 				            </div>
 				        </div>
 		            </div>
