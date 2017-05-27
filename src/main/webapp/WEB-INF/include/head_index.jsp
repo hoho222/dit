@@ -20,7 +20,7 @@
 				<header>
 					<h1 style="text-shadow: 2px 2px 2px black;">당신의 목표달성을 위해 함께하겠습니다</h1>
 					<hr>
-					<p style="text-shadow: 2px 2px 2px black;">여러분의 <span style="font-size:32px; font-weight:bold; color:#ef8376;
+					<p style="text-shadow: 2px 2px 2px black;">여러분의 <span style="font-size:32px; font-weight:bold; color:#f9d9e4;
 					                        text-shadow: 1px 1px 1px black;">다짐</span>을 적어주세요</p>
 					<p><img src="<c:url value='/resources/images/dit.png'/>"></p>
 				</header>

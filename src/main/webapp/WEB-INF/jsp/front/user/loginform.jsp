@@ -173,15 +173,15 @@
          });
     }
     </script>
-
+	
 	<center>
-		<p class="sns_txt"><strong class="red">S</strong><strong class="grn">N</strong><strong class="blue">S</strong>로 로그인하세요.</p>
+		<p class="sns_txt" style="margin:3% 0 2% 0;"><strong style="color:#b72058;">SNS</strong> Login</p>
 		
 		<div><a onclick="checkFacebookLogin();"><img alt="페이스북으로 로그인" src="<c:url value='/resources/imgs/fbloginbtn.png'/>" style="width: 222px; height: 49px;" ></a></div>
 		<!-- 페이스북 로긘 -->
 		
 		<!-- 카카오톡 로긘 -->
-		<div id="kakaologin"><a id="kakao-login-btn"></a></div> <!-- 카카오톡계정으로 로그인 -->
+		<div id="kakaologin" style="margin:1% 0 2% 0;"><a id="kakao-login-btn"></a></div> <!-- 카카오톡계정으로 로그인 -->
 		<div id="kakaologout"></div>
 		<div id="statusKakao"></div>
 		
