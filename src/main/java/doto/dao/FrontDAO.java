@@ -113,6 +113,12 @@ public class FrontDAO extends AbstractDAO{
 		return (Map<String, Object>)selectOne("front.selectMember", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectMemberList(Map<String, Object> map) {
+		
+		return (List<Map<String, Object>>)selectList("front.selectMemberList", map);
+	}
+	
 	public void updateMemberInfo(@RequestParam Map<String,Object> map) throws Exception{
 		update("front.updateMemberInfo", map);
 	}

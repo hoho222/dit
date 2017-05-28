@@ -424,12 +424,14 @@ public class FrontServiceImpl  implements FrontService {
 	@Override
 	public boolean memberOverlap(Map<String,Object> map) throws Exception{
 		
-		Map<String, Object> selectUser = frontDAO.selectMember(map);
+		List<Map<String, Object>> selectUserList = frontDAO.selectMemberList(map);
 		
-		if(selectUser != null) {
-			return false;
-		} else {
+		if(selectUserList.isEmpty()) {
+			//중복된 이메일주소 없음 -> 가입가능
 			return true;
+		} else {
+			//중복된 이메일주소 있음 -> 가입불가
+			return false;
 		}
 		
 	}

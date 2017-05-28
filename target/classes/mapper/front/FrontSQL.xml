@@ -411,6 +411,19 @@
 	     </if>
     </select>
     
+    <select id="front.selectMemberList" parameterType="hashmap" resultType="hashmap">
+	     <![CDATA[
+	     SELECT IDX, EMAIL_ID, PWD, HP, BIRTH_DT, CREATE_DT, NAME, NICKNAME, GENDER, FB_ID, KAKAO_ID
+	     FROM T_MEMBER
+	     WHERE 1=1
+	     ]]>
+	     <if test="emailId != null and emailId != ''">
+	     	AND EMAIL_ID = #{emailId}
+	     	AND FB_ID IS NULL
+            AND kakao_id IS NULL
+	     </if>
+	</select>
+    
     <select id="front.isMemberCnt" parameterType="hashmap" resultType="String">
 	     <![CDATA[
 	     SELECT COUNT(*)
