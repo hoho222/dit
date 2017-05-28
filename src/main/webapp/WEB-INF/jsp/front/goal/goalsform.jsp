@@ -390,7 +390,7 @@ $(function() {
 						<br>옐로아이디(카카오톡) 알림으로 도움을 받으시겠습니까?
 						<br>예 <input type="radio" id="kakao_notice_Y" name="kakao_notice_yn" value="Y"/>
 						아니오 <input type="radio" id="kakao_notice_N" name="kakao_notice_yn" value="N"/>
-						<br><br><span style="font-size:large;">작성자 핸드폰 번호(카톡 알림 받지 않는 경우에만 선택)</span><input type="text" name="writerPhone" placeholder="ex) 01012345678"/>
+						<br><br><span style="font-size:large;">작성자 핸드폰 번호<span style="font-size:small;">(<span class="glyphicon glyphicon-asterisk" style="color:#b72058;"></span>카톡 알림 받는 경우에만 필수)</span></span><input type="text" name="writerPhone" placeholder="ex) 01012345678"/>
 						<br><span class="glyphicon glyphicon-asterisk" style="color:#b72058;"></span><span style="font-size:large;">개인정보제공 동의</span>
 						
 						<ul>
