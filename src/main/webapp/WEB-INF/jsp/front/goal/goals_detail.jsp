@@ -367,7 +367,7 @@ $(function() {
 	                	<div class="w3-border w3-round-xlarge" style="background-color: #f9d9e4;">
                   			<div class="panel-body" >
 			            		<c:if test="${row.ORIGINAL_FILE_NAME ne 'none' && row.ORIGINAL_FILE_NAME ne ''}">
-				            		<img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/comment_imgs/${row.STORED_FILE_NAME }'/>" style="width: 200px; height: 140px;" >
+				            		<img alt="${row.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/comment_imgs/${row.STORED_FILE_NAME }'/>" onerror='this.src="/doto/resources/imgs/cannotloadimg.jpg"' style="width: 200px; height: 140px;" >
 				            	</c:if>
 				                <span id="contentsOld_${row.IDX }">${row.CONTENTS}</span>
 				                <input type="text" id="contentsNew_${row.IDX }" value="${row.CONTENTS}" style="display:none"/>

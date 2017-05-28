@@ -74,7 +74,7 @@
 	                	<div class="w3-border w3-round-xlarge" style="background-color: #f9d9e4;">
                   			<div class="panel-body" >
 			            		<c:if test="${resultMap.ORIGINAL_FILE_NAME ne 'none' && resultMap.STORED_FILE_NAME ne ''}">
-				            		<img alt="${resultMap.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/result_imgs/${resultMap.STORED_FILE_NAME}'/>" style="width: 200px; height: 140px;" >
+				            		<img alt="${resultMap.ORIGINAL_FILE_NAME }" src="<c:url value='/resources/result_imgs/${resultMap.STORED_FILE_NAME}'/>"  onerror='this.src="/doto/resources/imgs/cannotloadimg.jpg"' style="width: 200px; height: 140px;" >
 				            	</c:if>
 				                <span style="font-weight:bold;">${resultMap.CONTENTS}</span> &nbsp;${fn:substring(resultMap.CREATE_DT,0,10)}
 				            </div>
