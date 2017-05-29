@@ -113,7 +113,7 @@
 				                <span id="contentsOld_${row.IDX }">${row.CONTENTS}</span>
 				                <input type="text" id="contentsNew_${row.IDX }" value="${row.CONTENTS}" style="display:none"/>
 				                &nbsp; 
-				                ${row.CREATE_DT }
+				                ${fn:substring(row.CREATE_DT,0,10)}
 				                
 							</div>
 						</div>
