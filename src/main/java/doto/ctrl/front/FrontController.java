@@ -332,6 +332,33 @@ public class FrontController {
 	}
 	
 	/*
+	 * 공유하기용 페이지를 위한 목표달성 상세(1 건) 조회
+	 */
+	@RequestMapping(value = "/shares/{idx}", method = RequestMethod.GET)
+	public String readGoalDetailForShare(@PathVariable String idx, ModelMap model) throws Exception {
+		
+		//해당 글 내용 select
+		Map<String,Object> goalMap = frontService.selectGoalDetail(idx);
+		model.addAttribute("goalMap", goalMap);
+		model.addAttribute("idx", idx);
+		
+		//총 체크할 일자 계산
+		int totalDays = Integer.parseInt(goalMap.get("TOTAL_DAYS").toString());
+		int periodDays = Integer.parseInt(goalMap.get("GOAL_CHECK_PERIOD").toString());
+		if(periodDays > 0){
+			int totalPeriodDays = (int)Math.floor(totalDays/periodDays);
+			model.addAttribute("totalPeriodDayss", Integer.toString(totalPeriodDays));
+		}
+		
+		//해당글의 코멘트 + 업로드 했던 이미지 select
+		List<Map<String,Object>> goalCommentList = frontService.selectGoalCommentList(idx);
+		model.addAttribute("goalCommentList", goalCommentList);
+		
+		return "front/share/goals_detail_for_share";
+
+	}
+	
+	/*
 	 * 회원가입 폼
 	 */
 	@RequestMapping(value = "/users/joinform", method = RequestMethod.GET)

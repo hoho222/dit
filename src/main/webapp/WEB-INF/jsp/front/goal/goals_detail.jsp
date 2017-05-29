@@ -10,6 +10,13 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<!-- 페이스북 공유 버튼 -->
+<meta property="og:url"           content="http://doit2gether.tk/doto/shares/${idx}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="DIT.DoIt Together-!" />
+<meta property="og:description"   content="당신의 목표와 함께합니다. DoIt Together!" />
+<meta property="og:image"         content="http://doit2gether.tk/resources/imgs/logo.png" />
+
 <script type="text/javascript">
 
 function validSubmit() {
@@ -158,7 +165,7 @@ $(function() {
 		if(periodDays != 0){
 			var totalPeriodDays = Math.floor(totalDays/periodDays);
 			document.getElementById("totalPeriodDays").value = totalPeriodDays;
-			document.getElementById("totalPeriodDaysHtml").innerHTML = totalPeriodDays;
+//			document.getElementById("totalPeriodDaysHtml").innerHTML = totalPeriodDays;
 		}
 	
 	//모달 팝업창 열림(성공)
@@ -284,7 +291,6 @@ $(function() {
 					</c:choose>
 				</c:if>
 				
-				<input type="button" class="btn btn-primary" value="페이스북"/>
 			</div>
 		</c:when>
 		<c:otherwise>
@@ -294,15 +300,24 @@ $(function() {
 					<a href="${pageContext.request.contextPath}/goals"><input type="button" class="btn btn-default" value="목록으로"/></a>
 					<input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalResult" id="activeModalSuccess" value="목표달성"/>
 					<input type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalResult" id="activeModalFail" value="목표실패"/>
-					<input type="button" class="btn btn-primary" value="페이스북"/>
-					
-					
-				  	
 				</div>
 			</c:if>
 		</c:otherwise>
 	</c:choose>
 	
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>
+	(function(d, s, id) {
+		 var js, fjs = d.getElementsByTagName(s)[0];
+		 if (d.getElementById(id)) return;
+		 js = d.createElement(s); js.id = id;
+		 js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=215782768897692";
+		 fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>	
+	<div class="fb-share-button" data-href="http://doit2gether.tk/doto/shares/${idx}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdoit2gether.tk%2Fdoto%2Fshares%2F%24%257Bidx%257D&amp;src=sdkpreparse">공유하기</a></div>
+				  
 	
 	<!-- 목표 달성/실패 소감 작성하는 모달 팝업 -->
 	<div class="modal fade" id="myModalResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -372,12 +387,11 @@ $(function() {
 				                <span id="contentsOld_${row.IDX }">${row.CONTENTS}</span>
 				                <input type="text" id="contentsNew_${row.IDX }" value="${row.CONTENTS}" style="display:none"/>
 				                &nbsp; 
-				                ${row.CREATE_DT }
+				                ${fn:substring(row.CREATE_DT,0,10)}
 				                
 				                <input type="button" class="btn btn-default btn-xs" id="editBtn_${row.IDX }" value="수정" onclick="commentEdit(${row.IDX });"/>
 				                <input type="button" class="btn btn-default btn-xs" id="editFinBtn_${row.IDX }" value="등록" onclick="commentEditFin(${row.IDX });" style="display:none"/>
 								<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="commentDel(${row.IDX });"/>
-								<input type="button" class="btn btn-primary btn-xs" value="페이스북"/>
 							</div>
 						</div>
 		            </div>
