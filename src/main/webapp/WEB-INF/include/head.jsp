@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body class="homepage">
+<body class="left-sidebar">
 	<div id="page-wrapper">
 
 		<!-- Header -->
