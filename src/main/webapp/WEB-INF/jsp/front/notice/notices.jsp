@@ -23,12 +23,14 @@
             <c:forEach items="${list }" var="row">
             	<div class="container" style="padding-top:20px;text-align:center;">
 	                <div class="w3-border w3-round-xlarge" style="background-color: #f9d9e4;">
-                  		<div class="panel-body" >
-                			<a href="${pageContext.request.contextPath}/notices/${row.IDX}">${row.TITLE }</a><br>
-                			<span class="glyphicon glyphicon-eye-open">&nbsp;${row.HIT_CNT }</span><br>
-                			${row.CREATE_DT }<br>
-                			<span class="glyphicon glyphicon-pencil">&nbsp;${row.WRITER_NAME }</span><br>
-                		</div>
+                  		<a href="${pageContext.request.contextPath}/notices/${row.IDX}">
+	                  		<div class="panel-body" >
+	                			${row.TITLE }<br>
+	                			<span class="glyphicon glyphicon-eye-open">&nbsp;${row.HIT_CNT }</span><br>
+	                			${row.CREATE_DT }<br>
+	                			<span class="glyphicon glyphicon-pencil">&nbsp;${row.WRITER_NAME }</span><br>
+	                		</div>
+                		</a>
                 	</div>
                 </div>
                </c:forEach>

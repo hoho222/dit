@@ -26,35 +26,37 @@
 			<section class="carousel">
 				<div class="reel">
 					<c:forEach items="${goalList }" var="row" varStatus="status">
-						<article class="round-border">
-							<p class="image featured">NO. ${status.count}</p><br>
-							<header>
-								<c:choose>
-							        <c:when test="${fn:length(row.GOAL_TITLE) > 8}">
-										<h3><a href="${pageContext.request.contextPath}/goals/${row.IDX}">${fn:substring(row.GOAL_TITLE,0,7)}...</a></h3>
-									</c:when>
-									<c:otherwise>
-										<h3><a href="${pageContext.request.contextPath}/goals/${row.IDX}">${row.GOAL_TITLE }</a></h3>
-									</c:otherwise>
-								</c:choose>
-							</header>
-							<p>
-								<c:choose>
-							        <c:when test="${fn:length(row.GOAL_CONTENTS) > 14}">
-										${fn:substring(row.GOAL_CONTENTS,0,13)}...
-									</c:when>
-									<c:otherwise>
-										${row.GOAL_CONTENTS}
-									</c:otherwise>
-								</c:choose>
-								<br>
-								${row.START_DT}<br>
-								${row.END_DT}<br>
-								${row.PENALTY_NAME}<br>
-								${row.FAIL_RECEIVER }<br>
-								<span class="glyphicon glyphicon-pencil">${fn:substring(row.CREATE_DT,0,10)}</span>
-							</p>
-						</article>
+						<a href="${pageContext.request.contextPath}/goals/${row.IDX}">
+							<article class="round-border">
+								<p class="image featured">NO. ${status.count}</p><br>
+								<header>
+									<c:choose>
+								        <c:when test="${fn:length(row.GOAL_TITLE) > 8}">
+											<h3>${fn:substring(row.GOAL_TITLE,0,7)}...</h3>
+										</c:when>
+										<c:otherwise>
+											<h3>${row.GOAL_TITLE }</h3>
+										</c:otherwise>
+									</c:choose>
+								</header>
+								<p>
+									<c:choose>
+								        <c:when test="${fn:length(row.GOAL_CONTENTS) > 14}">
+											${fn:substring(row.GOAL_CONTENTS,0,13)}...
+										</c:when>
+										<c:otherwise>
+											${row.GOAL_CONTENTS}
+										</c:otherwise>
+									</c:choose>
+									<br>
+									${row.START_DT}<br>
+									${row.END_DT}<br>
+									${row.PENALTY_NAME}<br>
+									${row.FAIL_RECEIVER }<br>
+									<span class="glyphicon glyphicon-pencil">${fn:substring(row.CREATE_DT,0,10)}</span>
+								</p>
+							</article>
+						</a>
 					 </c:forEach>
 				</div>
 			</section>

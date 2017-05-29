@@ -27,66 +27,70 @@
 					<c:forEach items="${goalList }" var="row" varStatus="status">
 						<c:choose>
 							<c:when test="${row.IS_SUCCESS eq 'Y'}">
-								<article style="background-color: #f9d9e4; border: 2px solid; border-radius: 12px; border-color:#f9d9e4;">
-									<h3>SUCCESS <span class="glyphicon glyphicon-thumbs-up"></span></h3><br>
-									<a class="image featured">NO. ${status.count}</a><br>
-									<header>
-										<c:choose>
-									        <c:when test="${fn:length(row.GOAL_TITLE) > 8}">
-												<h3><a href="${pageContext.request.contextPath}/mypages/goals/${row.IDX}">${fn:substring(row.GOAL_TITLE,0,7)}...</a></h3>
-											</c:when>
-											<c:otherwise>
-												<h3><a href="${pageContext.request.contextPath}/mypages/goals/${row.IDX}">${row.GOAL_TITLE }</a></h3>
-											</c:otherwise>
-										</c:choose>
-									</header>
-									<p>
-										<c:choose>
-									        <c:when test="${fn:length(row.GOAL_CONTENTS) > 14}">
-												${fn:substring(row.GOAL_CONTENTS,0,13)}...
-											</c:when>
-											<c:otherwise>
-												${row.GOAL_CONTENTS}
-											</c:otherwise>
-										</c:choose><br>
-										${row.START_DT}<br>
-										${row.END_DT}<br>
-										${row.PENALTY_NAME}<br>
-										${row.FAIL_RECEIVER }<br>
-										<span class="glyphicon glyphicon-pencil">${fn:substring(row.CREATE_DT,0,10)}</span>
-									</p>
-								</article>
+								<a href="${pageContext.request.contextPath}/mypages/goals/${row.IDX}">
+									<article style="background-color: #f9d9e4; border: 2px solid; border-radius: 12px; border-color:#f9d9e4;">
+										<h3>SUCCESS <span class="glyphicon glyphicon-thumbs-up"></span></h3><br>
+										NO. ${status.count}<br>
+										<header>
+											<c:choose>
+										        <c:when test="${fn:length(row.GOAL_TITLE) > 8}">
+													<h3>${fn:substring(row.GOAL_TITLE,0,7)}...</h3>
+												</c:when>
+												<c:otherwise>
+													<h3>${row.GOAL_TITLE }</h3>
+												</c:otherwise>
+											</c:choose>
+										</header>
+										<p>
+											<c:choose>
+										        <c:when test="${fn:length(row.GOAL_CONTENTS) > 14}">
+													${fn:substring(row.GOAL_CONTENTS,0,13)}...
+												</c:when>
+												<c:otherwise>
+													${row.GOAL_CONTENTS}
+												</c:otherwise>
+											</c:choose><br>
+											${row.START_DT}<br>
+											${row.END_DT}<br>
+											${row.PENALTY_NAME}<br>
+											${row.FAIL_RECEIVER }<br>
+											<span class="glyphicon glyphicon-pencil">${fn:substring(row.CREATE_DT,0,10)}</span>
+										</p>
+									</article>
+								</a>
 							</c:when>
 							<c:when test="${row.IS_SUCCESS eq 'N'}">
-								<article style="background-color: #bbbbbb; border: 2px solid; border-radius: 12px; border-color:#bbbbbb;">
-									<h3>FAIL <span class="glyphicon glyphicon-thumbs-down"></span></h3><br>
-									<a class="image featured">NO. ${status.count}</a><br>
-									<header>
-										<c:choose>
-									        <c:when test="${fn:length(row.GOAL_TITLE) > 8}">
-												<h3><a href="${pageContext.request.contextPath}/mypages/goals/${row.IDX}">${fn:substring(row.GOAL_TITLE,0,7)}...</a></h3>
-											</c:when>
-											<c:otherwise>
-												<h3><a href="${pageContext.request.contextPath}/mypages/goals/${row.IDX}">${row.GOAL_TITLE }</a></h3>
-											</c:otherwise>
-										</c:choose>
-									</header>
-									<p>
-										<c:choose>
-									        <c:when test="${fn:length(row.GOAL_CONTENTS) > 14}">
-												${fn:substring(row.GOAL_CONTENTS,0,13)}...
-											</c:when>
-											<c:otherwise>
-												${row.GOAL_CONTENTS}
-											</c:otherwise>
-										</c:choose><br>
-										${row.START_DT}<br>
-										${row.END_DT}<br>
-										${row.PENALTY_NAME}<br>
-										${row.FAIL_RECEIVER }<br>
-										<span class="glyphicon glyphicon-pencil">${fn:substring(row.CREATE_DT,0,10)}</span>
-									</p>
-								</article>
+								<a href="${pageContext.request.contextPath}/mypages/goals/${row.IDX}">
+									<article style="background-color: #bbbbbb; border: 2px solid; border-radius: 12px; border-color:#bbbbbb;">
+										<h3>FAIL <span class="glyphicon glyphicon-thumbs-down"></span></h3><br>
+										NO. ${status.count}<br>
+										<header>
+											<c:choose>
+										        <c:when test="${fn:length(row.GOAL_TITLE) > 8}">
+													<h3>${fn:substring(row.GOAL_TITLE,0,7)}...</a></h3>
+												</c:when>
+												<c:otherwise>
+													<h3>${row.GOAL_TITLE }</h3>
+												</c:otherwise>
+											</c:choose>
+										</header>
+										<p>
+											<c:choose>
+										        <c:when test="${fn:length(row.GOAL_CONTENTS) > 14}">
+													${fn:substring(row.GOAL_CONTENTS,0,13)}...
+												</c:when>
+												<c:otherwise>
+													${row.GOAL_CONTENTS}
+												</c:otherwise>
+											</c:choose><br>
+											${row.START_DT}<br>
+											${row.END_DT}<br>
+											${row.PENALTY_NAME}<br>
+											${row.FAIL_RECEIVER }<br>
+											<span class="glyphicon glyphicon-pencil">${fn:substring(row.CREATE_DT,0,10)}</span>
+										</p>
+									</article>
+								</a>
 							</c:when>
 							<c:otherwise>
 								미완료거나 유효하지 않은 목표 건 입니다.	

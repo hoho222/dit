@@ -59,7 +59,6 @@
 
 <div id="btn">
 	<a href="${pageContext.request.contextPath}/mypages/goals"><input type="button" class="btn btn-default" value="목록으로"/></a>
-	<input type="button" class="btn btn-primary" value="페이스북"/>
 </div>	
 
 <hr>
