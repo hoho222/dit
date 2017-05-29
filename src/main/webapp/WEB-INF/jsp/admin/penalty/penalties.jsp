@@ -133,41 +133,32 @@ function validSubmit() {
 		
 			<br>
 		
-			<table class="boardlist" style="border:1px solid #ccc"  align="center">
-				<colgroup>
-				    <col width="30%"/>
-				    <col width="15%"/>
-				    <col width="20%"/>
-				    <col width="20%"/>
-				</colgroup>
-				<thead>
-				    <tr>
-				        <th>패널티 상품명</th>
-				        <th>가격</th>
-				        <th>카테고리 (대분류 > 소분류)</th>
-				    </tr>
-				</thead>
-				<tbody>
-			    	<c:choose>
-				        <c:when test="${fn:length(list) > 0}">
-				            <c:forEach items="${list }" var="row">
-				                <tr>
-				                    <td>${row.NAME }</td>
-				                    <td>${row.PRICE }</td>
-				                    <td>${row.CATEGORY_BIG } > ${row.CATEGORY_SMALL }</td>
-				                    </tr>
-			                </c:forEach>
-			            </c:when>
-			            <c:otherwise>
-			                <tr>
-			                    <td colspan="4">등록된 패널티 상품이 없습니다.</td>
-			                </tr>
-			            </c:otherwise>
-			        </c:choose>
-			        
-			    </tbody>
-			</table>
 		
+			<table class="w3-table-all">
+			    <thead>
+					<tr class="w3-blue">
+						<th>패널티 상품명</th>
+						<th>가격</th>
+						<th>카테고리 (대분류 > 소분류)</th>
+					</tr>
+			    </thead>
+			    <c:choose>
+			        <c:when test="${fn:length(list) > 0}">
+			            <c:forEach items="${list }" var="row">
+			                <tr>
+			                    <td>${row.NAME }</td>
+			                    <td>${row.PRICE }</td>
+			                    <td>${row.CATEGORY_BIG } > ${row.CATEGORY_SMALL }</td>
+			                    </tr>
+		                </c:forEach>
+		            </c:when>
+		            <c:otherwise>
+		                <tr>
+		                    <td colspan="4">등록된 패널티 상품이 없습니다.</td>
+		                </tr>
+		            </c:otherwise>
+		        </c:choose>
+			</table>
 		</center>
 	
 	</section>

@@ -22,6 +22,8 @@
 <link rel="stylesheet" type="text/css" href="/doto/css/AdminLTE.min.css" />
 <link rel="stylesheet" type="text/css" href="/doto/css/skins/skin-blue.min.css" />
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <link rel="stylesheet" href="/doto/css/skins/_all-skins.min.css">
 <!-- iCheck -->
 <link rel="stylesheet" href="/doto/css/blue.css">

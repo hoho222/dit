@@ -53,6 +53,17 @@
 					  </c:if>
 				  </c:forEach>
 				</div>
+				
+				<div class="accordion">베이커리</div>
+				<div class="panel">
+				  <c:forEach items="${penaltyList }" var="row">
+					  <c:if test="${row.CATEGORY_BIG eq '베이커리'}">
+					  	<p>
+							${row.CATEGORY_SMALL} - ${row.NAME } (+${row.PRICE })&nbsp;<input type="radio" name="penaltySelector" onclick="setPenaltyGoods('${row.NAME }', '${row.PRICE }', '${row.IDX}');" />
+						</p>
+					  </c:if>
+				  </c:forEach>
+				</div>
 				<!-- 카테고리 아코디언 메뉴 end -->
 	            	
             </c:when>
