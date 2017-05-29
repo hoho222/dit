@@ -116,11 +116,11 @@ function validSubmit() {
 				    <option value="음료/커피">음료/커피</option>
 				    <option value="치킨">치킨</option>
 				    <option value="베이커리">베이커리</option>
-				    <option value="아이스크림">아이스크림</option>
+				    <!-- <option value="아이스크림">아이스크림</option>
 				    <option value="문화상품권">문화상품권</option>
 				    <option value="햄버거">햄버거</option>
 				    <option value="피자">피자</option>
-				    <option value="레스토랑">레스토랑</option>
+				    <option value="레스토랑">레스토랑</option> -->
 			    </select>
 				<select id="categorySmall" name="categorySmall">
 					<option value="">소분류</option>
