@@ -93,7 +93,7 @@
       <!-- /.row -->
 
           <!-- TO DO List -->
-          <div class="box box-primary">
+          <!-- <div class="box box-primary">
             <div class="box-header">
               <i class="ion ion-clipboard"></i>
 
@@ -109,7 +109,7 @@
                 </ul>
               </div>
             </div>
-            <!-- /.box-header -->
+            /.box-header
             <div class="box-body">
               <ul class="todo-list">
                 <li>
@@ -166,11 +166,11 @@
                 </li>
               </ul>
             </div>
-            <!-- /.box-body -->
+            /.box-body
             <div class="box-footer clearfix no-border">
               <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> 할 일 추가</button>
             </div>
-          </div>
+          </div> -->
           <!-- /.box -->
 
     </section>
