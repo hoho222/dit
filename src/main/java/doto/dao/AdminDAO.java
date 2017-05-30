@@ -51,4 +51,8 @@ public class AdminDAO extends AbstractDAO {
 	public void insertNotice(Map<String, Object> map) throws Exception{
 		insert("admin.insertNotice", map);
 	}
+	
+	public void updateAdminLastAccess(String idx) throws Exception{
+		update("admin.updateAdminLastAccess", idx);
+	}
 }

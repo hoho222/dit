@@ -72,7 +72,8 @@ public class AdminServiceImpl implements AdminService{
 				session.setAttribute("adminLoginId", selectAdminInfo.get("ID"));
 				session.setAttribute("adminLoginName", selectAdminInfo.get("NAME"));
 				
-				//어드민 LAST_ACCESS_DT 현재일자로 update(추후 보완 깽)
+				//어드민 LAST_ACCESS_DT 현재일자로 update
+				adminDAO.updateAdminLastAccess(selectAdminInfo.get("IDX").toString());
 				
 				return true;
 			} else {

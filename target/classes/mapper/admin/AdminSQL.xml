@@ -128,5 +128,13 @@
     	)
     	]]>
     </insert>
+    
+    <update id="admin.updateAdminLastAccess">
+    	<![CDATA[
+    	UPDATE T_ADMIN 
+    	SET LAST_ACCESS_DT = now()
+    	WHERE IDX = #{idx}
+    	]]>
+    </update>
 
 </mapper>
