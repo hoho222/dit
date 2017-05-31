@@ -37,12 +37,12 @@ public class FrontController {
 	}
 	
 	/*
-	 * 템플릿 샘플 화면
+	 * 소개 화면
 	 */
-	@RequestMapping(value = "/sample", method = RequestMethod.GET)
+	@RequestMapping(value = "/introduces", method = RequestMethod.GET)
 	public String sample() throws Exception {
 
-		return "front/sample";
+		return "front/introduce";
 
 	}
 	

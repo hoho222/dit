@@ -299,7 +299,16 @@ $(function() {
 						<br><input type="button" onclick="checkBeetweenDay();" value="총 일수 확인"/>
 							<input type="text" id="beetweenDay" name="totalDays" readonly="readonly" placeholder="총 일수 확인 버튼을 누르시면 자동으로 채워집니다."/>
 						<br><span style="font-size:large;">목표 체크 주기</span> 
-						<span style="font-size: x-small">한번에 달성</span><input type="checkbox" id="has_goal_check_period" name="has_goal_check_period" checked/>
+						<span style="font-size: x-small">
+							한번에 달성
+							<span class="w3-tooltip"><span class="glyphicon glyphicon-question-sign" style="font-size:medium; color:#e36092;"></span>
+								<span class="w3-text w3-tag" style="background-color:#e36092;font-size:medium; ">
+									<b><span style="color:white;">자격증취득 처럼 한번에 달성하는 목표일 경우에 체크</span>해주세요!<br>정기적으로 목표 체크를 원하면 체크를 해제하고<br>며칠에 한 번씩 체크할 것인지 주기 일수를 적어주세요!</b>
+								</span>
+							</span>
+						</span>
+						<input type="checkbox" id="has_goal_check_period" name="has_goal_check_period" checked/>
+						
 						<input type="hidden" id="has_goal_check_period_value" name="has_goal_check_period_value" value="N" />
 						<div id="goalCheckPeriod">
 							<input type="text" id="goalCheckPeriodVal" name="goalCheckPeriod" onkeyPress="InpuOnlyNumber(this);" style="ime-mode:disabled"/> 일에 한번

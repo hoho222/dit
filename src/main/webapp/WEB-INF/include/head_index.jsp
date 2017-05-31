@@ -37,7 +37,13 @@
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/index">DoIt,Together</a></li>
 					
-					<li><a href="#">소개</a></li>
+					<li>
+						<a href="${pageContext.request.contextPath}/introduces">소개</a>
+						<ul>
+							<li><a href="${pageContext.request.contextPath}/introduces/#aboutDit">DIT소개</a></li>
+							<li><a href="${pageContext.request.contextPath}/introduces/#aboutWe">팀원소개</a></li>
+						</ul>
+					</li>
 					<li><a href="${pageContext.request.contextPath}/goals">목표달성</a></li>
 					<li><a href="${pageContext.request.contextPath}/notices">공지사항</a></li>
 					

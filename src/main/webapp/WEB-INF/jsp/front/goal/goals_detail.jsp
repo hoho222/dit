@@ -355,7 +355,7 @@ $(function() {
 					<form name="commentFrm" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="goalIdx" value="${idx}"/>
 						<input type="hidden" name="writerIdx" value="${goalMap.WRITER_IDX}"/>
-						<textarea name="comment" rows="3" cols="60">의견을 남겨주세요.</textarea>
+						<textarea name="comment" rows="3" cols="60" placeholder="의견을 남겨주세요."></textarea>
 						<br>
 						<input type="file" id="fileuploader" name="fileuploader"/>
 						<input type="submit" class="btn btn-default btn-sm" value="등록" onclick="validSubmit();"/>
