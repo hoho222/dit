@@ -136,7 +136,6 @@
 					   url : 'join',  
 					   success : function(rData, textStatus, xhr) {
 						   if(rData == "true"){
-							   alert("페이스북 가입성공!\n페이스북으로 로그인 버튼을 한번 더 누르시면 로그인 됩니다.");
 						   		window.location.href = "../users/login";
 						   } else {
 							   window.location.href = "../index";

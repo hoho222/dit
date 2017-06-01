@@ -26,7 +26,7 @@
 				</header>
 				
 				<footer>
-					<a href="${pageContext.request.contextPath}/goals" class="button circled scrolly">Start</a>
+					<a href="${pageContext.request.contextPath}/introduces/#aboutDit" class="button circled scrolly">Start</a>
 				</footer>
 				
 				
