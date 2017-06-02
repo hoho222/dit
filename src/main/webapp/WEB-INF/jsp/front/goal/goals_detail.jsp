@@ -358,7 +358,7 @@ $(function() {
 						<textarea name="comment" rows="3" cols="60" placeholder="의견을 남겨주세요."></textarea>
 						<br>
 						<input type="file" id="fileuploader" name="fileuploader"/>
-						<input type="submit" class="btn btn-default btn-sm" value="등록" onclick="validSubmit();"/>
+						<input type="button" class="btn btn-default btn-sm" value="등록" onclick="validSubmit();"/>
 					</form>
 				</div>
 			</div>

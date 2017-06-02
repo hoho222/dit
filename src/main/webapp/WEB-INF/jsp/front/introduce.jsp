@@ -26,6 +26,7 @@
 					<img src="<c:url value='/resources/imgs/introduceDit_1.jpg'/>" style="width:100%; height: 100%;"/>
 					<img src="<c:url value='/resources/imgs/introduceDit_2.jpg'/>" style="width:100%; height: 100%;"/>
 					<img src="<c:url value='/resources/imgs/introduceDit_3.jpg'/>" style="width:100%; height: 100%;"/>
+					<a href="${pageContext.request.contextPath}/goalsform"><button>목표를 등록하러 가 볼까요?</button></a>
 				</p>
 			</header>
 		</section>
@@ -34,7 +35,7 @@
 	<hr>
 	<br>
 	
-	<div id="aboutWe" style="margin: 10% 0 5% 0;">
+	<div id="aboutWe" >
 		<div id="" class="section">
 			<div class="s-container">
 				<h2 class="section-title" style="transform: translateY(0px); opacity: 1;">WHO?</h2>

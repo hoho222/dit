@@ -10,12 +10,12 @@
 
 
 	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">&times;</button>
 		<center><h4 class="modal-title">패널티 상품 고르기</h4></center>
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
 	</div>
 
 	<div class="modal-body">
-		<center>패널티 상품명을 선택하고 저장 버튼을 눌러주세요.</center>
+		<center>패널티 상품명을 선택하고 하단의 '선택' 버튼을 눌러주세요.</center>
 		
 		<c:choose>
 	        <c:when test="${fn:length(penaltyList) > 0}">
@@ -92,7 +92,7 @@
 	</script>
 	
 	<div class="modal-footer">
-	        <button type="button" class="btn btn-primary" data-dismiss="modal">저장</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">선택</button>
 	</div>
 
 </html>

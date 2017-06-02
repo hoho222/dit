@@ -62,7 +62,9 @@
 			</section>
 		</c:when>
 		<c:otherwise>
-		 	작성된 목표가 없습니다. 어서 목표를 등록하세요!
+			<div style="margin: 5% 0 10% 0;">
+		 		작성된 목표가 없습니다. 어서 목표를 등록하세요!
+		 	</div>
 		</c:otherwise>
 	</c:choose>
 	

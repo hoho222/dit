@@ -180,7 +180,7 @@
 		<!-- 페이스북 로긘 -->
 		
 		<!-- 카카오톡 로긘 -->
-		<div id="kakaologin" style="margin:1% 0 2% 0;"><a id="kakao-login-btn"></a></div> <!-- 카카오톡계정으로 로그인 -->
+		<div id="kakaologin" style="margin:3% 0 2% 0;"><a id="kakao-login-btn"></a></div> <!-- 카카오톡계정으로 로그인 -->
 		<div id="kakaologout"></div>
 		<div id="statusKakao"></div>
 		

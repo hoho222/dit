@@ -50,7 +50,7 @@
             <div class="inner">
               <h3>${statusMap.GOAL_CNT_TODAY }<sup style="font-size: 20px">개</sup></h3>
 
-              <p>오늘 등록된 목표 갯수</p>
+              <p>오늘 등록된 목표 개수</p>
             </div>
             <div class="icon">
               <i class="ion ion-ios-compose"></i>

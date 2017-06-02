@@ -76,7 +76,7 @@ function validSubmit() {
 	if(f.has_penalty_yn.value == "Y"){
 		//패널티 상품 있을경우
 		if(f.penalty.value == ""){
-			alert("하늘색의 '패널티 상품 선택' 버튼을 눌러 패널티 상품을 골라주세요!");
+			alert("패널티 상품을 골라주세요!");
 			f.penalty.focus();
 			return false;
 		}
@@ -325,16 +325,16 @@ $(function() {
 					<div class="w3-container w3-border-left w3-border-top w3-border-bottom w3-border w3-cell w3-mobile" style="width:30%; padding:4% 2% 2% 2%;">
 						<span style="font-size:large;">실패 시 패널티 상품</span>
 						<br>있음<input type="radio" id="has_penalty_Y" name="has_penalty_yn" value="Y"/> 없음<input type="radio" id="has_penalty_N" name="has_penalty_yn" value="N" checked/>
-						
+						<br><br>
 						<div id="penaltyGoodsView">
-						<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal" id="activeModal" href="penalty_modal" style="background-color: #b72058; margin:5% 2% 2% 2%;">패널티 상품 선택</button>
-						<input type="text" id="penalty" name="penalty" readonly="readonly" placeholder="패널티 상품을 먼저 골라주세요" size="16"/> <span id="penaltyPrice"></span>
+						<!-- <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal" id="activeModal" href="penalty_modal" style="background-color: #b72058; margin:5% 2% 2% 2%;">패널티 상품 선택</button> -->
+						<input type="text" id="penalty" name="penalty" readonly="readonly" placeholder="여기를 클릭하여 패널티 상품을 골라주세요." size="16" data-toggle="modal" data-target="#myModal" id="activeModal" href="penalty_modal"/> <span id="penaltyPrice"></span>
 						<input type="hidden" id="penaltyIdx" name="penaltyIdx" value="0"/> <!-- 패널티 일련번호 저장 -->
 						<br><div id="failReceiver"><span style="font-size:large;">실패 시 상품 수령자</span><input type="text" id="failReceiverVal" name="failReceiver"/></div>
 						<br><div id="failReceiverPhone"><span style="font-size:large;">상품 수령자 핸드폰 번호</span><input type="text" id="failReceiverPhoneVal" name="failReceiverPhone"/></div>
 						</div>
 						<!-- 패널티 상품 고르는 모달 팝업 -->
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="height:450px;">
 							<div class="modal-content">
 							<!-- penaltymodal.jsp 내용이 여기로옴 -->
 							</div>

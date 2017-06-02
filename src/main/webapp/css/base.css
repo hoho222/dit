@@ -152,7 +152,7 @@ li{ list-style-type: none;
 .login_field li{ float:left; margin-right:6px;}
 .login_field .sns_icon{width:500px; margin-left:-2px; margin-top:22px;}
 .login_field .join_btn{ background:url(../resources/imgs/circle.png) 108px top no-repeat; padding-left:135px; }
-.btn_login{ margin-left:94px; padding-top:10px}
+.btn_login{width:37%; margin-left:94px}
 
 /* 아코디언 메뉴 */
 div.accordion {
