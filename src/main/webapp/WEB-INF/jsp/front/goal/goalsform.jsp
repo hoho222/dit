@@ -137,7 +137,12 @@ function validSubmit() {
 		return false;
 	}
 	
-	f.enddate.value = endDateStr + " 23:59:59";
+	//23:59:59 이 종료일에 안 붙어있으면 붙여줌
+	if((f.enddate.value).indexOf("23:59:59") == -1){
+		f.enddate.readOnly = true;
+		f.enddate.value = endDateStr + " 23:59:59";
+	}
+	
 	f.action="goals"
 	f.submit();
 }
@@ -243,7 +248,7 @@ $(function() {
 		if($("#has_penalty_N").is(":checked") == true) {
 		    $("#penaltyGoodsView").hide();
 		    $("#penalty").val("");
-		    $("#penaltyIdx").val("");
+		    $("#penaltyIdx").val("0");
 		    $("#failReceiverVal").val("");
 		    $("#failReceiverPhoneVal").val("");
 		}  
